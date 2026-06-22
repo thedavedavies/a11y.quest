@@ -1,0 +1,72 @@
+:root {
+  color-scheme: light dark;
+
+  --paper: #FFFCF5;
+  --cream: #FBF4E6;
+  --cream-deep: #F4E7CE;
+  --ink: #1F1A2E;
+  --ink-soft: #4A4458;
+  --coral-deep: #C2381B;
+  --coral-tint: #FBDAD3;
+  --amber: #FFC233;
+  --amber-tint: #FDE9C2;
+  --teal-deep: #0E7C71;
+  --mint-tint: #D8F3E3;
+  --plum: #6B3FA0;
+
+  --d-bg: #0A0A0B;
+  --d-surface: #141417;
+  --d-elevated: #1C1C22;
+  --d-text: #F2F3F5;
+  --d-muted: #9AA1AC;
+  --d-green: #4ADE80;
+  --d-cyan: #4FE0CE;
+  --d-red: #FF8B82;
+  --d-purple: #A855F7;
+  --d-purple-text: #C8A2F0;
+  --d-focus: #6AB7FF;
+  --d-line: #6E707C;
+  --d-on-accent: #06141A;
+  --d-correct-bg: #102A1C;
+  --d-incorrect-bg: #2A1414;
+  --d-selected-bg: #1E1633;
+
+  --bg:             light-dark(var(--cream),      var(--d-bg));
+  --surface:        light-dark(var(--paper),      var(--d-surface));
+  --surface-sunken: light-dark(var(--cream-deep), var(--d-elevated));
+
+  --text:        light-dark(var(--ink),      var(--d-text));
+  --text-muted:  light-dark(var(--ink-soft), var(--d-muted));
+  --link:        light-dark(var(--plum),     var(--d-purple-text));
+
+  --border:       light-dark(var(--ink),       var(--d-line));
+  --focus-ring:   light-dark(var(--plum),      var(--d-focus));
+  --shadow-color: light-dark(var(--ink),       #000000);
+
+  --scrim: light-dark(rgb(31 26 46 / 0.5), rgb(0 0 0 / 0.66));
+
+  --btn-primary-bg:   light-dark(var(--amber), var(--d-green));
+  --btn-primary-text: light-dark(var(--ink),   var(--d-on-accent));
+
+  --btn-strong-text:  light-dark(var(--paper), var(--d-on-accent));
+
+  --correct-bg:     light-dark(var(--mint-tint), var(--d-correct-bg));
+  --correct-text:   light-dark(var(--ink),       var(--d-text));
+  --correct-accent: light-dark(var(--teal-deep), var(--d-green));
+
+  --incorrect-bg:     light-dark(var(--coral-tint), var(--d-incorrect-bg));
+  --incorrect-text:   light-dark(var(--ink),        var(--d-text));
+  --incorrect-accent: light-dark(var(--coral-deep), var(--d-red));
+
+  --selected-bg:     light-dark(var(--amber-tint), var(--d-selected-bg));
+  --selected-text:   light-dark(var(--ink),        var(--d-text));
+  --selected-border: light-dark(var(--plum),       var(--d-purple));
+
+  --tag-text:      light-dark(var(--ink),        var(--d-text));
+  --tag-easy-bg:   light-dark(var(--mint-tint),  var(--d-correct-bg));
+  --tag-medium-bg: light-dark(var(--amber-tint), var(--d-elevated));
+  --tag-hard-bg:   light-dark(var(--coral-tint), var(--d-incorrect-bg));
+}
+
+:root[data-theme="light"] { color-scheme: light; }
+:root[data-theme="dark"]  { color-scheme: dark; }
