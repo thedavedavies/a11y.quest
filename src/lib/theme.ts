@@ -14,7 +14,9 @@ function effectiveTheme(): Theme {
 }
 
 function prefersReducedMotion(): boolean {
-  return typeof matchMedia !== "undefined" && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  return (
+    typeof matchMedia !== "undefined" && matchMedia("(prefers-reduced-motion: reduce)").matches
+  );
 }
 
 function applyTheme(theme: Theme): void {

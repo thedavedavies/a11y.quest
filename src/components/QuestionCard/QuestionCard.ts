@@ -50,7 +50,9 @@ export function questionCard(q: Question, state: CardState): string {
     (state.answered && state.chosenIndex !== null
       ? feedback(q, state.chosenIndex, state.currentStreak)
       : "") +
-    (state.answered ? "" : `<p class="${styles.error}" id="answer-error" data-error role="alert"></p>`) +
+    (state.answered
+      ? ""
+      : `<p class="${styles.error}" id="answer-error" data-error role="alert"></p>`) +
     `<div class="${styles.actions}">${actions}</div>` +
     flagButton() +
     `</article>`

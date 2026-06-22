@@ -1,6 +1,7 @@
 # a11y.quest - Claude Code project guide
 
 ## What this is
+
 a11y.quest is a standalone, endless web-accessibility drill. The user lands directly on a
 question, picks one of four answers, sees whether they were right with a plain-English
 explanation and links to the source docs, then keeps going. A running score (answered,
@@ -19,11 +20,13 @@ light dependency footprint, and no hard dependencies on private services.
   colons, parentheses, or separate sentences).
 
 ## The prime directive
+
 This is an accessibility tool, so it must be exemplary at its own subject. Every decision
 is constrained by WCAG 2.2 AA. If something cannot meet AA, it does not ship, however good
 it looks. Shipping an accessibility bug here is the worst possible failure.
 
 Concrete requirements, everywhere:
+
 - WCAG 2.2 AA. Verify, do not assume.
 - Semantic HTML first. Reach for ARIA only when no native element fits, and follow the
   ARIA Authoring Practices (https://www.w3.org/WAI/ARIA/apg/).
@@ -46,10 +49,12 @@ Concrete requirements, everywhere:
   Give every control inside an accessible name.
 
 ## Colour discipline
+
 Use the semantic tokens in `src/styles/tokens.css` only. Do not hardcode hex values in
 components, and do not invent new foreground/background pairs without checking contrast first.
 
 These specific pairings FAIL AA and must never be reintroduced (light theme):
+
 - coral, teal, or amber as TEXT on cream/paper (use coral-deep, teal-deep, or plum instead).
 - white/paper text on coral, amber, or teal fills (those bright fills take dark/ink text).
 - ink (dark) text on plum or coral-deep fills (those dark fills take light/paper text).
@@ -58,6 +63,7 @@ These specific pairings FAIL AA and must never be reintroduced (light theme):
 Dark theme: use `--d-line` for real borders.
 
 ## Theme and toggle
+
 Light/warm is the primary identity; dark is a clean dark theme.
 Tokens use the CSS `light-dark()` function driven by `color-scheme`, so the default follows
 the system preference. The toggle sets `data-theme="light"` or `data-theme="dark"` on the
@@ -71,25 +77,30 @@ visible focus state, and the meaningful graphic parts (sun, moon, track edge) at
 better against their background in both states. Reduced-motion gets an instant swap.
 
 ## Question data shape
+
 Questions live in `src/data/questions.ts` (typed) and are authored separately.
 
 ```ts
-export interface DocRef { label: string; url: string }
+export interface DocRef {
+  label: string;
+  url: string;
+}
 export interface Question {
-  id: string;                 // stable unique id, e.g. "name-role-value-001"
-  topic: string;              // e.g. "semantic-html", "aria", "contrast"
+  id: string; // stable unique id, e.g. "name-role-value-001"
+  topic: string; // e.g. "semantic-html", "aria", "contrast"
   difficulty: "easy" | "medium" | "hard";
-  question: string;           // may be long
+  question: string; // may be long
   options: [string, string, string, string]; // exactly 4
   correctIndex: 0 | 1 | 2 | 3;
-  explanation: string;        // plain-English why
-  refs: DocRef[];             // one or more source links
+  explanation: string; // plain-English why
+  refs: DocRef[]; // one or more source links
 }
 ```
 
 Components must flex to long or short question and option text.
 
 ## Structure (suggested)
+
 - `src/pages/index.astro` - the quiz page and entry point.
 - `src/components/Quiz.*` - the client island: renders a question, handles select and check,
   shows feedback, advances. Owns the run state.
@@ -101,17 +112,20 @@ Components must flex to long or short question and option text.
 - `src/styles/tokens.css` - design tokens (provided).
 
 ## Code style
+
 - Comments earn their place. Add one only when it is vital to understanding the code: a
   non-obvious "why", a gotcha, or a spec/standard being satisfied. Do not narrate what the
   code already says, and delete comments the moment they go stale.
 
 ## Do not
+
 - Do not add a landing page; the quiz is the entry point.
 - Do not add login, accounts, or a backend.
 - Do not use any browser storage beyond localStorage (score and theme only).
 - Do not hardcode colours; use semantic tokens.
 
 ## Commands
+
 - `npm run dev` - local dev server
 - `npm run build` - production build
 - `npm run preview` - preview the build
@@ -119,7 +133,9 @@ Components must flex to long or short question and option text.
 - `npm run test` - tests, including axe-core checks on rendered output
 
 ## Commits
+
 Follow Conventional Commits: `type(scope): summary`.
+
 - Types: feat, fix, docs, style, refactor, perf, test, build, ci, chore.
 - Scope is optional and names an area: quiz, share, report, theme, questions, components,
   lib, styles, a11y.
@@ -127,6 +143,7 @@ Follow Conventional Commits: `type(scope): summary`.
 - Keep each commit to one logical concern (a feature or a component group), not one per file.
 
 ## Accessibility guardrails (set up early)
+
 - ESLint with accessibility rules: `eslint-plugin-astro` (a11y rules for .astro) plus
   `eslint-plugin-jsx-a11y` if any JSX islands are used.
 - axe-core assertions in component or integration tests; fail CI on violations.

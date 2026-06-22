@@ -1,11 +1,6 @@
 import type { RunState } from "./store";
 import { lockScroll } from "./scrollLock";
-import {
-  canvasToPngBlob,
-  renderShareCard,
-  shareSummary,
-  type CardTheme,
-} from "./shareCard";
+import { canvasToPngBlob, renderShareCard, shareSummary, type CardTheme } from "./shareCard";
 import { buildShareUrl } from "./shareCode";
 
 interface ShareModalOptions {
@@ -151,9 +146,9 @@ export function initShareModal({ getRun, root = document }: ShareModalOptions): 
   downloadBtn?.addEventListener("click", download);
   copyLinkBtn?.addEventListener("click", copyLink);
 
-  dialog.querySelectorAll<HTMLElement>("[data-share-close]").forEach((el) =>
-    el.addEventListener("click", requestClose),
-  );
+  dialog
+    .querySelectorAll<HTMLElement>("[data-share-close]")
+    .forEach((el) => el.addEventListener("click", requestClose));
   dialog.addEventListener("keydown", (event) => {
     if (event.key === "Escape") requestClose();
   });

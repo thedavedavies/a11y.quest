@@ -129,7 +129,9 @@ describe("document head: JSON-LD structured data", () => {
 
     const personId = person?.["@id"];
     const website = graph.find((n) => n["@type"] === "WebSite");
-    const app = graph.find((n) => Array.isArray(n["@type"]) && n["@type"].includes("WebApplication"));
+    const app = graph.find(
+      (n) => Array.isArray(n["@type"]) && n["@type"].includes("WebApplication"),
+    );
     expect((website?.author as { "@id"?: string })?.["@id"]).toBe(personId);
     expect((app?.author as { "@id"?: string })?.["@id"]).toBe(personId);
   });

@@ -22,7 +22,11 @@ const Q: Question = {
   refs: [{ label: "APG", url: "https://www.w3.org/WAI/ARIA/apg/" }],
 };
 
-const input = (over: Partial<ReportInput> = {}): ReportInput => ({ question: Q, note: "", ...over });
+const input = (over: Partial<ReportInput> = {}): ReportInput => ({
+  question: Q,
+  note: "",
+  ...over,
+});
 
 describe("buildIssueUrl", () => {
   it("targets the configured repo's new-issue form", () => {
@@ -37,7 +41,11 @@ describe("buildIssueUrl", () => {
   });
 
   it("encodes each label and joins them with a literal comma", () => {
-    const url = buildIssueUrl("o/r", { title: "t", body: "b", labels: ["question-report", "needs triage"] });
+    const url = buildIssueUrl("o/r", {
+      title: "t",
+      body: "b",
+      labels: ["question-report", "needs triage"],
+    });
     expect(url).toContain("labels=question-report,needs%20triage");
   });
 

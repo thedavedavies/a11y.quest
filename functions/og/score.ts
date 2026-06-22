@@ -1,6 +1,12 @@
 import { ImageResponse, loadGoogleFont } from "workers-og";
 import { decodeRun } from "../../src/lib/shareCode";
-import { cardStats, paletteFor, TILE_FILL, TILE_INK, type CardTheme } from "../../src/lib/shareCardData";
+import {
+  cardStats,
+  paletteFor,
+  TILE_FILL,
+  TILE_INK,
+  type CardTheme,
+} from "../../src/lib/shareCardData";
 
 const FALLBACK_IMAGE = "/og-image.png";
 
@@ -23,7 +29,12 @@ const flameUri = (colour: string): string =>
 const DISPLAY = "Bricolage Grotesque";
 const BODY = "Inter";
 
-function statBlock(label: string, value: string, p: ReturnType<typeof paletteFor>, flame?: string): string {
+function statBlock(
+  label: string,
+  value: string,
+  p: ReturnType<typeof paletteFor>,
+  flame?: string,
+): string {
   const valueRow = flame
     ? `<div style="display:flex;align-items:center;gap:12px;">` +
       `<img src="${flame}" width="40" height="40" />` +

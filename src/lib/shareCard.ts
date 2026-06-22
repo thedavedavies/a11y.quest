@@ -113,7 +113,12 @@ function drawFlame(
   ctx.restore();
 }
 
-function drawCard(ctx: CanvasRenderingContext2D, run: RunState, p: Palette, fonts: CardFonts): void {
+function drawCard(
+  ctx: CanvasRenderingContext2D,
+  run: RunState,
+  p: Palette,
+  fonts: CardFonts,
+): void {
   const s = cardStats(run);
 
   ctx.fillStyle = p.bg;

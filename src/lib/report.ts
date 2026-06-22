@@ -12,7 +12,12 @@ export function truncate(text: string, max: number): string {
   const t = text.trim();
   const chars = Array.from(t);
   if (chars.length <= max) return t;
-  return chars.slice(0, max - 1).join("").trimEnd() + "…";
+  return (
+    chars
+      .slice(0, max - 1)
+      .join("")
+      .trimEnd() + "…"
+  );
 }
 
 function longestBacktickRun(text: string): number {
