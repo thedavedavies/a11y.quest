@@ -1,0 +1,14 @@
+{
+  "comment": "Cloudflare Pages Functions run in the Workers runtime, not the browser. They are excluded from the app tsconfig and typed here against @cloudflare/workers-types (no DOM lib). They import only the pure, DOM-free helpers from ../src/lib.",
+  "extends": "astro/tsconfigs/strict",
+  "include": ["**/*.ts", "../src/lib/run.ts", "../src/lib/shareCode.ts", "../src/lib/shareCardData.ts"],
+  "compilerOptions": {
+    "types": ["@cloudflare/workers-types"],
+    "lib": ["ES2022", "WebWorker"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "verbatimModuleSyntax": true,
+    "noEmit": true,
+    "skipLibCheck": true
+  }
+}

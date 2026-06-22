@@ -1,0 +1,127 @@
+.banner {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding: clamp(1.1rem, 0.9rem + 1.2vw, 1.6rem);
+  padding-right: 3.5rem;
+  background: var(--surface);
+  border: 3px solid var(--border);
+  border-radius: 18px;
+  box-shadow: 6px 6px 0 var(--shadow-color);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.eyebrowIcon {
+  display: inline-flex;
+  color: var(--link);
+}
+
+.heading {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 1.1rem + 1.4vw, 1.9rem);
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--text);
+}
+
+.detail {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.cta {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.4rem;
+  min-height: 48px;
+  padding: 0.6rem 1.2rem;
+  border: 3px solid var(--border);
+  border-radius: 14px;
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  box-shadow: 4px 4px 0 var(--shadow-color);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.ctaIcon {
+  display: inline-flex;
+  flex: none;
+}
+
+.close {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.7rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 2.5px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+}
+
+@media (hover: hover) {
+  .close:hover {
+    background: var(--surface-sunken);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .cta {
+    transition:
+      transform 80ms ease,
+      box-shadow 80ms ease;
+  }
+}
+
+@media (hover: hover) {
+  .cta:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 var(--shadow-color);
+  }
+}
+
+.cta:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 var(--shadow-color);
+}
+
+.cta:focus-visible,
+.close:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 3px var(--bg),
+    0 0 0 6px var(--focus-ring);
+}
