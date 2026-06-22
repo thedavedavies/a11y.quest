@@ -1,0 +1,80 @@
+---
+import { questions } from "../data/questions";
+import { questionCard } from "./QuestionCard/QuestionCard";
+import { scorePanel } from "./ScorePanel/ScorePanel";
+import { reportModal } from "./ReportModal/ReportModal";
+import { shareModal } from "./ShareModal/ShareModal";
+import styles from "./Quiz.module.css";
+
+const initialCard = questionCard(questions[0], {
+  answered: false,
+  chosenIndex: null,
+  questionNumber: 1,
+  currentStreak: 0,
+});
+---
+
+<div class={styles.quiz} data-quiz>
+  <div class={styles.main} data-stage set:html={initialCard}></div>
+  <script is:inline>
+    (function () {
+      const stage = document.querySelector("[data-stage]");
+      const quiz = document.querySelector("[data-quiz]");
+      if (stage) stage.setAttribute("data-booting", "");
+      let returning = false;
+      try {
+        const raw = localStorage.getItem("a11yquest:run:v1");
+        if (raw) {
+          const r = JSON.parse(raw);
+          returning = !!(r && r.answered > 0);
+        }
+      } catch {}
+      if (returning && quiz) quiz.setAttribute("data-score-booting", "");
+      setTimeout(function () {
+        if (stage) stage.removeAttribute("data-booting");
+        if (quiz) quiz.removeAttribute("data-score-booting");
+      }, 3000);
+    })();
+  </script>
+
+  <div class={styles.side} data-score-panel set:html={scorePanel()}></div>
+
+  <div class="visually-hidden" role="status" aria-live="polite" data-live></div>
+
+  <noscript>
+    <p class={styles.noscript}>
+      This quiz needs JavaScript to check answers, keep your score, and load new
+      questions. Please enable JavaScript to play.
+    </p>
+  </noscript>
+</div>
+
+<Fragment set:html={reportModal()} />
+<Fragment set:html={shareModal()} />
+
+<script>
+  import { initQuiz } from "../lib/quiz";
+  import { initReportModal } from "../lib/reportModal";
+  import { initSharedBanner } from "../lib/sharedBanner";
+  initSharedBanner();
+  initQuiz();
+  initReportModal();
+</script>
+
+<style>
+  [data-stage],
+  [data-score-panel] {
+    transition: opacity 0.18s ease;
+  }
+  [data-stage][data-booting],
+  [data-quiz][data-score-booting] [data-score-panel] {
+    visibility: hidden;
+    opacity: 0;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    [data-stage],
+    [data-score-panel] {
+      transition: none;
+    }
+  }
+</style>

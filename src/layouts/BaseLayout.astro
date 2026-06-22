@@ -1,0 +1,164 @@
+---
+import { Font } from "astro:assets";
+import "../styles/tokens.css";
+import "../styles/global.css";
+import { siteHeader } from "../components/SiteHeader/SiteHeader";
+import { siteFooter } from "../components/SiteFooter/SiteFooter";
+import { AUTHOR_NAME, AUTHOR_URL } from "../lib/config";
+import styles from "./BaseLayout.module.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
+const {
+  title = "a11y.quest - an endless web accessibility drill",
+  description = "Practice technical web accessibility one question at a time. WCAG, ARIA, semantic HTML, keyboard, and contrast, with plain-English answers.",
+  image = "/og-image.png",
+} = Astro.props;
+
+const site = Astro.site ?? new URL("https://a11y.quest");
+const canonical = new URL(Astro.url.pathname, site).href;
+const ogImage = new URL(image, site).href;
+const siteName = "a11y.quest";
+
+const license = "https://opensource.org/license/mit";
+const authorId = `${AUTHOR_URL}/#person`;
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": authorId,
+      name: AUTHOR_NAME,
+      url: AUTHOR_URL,
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${site.origin}/#website`,
+      url: `${site.origin}/`,
+      name: siteName,
+      description,
+      inLanguage: "en",
+      isAccessibleForFree: true,
+      license,
+      author: { "@id": authorId },
+      keywords: [
+        "web accessibility",
+        "WCAG",
+        "WAI-ARIA",
+        "semantic HTML",
+        "keyboard accessibility",
+        "colour contrast",
+        "screen readers",
+      ],
+    },
+    {
+      "@type": ["WebApplication", "LearningResource"],
+      "@id": `${site.origin}/#app`,
+      url: `${site.origin}/`,
+      name: title,
+      description,
+      inLanguage: "en",
+      isPartOf: { "@id": `${site.origin}/#website` },
+      image: ogImage,
+      applicationCategory: "EducationalApplication",
+      operatingSystem: "Any (modern web browser)",
+      browserRequirements: "Requires a modern browser with JavaScript enabled.",
+      isAccessibleForFree: true,
+      license,
+      author: { "@id": authorId },
+      offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+      learningResourceType: "Quiz",
+      educationalUse: ["practice", "self assessment"],
+      teaches: [
+        "WCAG 2.2 success criteria",
+        "WAI-ARIA",
+        "Semantic HTML",
+        "Keyboard and focus management",
+        "Screen readers and assistive technology",
+        "Colour contrast",
+        "Name, role, value",
+      ],
+      about: { "@type": "Thing", name: "Web accessibility" },
+      audience: {
+        "@type": "Audience",
+        audienceType: "Developers, designers, and accessibility practitioners",
+      },
+    },
+  ],
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="dns-prefetch" href="https://www.w3.org" />
+    <link rel="dns-prefetch" href="https://developer.mozilla.org" />
+    <script is:inline>
+      try {
+        const t = localStorage.getItem("a11yquest:theme:v1");
+        if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+      } catch {}
+    </script>
+    <meta name="color-scheme" content="light dark" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#FBF4E6" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0A0A0B" />
+
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="The a11y.quest social card: the wordmark, the tagline 'an endless web accessibility drill', and the topics it covers (WCAG, ARIA, semantic HTML, keyboard, and contrast)."
+    />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta
+      name="twitter:image:alt"
+      content="The a11y.quest social card: the wordmark, the tagline 'an endless web accessibility drill', and the topics it covers (WCAG, ARIA, semantic HTML, keyboard, and contrast)."
+    />
+
+    <Font cssVariable="--font-display" preload />
+    <Font cssVariable="--font-body" preload />
+    <Font cssVariable="--font-mono" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />
+  </head>
+  <body>
+    <div class={styles.page}>
+      <Fragment set:html={siteHeader()} />
+      <main id="main" tabindex="-1" class={styles.main}>
+        <slot />
+      </main>
+      <Fragment set:html={siteFooter()} />
+    </div>
+    <script>
+      import { initThemeToggle } from "../lib/theme";
+      initThemeToggle();
+    </script>
+  </body>
+</html>
