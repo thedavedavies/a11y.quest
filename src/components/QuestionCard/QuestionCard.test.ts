@@ -6,7 +6,12 @@ const q = questions[0];
 
 describe("questionCard", () => {
   it("renders the unanswered state: 4 options, a legend, Check, no feedback", () => {
-    const html = questionCard(q, { answered: false, chosenIndex: null, questionNumber: 1, currentStreak: 0 });
+    const html = questionCard(q, {
+      answered: false,
+      chosenIndex: null,
+      questionNumber: 1,
+      currentStreak: 0,
+    });
     expect((html.match(/type="radio"/g) || []).length).toBe(4);
     expect(html).toContain("<legend");
     expect(html).toContain('data-action="check"');
@@ -16,7 +21,12 @@ describe("questionCard", () => {
   });
 
   it("uses the question as the radio group's legend, with no nested heading", () => {
-    const html = questionCard(q, { answered: false, chosenIndex: null, questionNumber: 1, currentStreak: 0 });
+    const html = questionCard(q, {
+      answered: false,
+      chosenIndex: null,
+      questionNumber: 1,
+      currentStreak: 0,
+    });
     expect(html).toMatch(/<legend[^>]*id="question-text"[^>]*>/);
     expect(html).not.toMatch(/<fieldset[^>]*aria-labelledby/);
     expect(html).not.toMatch(/<article[^>]*aria-labelledby/);
@@ -39,18 +49,33 @@ describe("questionCard", () => {
   });
 
   it("includes an empty alert-role error region only while unanswered", () => {
-    const unanswered = questionCard(q, { answered: false, chosenIndex: null, questionNumber: 1, currentStreak: 0 });
+    const unanswered = questionCard(q, {
+      answered: false,
+      chosenIndex: null,
+      questionNumber: 1,
+      currentStreak: 0,
+    });
     expect(unanswered).toContain('role="alert"');
     expect(unanswered).toContain("data-error");
     expect(unanswered).toContain('id="answer-error"');
-    const answered = questionCard(q, { answered: true, chosenIndex: q.correctIndex, questionNumber: 1, currentStreak: 1 });
+    const answered = questionCard(q, {
+      answered: true,
+      chosenIndex: q.correctIndex,
+      questionNumber: 1,
+      currentStreak: 1,
+    });
     expect(answered).not.toContain("data-error");
   });
 
   it("escapes the question text", () => {
     const tricky = { ...q, question: "Use a <button>?" };
-    expect(questionCard(tricky, { answered: false, chosenIndex: null, questionNumber: 1, currentStreak: 0 })).toContain(
-      "Use a &lt;button&gt;?",
-    );
+    expect(
+      questionCard(tricky, {
+        answered: false,
+        chosenIndex: null,
+        questionNumber: 1,
+        currentStreak: 0,
+      }),
+    ).toContain("Use a &lt;button&gt;?");
   });
 });

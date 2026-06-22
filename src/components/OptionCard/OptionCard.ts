@@ -17,7 +17,8 @@ export function optionCard({ text, index, answered, checked, state }: OptionProp
   const statusId = `${id}-status`;
   const showStatus = answered && state !== "idle";
   const statusText = state === "correct" ? "Correct answer" : "Your answer, incorrect";
-  const resultIcon = state === "correct" ? icon("check", 26) : state === "incorrect" ? icon("x", 26) : "";
+  const resultIcon =
+    state === "correct" ? icon("check", 26) : state === "incorrect" ? icon("x", 26) : "";
 
   const inputAttrs = [
     `class="${styles.input}"`,
@@ -40,9 +41,7 @@ export function optionCard({ text, index, answered, checked, state }: OptionProp
     `<span class="${styles.text}">${escapeHtml(text)}</span>` +
     (resultIcon ? `<span class="${styles.stateIcon}">${resultIcon}</span>` : "") +
     `</label>` +
-    (showStatus
-      ? `<span class="visually-hidden" id="${statusId}">${statusText}</span>`
-      : "") +
+    (showStatus ? `<span class="visually-hidden" id="${statusId}">${statusText}</span>` : "") +
     `</div>`
   );
 }

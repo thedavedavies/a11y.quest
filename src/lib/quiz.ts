@@ -103,8 +103,8 @@ export function initQuiz(root: ParentNode = document): void {
   }
 
   quiz.addEventListener("click", (event) => {
-    const action = (event.target as HTMLElement | null)?.closest<HTMLElement>("[data-action]")?.dataset
-      .action;
+    const action = (event.target as HTMLElement | null)?.closest<HTMLElement>("[data-action]")
+      ?.dataset.action;
     if (action === "check") handleCheck();
     else if (action === "next") handleNext();
     else if (action === "reset") handleReset();

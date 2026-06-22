@@ -67,9 +67,9 @@ export function initReportModal(root: ParentNode = document): void {
 
   noteEl?.addEventListener("input", refreshLink);
 
-  dialog.querySelectorAll<HTMLElement>("[data-report-close]").forEach((el) =>
-    el.addEventListener("click", requestClose),
-  );
+  dialog
+    .querySelectorAll<HTMLElement>("[data-report-close]")
+    .forEach((el) => el.addEventListener("click", requestClose));
 
   dialog.addEventListener("keydown", (event) => {
     if (event.key === "Escape") requestClose();

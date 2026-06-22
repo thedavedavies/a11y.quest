@@ -3,7 +3,6 @@ import { reportModal } from "./ReportModal";
 import { initReportModal } from "../../lib/reportModal";
 import { questions } from "../../data/questions";
 
-
 const QID = questions[0].id;
 
 function mount(): { dialog: HTMLDialogElement; flag: HTMLButtonElement } {

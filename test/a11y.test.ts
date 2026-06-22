@@ -80,7 +80,12 @@ describe("quiz accessibility (axe-core, WCAG 2.2 AA)", () => {
 
   it("has no violations after a correct answer is checked", async () => {
     const q = questions[0];
-    renderCard(q, { answered: true, chosenIndex: q.correctIndex, questionNumber: 1, currentStreak: 1 });
+    renderCard(q, {
+      answered: true,
+      chosenIndex: q.correctIndex,
+      questionNumber: 1,
+      currentStreak: 1,
+    });
     await expectClean();
   });
 
@@ -105,7 +110,12 @@ describe("quiz accessibility (axe-core, WCAG 2.2 AA)", () => {
 
   it("has no violations in an answered state with multiple doc links", async () => {
     const q = questions.find((q) => q.refs.length > 1) ?? questions[0];
-    renderCard(q, { answered: true, chosenIndex: q.correctIndex, questionNumber: 100, currentStreak: 50 });
+    renderCard(q, {
+      answered: true,
+      chosenIndex: q.correctIndex,
+      questionNumber: 100,
+      currentStreak: 50,
+    });
     await expectClean();
   });
 });

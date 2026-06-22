@@ -1,13 +1,11 @@
 import { defineConfig, fontProviders } from "astro/config";
 
 const variants = (family, weights) =>
-  (
-    weights.map((weight) => ({
-      weight,
-      style: "normal",
-      src: [`@fontsource/${family}/files/${family}-latin-${weight}-normal.woff2`],
-    }))
-  );
+  weights.map((weight) => ({
+    weight,
+    style: "normal",
+    src: [`@fontsource/${family}/files/${family}-latin-${weight}-normal.woff2`],
+  }));
 
 export default defineConfig({
   site: "https://a11y.quest",

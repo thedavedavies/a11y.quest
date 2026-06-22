@@ -22,7 +22,9 @@ describe("reportModal markup", () => {
   });
 
   it("has a labelled, keyboard-operable close control", () => {
-    expect(html).toMatch(/<button[^>]*data-report-close[^>]*aria-label="Close and return to the quiz"/);
+    expect(html).toMatch(
+      /<button[^>]*data-report-close[^>]*aria-label="Close and return to the quiz"/,
+    );
   });
 
   it("opens GitHub in a new tab safely, indicating the new tab to assistive tech", () => {

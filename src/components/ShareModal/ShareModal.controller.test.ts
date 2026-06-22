@@ -8,8 +8,7 @@ const RUN: RunState = { answered: 42, correct: 38, currentStreak: 5, bestStreak:
 
 function mount(): { dialog: HTMLDialogElement; shareBtn: HTMLButtonElement } {
   document.body.innerHTML =
-    `<div data-quiz><button type="button" data-action="share">Share</button></div>` +
-    shareModal();
+    `<div data-quiz><button type="button" data-action="share">Share</button></div>` + shareModal();
   const dialog = document.querySelector<HTMLDialogElement>("[data-share-modal]")!;
   dialog.showModal = function () {
     this.setAttribute("open", "");
@@ -59,7 +58,9 @@ describe("initShareModal controller", () => {
     await flush();
 
     expect(writeText).toHaveBeenCalledWith(buildShareUrl(window.location.origin, RUN));
-    expect(dialog.querySelector<HTMLElement>("[data-share-status]")!.textContent).toMatch(/copied/i);
+    expect(dialog.querySelector<HTMLElement>("[data-share-status]")!.textContent).toMatch(
+      /copied/i,
+    );
     expect(dialog.querySelector<HTMLElement>("[data-share-fallback]")!.hidden).toBe(true);
   });
 
@@ -77,7 +78,9 @@ describe("initShareModal controller", () => {
     expect(dialog.querySelector<HTMLInputElement>("[data-share-url]")!.value).toBe(
       buildShareUrl(window.location.origin, RUN),
     );
-    expect(dialog.querySelector<HTMLElement>("[data-share-status]")!.textContent).toMatch(/blocked/i);
+    expect(dialog.querySelector<HTMLElement>("[data-share-status]")!.textContent).toMatch(
+      /blocked/i,
+    );
   });
 
   it("returns focus to the trigger when closed with Escape", () => {

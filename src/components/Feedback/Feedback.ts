@@ -12,8 +12,8 @@ export function feedback(q: Question, chosenIndex: number, currentStreak: number
   const streakChip =
     isCorrect && currentStreak > 0
       ? `<p class="${styles.streakChip}">` +
-      `<span class="${styles.streakFlame}">${icon("flame", 16)}</span>` +
-      `<span>${currentStreak} in a row</span></p>`
+        `<span class="${styles.streakFlame}">${icon("flame", 16)}</span>` +
+        `<span>${currentStreak} in a row</span></p>`
       : "";
 
   const correctAnswer = isCorrect

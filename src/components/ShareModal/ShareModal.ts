@@ -6,24 +6,29 @@ export function shareModal(): string {
     `<dialog class="${styles.modal}" data-share-modal>` +
     `<div class="${styles.inner}">` +
     `<h2 class="${styles.title}" tabindex="-1" autofocus>Share your run</h2>` +
-
     `<div class="${styles.preview}">` +
     `<canvas class="${styles.canvas}" data-share-canvas role="img" aria-label="Your a11y.quest score card"></canvas>` +
     `</div>` +
-
     `<div class="${styles.actions}">` +
     `<div class="${styles.row}">` +
-    actionButton({ data: "data-share-download", icon: "download", label: "Download", variant: "primary" }) +
-    actionButton({ data: "data-share-copy-link", icon: "link", label: "Copy link", variant: "secondary" }) +
+    actionButton({
+      data: "data-share-download",
+      icon: "download",
+      label: "Download",
+      variant: "primary",
+    }) +
+    actionButton({
+      data: "data-share-copy-link",
+      icon: "link",
+      label: "Copy link",
+      variant: "secondary",
+    }) +
     `</div>` +
-
     `<div class="${styles.fallback}" data-share-fallback hidden>` +
     `<label class="${styles.fallbackLabel}" for="share-url">Copy this link</label>` +
     `<input class="${styles.url}" id="share-url" data-share-url type="text" readonly />` +
     `</div>` +
-
     `<div class="visually-hidden" role="status" aria-live="polite" data-share-status></div>` +
-
     `<button type="button" class="${styles.close}" data-share-close aria-label="Close and return to the quiz">${icon("x", 22)}</button>` +
     `</div>` +
     `</dialog>`

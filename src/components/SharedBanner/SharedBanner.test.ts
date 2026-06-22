@@ -45,8 +45,7 @@ describe("sharedBanner accessibility (axe-core, WCAG 2.2 AA)", () => {
 describe("initSharedBanner controller", () => {
   beforeEach(() => {
     localStorage.clear();
-    document.body.innerHTML =
-      `<main id="main" tabindex="-1"><div data-quiz><input name="answer" type="radio" /></div></main>`;
+    document.body.innerHTML = `<main id="main" tabindex="-1"><div data-quiz><input name="answer" type="radio" /></div></main>`;
     window.history.replaceState({}, "", "/");
   });
 
@@ -99,9 +98,7 @@ describe("initSharedBanner controller", () => {
     document.querySelector<HTMLButtonElement>("[data-shared-start]")!.click();
 
     expect(document.querySelector("[data-shared-banner]")).toBeNull();
-    expect(document.activeElement).toBe(
-      document.querySelector('[data-quiz] input[name="answer"]'),
-    );
+    expect(document.activeElement).toBe(document.querySelector('[data-quiz] input[name="answer"]'));
   });
 
   it("dismisses: removes the banner and keeps focus on main", () => {
