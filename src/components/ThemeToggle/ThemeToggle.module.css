@@ -1,0 +1,103 @@
+.toggle {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.tooltip {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  padding-top: 8px;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 50;
+}
+
+.tooltipChip {
+  display: block;
+  white-space: nowrap;
+  padding: 0.35rem 0.6rem;
+  background: var(--surface);
+  color: var(--text);
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 3px 3px 0 var(--shadow-color);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.toggle:hover .tooltip,
+.toggle:focus-visible .tooltip {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.toggle[data-tooltip-hidden] .tooltip {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .tooltip {
+    transition: opacity 150ms ease;
+  }
+}
+
+.track {
+  position: relative;
+  width: 60px;
+  height: 32px;
+  border: 2.5px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+}
+
+.knob {
+  position: absolute;
+  top: 50%;
+  left: 3px;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--border);
+  border-radius: 50%;
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+}
+
+.toggle[aria-checked="true"] .knob {
+  transform: translateY(-50%) translateX(27px);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .knob {
+    transition: transform 160ms ease;
+  }
+}
+
+.sun,
+.moon {
+  display: grid;
+  place-items: center;
+}
+
+.moon {
+  display: none;
+}
+
+.toggle[aria-checked="true"] .sun {
+  display: none;
+}
+
+.toggle[aria-checked="true"] .moon {
+  display: grid;
+}
