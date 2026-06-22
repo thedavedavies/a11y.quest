@@ -1,6 +1,7 @@
 import js from "@eslint/js";
 import tseslint from "typescript-eslint";
 import astro from "eslint-plugin-astro";
+import eslintConfigPrettier from "eslint-config-prettier";
 import globals from "globals";
 
 export default tseslint.config(
@@ -28,4 +29,5 @@ export default tseslint.config(
       globals: { ...globals.node },
     },
   },
+  eslintConfigPrettier,
 );
