@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="a11y.quest">
+  <!-- Rounded tile: amber fill defines the mark on dark backgrounds, the ink
+       border defines it on light (cream) backgrounds. -->
+  <rect x="3" y="3" width="58" height="58" rx="18" fill="#FFC233" stroke="#1F1A2E" stroke-width="6" />
+  <!-- The brand "spark" (4-point star) from the Pencil design, centred. -->
+  <g transform="translate(16.6 18) scale(0.7)">
+    <path fill="#1F1A2E" d="M22 0l6 14 16 6-16 6-6 14-6-14-16-6 16-6z" />
+  </g>
+</svg>
