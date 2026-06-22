@@ -1,0 +1,238 @@
+.modal {
+  width: min(560px, calc(100vw - 2rem));
+  max-height: calc(100dvh - 2rem);
+  margin: auto;
+  padding: clamp(1.25rem, 0.9rem + 2.2vw, 2.25rem);
+  overflow: auto;
+  overscroll-behavior: none;
+  background: var(--surface);
+  color: var(--text);
+  border: 4px solid var(--border);
+  border-radius: 24px;
+  box-shadow: 10px 10px 0 var(--shadow-color);
+
+  opacity: 0;
+  translate: 0 -8px;
+  transition:
+    opacity 0.22s ease,
+    translate 0.22s ease,
+    overlay 0.22s ease allow-discrete,
+    display 0.22s ease allow-discrete;
+}
+
+.modal[open] {
+  opacity: 1;
+  translate: 0 0;
+}
+
+@starting-style {
+  .modal[open] {
+    opacity: 0;
+    translate: 0 -8px;
+  }
+}
+
+.modal::backdrop {
+  background: var(--scrim);
+  opacity: 0;
+  transition:
+    opacity 0.22s ease,
+    overlay 0.22s ease allow-discrete,
+    display 0.22s ease allow-discrete;
+}
+
+.modal[open]::backdrop {
+  opacity: 1;
+}
+
+@starting-style {
+  .modal[open]::backdrop {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .modal,
+  .modal[open],
+  .modal::backdrop {
+    transition: none;
+    translate: none;
+  }
+}
+
+.inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.title {
+  margin: 0;
+  padding-right: 3rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 1.2rem + 1.4vw, 1.875rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--text);
+}
+
+.title:focus,
+.title:focus-visible {
+  outline: none;
+}
+
+.close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 2.5px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+}
+
+@media (hover: hover) {
+  .close:hover {
+    background: var(--surface-sunken);
+  }
+}
+
+.intro {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.fieldLabel {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.optional {
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+.textarea {
+  width: 100%;
+  min-height: 4.5rem;
+  padding: 0.7rem 0.85rem;
+  border: 2.5px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+.textarea:focus-visible {
+  outline: none;
+  border-color: var(--selected-border);
+  box-shadow: 0 0 0 3px var(--focus-ring);
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.minorActions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem 1.25rem;
+}
+
+.primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 44px;
+  padding: 0.7rem 1.25rem;
+  border: 3px solid var(--border);
+  border-radius: 14px;
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  box-shadow: 5px 5px 0 var(--shadow-color);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.02rem;
+  text-align: center;
+  text-decoration: none;
+}
+
+.primaryIcon {
+  display: inline-flex;
+  flex: none;
+}
+
+.primaryText {
+  line-height: 1.2;
+}
+
+.cancel {
+  min-height: 44px;
+  padding: 0.4rem 1rem;
+  border: 0;
+  background: none;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+@media (hover: hover) {
+  .cancel:hover {
+    color: var(--text);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .primary {
+    transition:
+      transform 80ms ease,
+      box-shadow 80ms ease;
+  }
+}
+
+@media (hover: hover) {
+  .primary:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 3px 3px 0 var(--shadow-color);
+  }
+}
+
+.primary:active {
+  transform: translate(5px, 5px);
+  box-shadow: 0 0 0 var(--shadow-color);
+}
+
+.primary:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 3px var(--bg),
+    0 0 0 6px var(--focus-ring);
+}

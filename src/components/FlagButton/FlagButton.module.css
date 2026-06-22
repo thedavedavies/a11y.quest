@@ -1,0 +1,57 @@
+.flag {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.4rem 0.6rem;
+  margin-inline-start: -0.6rem;
+  border: 0;
+  border-radius: 10px;
+  background: none;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1.5px;
+  cursor: pointer;
+  transition:
+    color 0.3s ease,
+    background-color 0.3s ease;
+}
+
+.icon {
+  display: inline-flex;
+  flex: none;
+}
+
+.icon svg {
+  fill: var(--incorrect-accent);
+  fill-opacity: 0;
+  transition: fill-opacity 0.3s ease;
+}
+
+@media (hover: hover) {
+  .flag:hover {
+    color: var(--text);
+    background: var(--surface-sunken);
+  }
+}
+
+.flag:focus-visible {
+  color: var(--text);
+}
+
+.flag:hover .icon svg,
+.flag:focus-visible .icon svg {
+  fill-opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flag,
+  .icon svg {
+    transition: none;
+  }
+}
