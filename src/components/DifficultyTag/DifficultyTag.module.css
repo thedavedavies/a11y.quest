@@ -1,0 +1,39 @@
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0.3rem 0.7rem;
+  border: 2px solid var(--border);
+  border-radius: 999px;
+  color: var(--tag-text);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.easy {
+  background: var(--tag-easy-bg);
+}
+.medium {
+  background: var(--tag-medium-bg);
+}
+.hard {
+  background: var(--tag-hard-bg);
+}
+
+.dots {
+  display: inline-flex;
+  gap: 3px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1.5px solid var(--tag-text);
+}
+
+.dotFilled {
+  background: var(--tag-text);
+}

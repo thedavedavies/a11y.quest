@@ -1,0 +1,32 @@
+.streak {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem;
+  background: var(--tag-medium-bg);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+}
+
+.flame {
+  display: inline-flex;
+  color: var(--incorrect-accent);
+}
+
+.nums {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.current {
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.best {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}

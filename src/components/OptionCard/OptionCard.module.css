@@ -1,0 +1,126 @@
+.option {
+  position: relative;
+  display: block;
+  border: 2.5px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface);
+  color: var(--text);
+}
+
+.input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  opacity: 0;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  min-height: 44px;
+  padding: 0.85rem 1rem;
+  cursor: pointer;
+}
+
+.radio {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border: 2.5px solid var(--border);
+  border-radius: 50%;
+  background: var(--surface);
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--text);
+  transform: scale(0);
+}
+
+.input:checked ~ .label .dot {
+  transform: scale(1);
+}
+
+.text {
+  flex: 1 1 auto;
+  font-size: 1.05rem;
+  line-height: 1.35;
+}
+
+.stateIcon {
+  flex: none;
+  display: inline-flex;
+  width: 26px;
+  height: 26px;
+}
+
+.option:has(.input:checked:enabled) {
+  border-color: var(--selected-border);
+  background: var(--selected-bg);
+  color: var(--selected-text);
+}
+
+@media (hover: hover) {
+  .option:has(.input:enabled):hover {
+    background: var(--surface-sunken);
+  }
+}
+
+.input:focus-visible ~ .label .radio {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
+@supports selector(:has(*)) {
+  .input:focus-visible ~ .label .radio {
+    outline: none;
+  }
+  .option:has(.input:focus-visible) {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 3px;
+  }
+}
+
+.input:focus-visible {
+  outline: none;
+}
+
+.option:has(.input:disabled) .label {
+  cursor: default;
+}
+
+.correct {
+  border-color: var(--correct-accent);
+  background: var(--correct-bg);
+  color: var(--correct-text);
+}
+.correct .radio {
+  border-color: var(--correct-accent);
+}
+.correct .dot {
+  background: var(--correct-accent);
+}
+.correct .stateIcon {
+  color: var(--correct-accent);
+}
+
+.incorrect {
+  border-color: var(--incorrect-accent);
+  background: var(--incorrect-bg);
+  color: var(--incorrect-text);
+}
+.incorrect .radio {
+  border-color: var(--incorrect-accent);
+}
+.incorrect .dot {
+  background: var(--incorrect-accent);
+}
+.incorrect .stateIcon {
+  color: var(--incorrect-accent);
+}

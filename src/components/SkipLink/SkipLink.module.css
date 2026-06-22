@@ -1,0 +1,27 @@
+.skipLink {
+  position: absolute;
+  top: -200px;
+  left: 1rem;
+  z-index: 100;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.6rem 1rem;
+  background: var(--surface);
+  color: var(--text);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.skipLink:focus {
+  top: 1rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .skipLink {
+    transition: top 140ms ease;
+  }
+}
