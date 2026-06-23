@@ -1,12 +1,12 @@
 import { ImageResponse, loadGoogleFont } from "workers-og";
-import { decodeRun } from "../../src/lib/shareCode";
+import { decodeRun } from "../src/lib/shareCode";
 import {
   cardStats,
   paletteFor,
   TILE_FILL,
   TILE_INK,
   type CardTheme,
-} from "../../src/lib/shareCardData";
+} from "../src/lib/shareCardData";
 
 const FALLBACK_IMAGE = "/og-image.png";
 
@@ -101,7 +101,7 @@ async function brandFonts(): Promise<FontSpec[] | undefined> {
   }
 }
 
-export const onRequestGet: PagesFunction = async ({ request }) => {
+export async function renderScoreCard(request: Request): Promise<Response> {
   const url = new URL(request.url);
   const token = url.searchParams.get("s") ?? "";
   const theme: CardTheme = url.searchParams.get("t") === "dark" ? "dark" : "light";
@@ -125,4 +125,4 @@ export const onRequestGet: PagesFunction = async ({ request }) => {
   } catch {
     return Response.redirect(new URL(FALLBACK_IMAGE, url.origin).href, 302);
   }
-};
+}
