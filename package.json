@@ -21,7 +21,7 @@
     "@fontsource/bricolage-grotesque": "^5.2.10",
     "@fontsource/geist-mono": "^5.2.8",
     "@fontsource/inter": "^5.2.8",
-    "astro": "^5.18.2",
+    "astro": "^6.4.6",
     "workers-og": "^0.0.27"
   },
   "devDependencies": {
