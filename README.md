@@ -1,5 +1,7 @@
 # a11y.quest
 
+[![CI](https://github.com/thedavedavies/a11y.quest/actions/workflows/ci.yml/badge.svg)](https://github.com/thedavedavies/a11y.quest/actions/workflows/ci.yml)
+
 An endless web-accessibility drill. Answer a question, see whether you were right with a
 plain-English explanation and links to the source docs, then keep going. Your run (answered,
 correct, accuracy, current streak, best streak) is saved locally. No login, no backend.
