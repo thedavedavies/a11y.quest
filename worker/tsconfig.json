@@ -1,5 +1,4 @@
 {
-  "comment": "Cloudflare Pages Functions run in the Workers runtime, not the browser. They are excluded from the app tsconfig and typed here against @cloudflare/workers-types (no DOM lib). They import only the pure, DOM-free helpers from ../src/lib.",
   "extends": "astro/tsconfigs/strict",
   "include": [
     "**/*.ts",

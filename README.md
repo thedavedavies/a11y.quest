@@ -37,8 +37,8 @@ feedback announced through polite live regions. If something cannot meet AA, it 
 
 - [Astro](https://astro.build) with TypeScript, no UI framework: components render to HTML strings.
 - Plain CSS with design tokens driven by the CSS `light-dark()` function.
-- [Cloudflare Pages](https://pages.cloudflare.com) for hosting, with Pages Functions for the
-  share-card OG image and per-share meta tags.
+- [Cloudflare Workers](https://workers.cloudflare.com) for hosting (static assets plus a small
+  Worker in `worker/` for the share-card OG image and per-share meta tags).
 - Vitest (with axe-core) and Playwright for testing.
 
 ## Getting started

@@ -1,5 +1,10 @@
 import { decodeRun } from "../src/lib/shareCode";
 import { accuracy } from "../src/lib/run";
+import { renderScoreCard } from "./scoreCard";
+
+interface Env {
+  ASSETS: Fetcher;
+}
 
 class SetAttr {
   constructor(
@@ -11,14 +16,10 @@ class SetAttr {
   }
 }
 
-export const onRequest: PagesFunction = async ({ request, next }) => {
-  const url = new URL(request.url);
+function rewriteShareMeta(response: Response, url: URL): Response {
   const token = url.searchParams.get("s");
-  const response = await next();
-
-  const isDocument = url.pathname === "/" || url.pathname === "/index.html";
   const isHtml = (response.headers.get("content-type") ?? "").includes("text/html");
-  if (!token || !isDocument || !isHtml) return response;
+  if (!token || !isHtml) return response;
 
   const run = decodeRun(token);
   if (!run || run.answered <= 0) return response;
@@ -45,4 +46,21 @@ export const onRequest: PagesFunction = async ({ request, next }) => {
     .on('meta[name="twitter:description"]', new SetAttr("content", description))
     .on('meta[property="og:url"]', new SetAttr("content", shareUrl))
     .transform(response);
-};
+}
+
+export default {
+  async fetch(request: Request, env: Env): Promise<Response> {
+    const url = new URL(request.url);
+
+    if (url.pathname === "/og/score") {
+      return renderScoreCard(request);
+    }
+
+    const response = await env.ASSETS.fetch(request);
+
+    if (url.pathname === "/" || url.pathname === "/index.html") {
+      return rewriteShareMeta(response, url);
+    }
+    return response;
+  },
+} satisfies ExportedHandler<Env>;
