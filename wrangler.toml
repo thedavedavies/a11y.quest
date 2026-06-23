@@ -1,4 +1,5 @@
-name = "a11y-quest"
+# Must match the existing Cloudflare Worker, not the package name (a11y-quest).
+name = "a11yquest"
 main = "worker/index.ts"
 compatibility_date = "2026-06-22"
 
