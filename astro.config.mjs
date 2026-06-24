@@ -12,32 +12,27 @@ export default defineConfig({
   build: {
     inlineStylesheets: "always",
   },
-  experimental: {
-    fonts: [
-      {
-        provider: fontProviders.local(),
-        name: "Bricolage Grotesque",
-        cssVariable: "--font-display",
-        weights: [700, 800],
-        fallbacks: ["system-ui", "sans-serif"],
-        options: { variants: variants("bricolage-grotesque", [700, 800]) },
-      },
-      {
-        provider: fontProviders.local(),
-        name: "Inter",
-        cssVariable: "--font-body",
-        weights: [400, 600, 700],
-        fallbacks: ["system-ui", "sans-serif"],
-        options: { variants: variants("inter", [400, 600, 700]) },
-      },
-      {
-        provider: fontProviders.local(),
-        name: "Geist Mono",
-        cssVariable: "--font-mono",
-        weights: [600, 700],
-        fallbacks: ["ui-monospace", "monospace"],
-        options: { variants: variants("geist-mono", [600, 700]) },
-      },
-    ],
-  },
+  fonts: [
+    {
+      provider: fontProviders.local(),
+      name: "Bricolage Grotesque",
+      cssVariable: "--font-display",
+      fallbacks: ["system-ui", "sans-serif"],
+      options: { variants: variants("bricolage-grotesque", [700, 800]) },
+    },
+    {
+      provider: fontProviders.local(),
+      name: "Inter",
+      cssVariable: "--font-body",
+      fallbacks: ["system-ui", "sans-serif"],
+      options: { variants: variants("inter", [400, 600, 700]) },
+    },
+    {
+      provider: fontProviders.local(),
+      name: "Geist Mono",
+      cssVariable: "--font-mono",
+      fallbacks: ["ui-monospace", "monospace"],
+      options: { variants: variants("geist-mono", [600, 700]) },
+    },
+  ],
 });
