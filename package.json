@@ -30,22 +30,22 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
-    "@axe-core/playwright": "^4.11.3",
-    "@cloudflare/workers-types": "^4.20260621.1",
-    "@playwright/test": "^1.61.0",
+    "@axe-core/playwright": "^4.12.1",
+    "@cloudflare/workers-types": "^4.20260624.1",
+    "@playwright/test": "^1.61.1",
     "@types/node": "^26.0.0",
     "axe-core": "^4.12.1",
-    "eslint": "^9.39.4",
+    "eslint": "^10.5.0",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-astro": "^1.7.0",
+    "eslint-plugin-astro": "^2.0.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
-    "globals": "^16.5.0",
-    "jsdom": "^26.1.0",
+    "globals": "^17.7.0",
+    "jsdom": "^29.1.1",
     "prettier": "^3.8.4",
     "prettier-plugin-astro": "^0.14.1",
-    "typescript": "^5.9.3",
-    "typescript-eslint": "^8.61.1",
-    "vitest": "^3.2.6",
-    "wrangler": "^4.103.0"
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.62.0",
+    "vitest": "^4.1.9",
+    "wrangler": "^4.104.0"
   }
 }
