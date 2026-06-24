@@ -75,7 +75,7 @@ export function initQuiz(root: ParentNode = document): void {
 
     answered = true;
     renderCard();
-    announceResult(live, isCorrect, run);
+    announceResult(live, isCorrect);
 
     stage.querySelector<HTMLElement>("[data-feedback]")?.focus();
   }
@@ -162,9 +162,6 @@ function renderScore(root: ParentNode, run: RunState): void {
   if (shareBtn) shareBtn.disabled = run.answered <= 0;
 }
 
-function announceResult(live: HTMLElement, isCorrect: boolean, run: RunState): void {
-  const lead = isCorrect ? "Correct." : "Incorrect.";
-  live.textContent =
-    `${lead} Run so far: ${run.answered} answered, ${run.correct} correct, ` +
-    `${accuracy(run)} percent accuracy. Current streak ${run.currentStreak}, best streak ${run.bestStreak}.`;
+function announceResult(live: HTMLElement, isCorrect: boolean): void {
+  live.textContent = isCorrect ? "Correct." : "Incorrect.";
 }
