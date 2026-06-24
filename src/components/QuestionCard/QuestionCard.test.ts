@@ -78,4 +78,16 @@ describe("questionCard", () => {
       }),
     ).toContain("Use a &lt;button&gt;?");
   });
+
+  it("renders backticked code in the question as escaped <code>", () => {
+    const tricky = { ...q, question: "Use a `<button>` element." };
+    expect(
+      questionCard(tricky, {
+        answered: false,
+        chosenIndex: null,
+        questionNumber: 1,
+        currentStreak: 0,
+      }),
+    ).toContain("<code>&lt;button&gt;</code>");
+  });
 });

@@ -31,6 +31,18 @@ describe("optionCard", () => {
     expect(html).not.toContain("<button>");
   });
 
+  it("renders backticked code in option text as escaped <code>", () => {
+    const html = optionCard({
+      text: 'A `<div>` with `role="button"`',
+      index: 0,
+      answered: false,
+      checked: false,
+      state: "idle",
+    });
+    expect(html).toContain("<code>&lt;div&gt;</code>");
+    expect(html).toContain("<code>role=&quot;button&quot;</code>");
+  });
+
   it("disables and adds a describedby status to the correct option once answered", () => {
     const html = optionCard({
       text: "A",

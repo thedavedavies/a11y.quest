@@ -1,5 +1,5 @@
 import type { Question } from "../../data/questions";
-import { escapeHtml } from "../../lib/escape";
+import { renderInlineCode } from "../../lib/escape";
 import { icon } from "../../lib/icon";
 import { docLink } from "../DocLink/DocLink";
 import styles from "./Feedback.module.css";
@@ -18,7 +18,7 @@ export function feedback(q: Question, chosenIndex: number, currentStreak: number
 
   const correctAnswer = isCorrect
     ? ""
-    : `<p class="${styles.answer}">Correct answer: <strong>${escapeHtml(q.options[q.correctIndex])}</strong></p>`;
+    : `<p class="${styles.answer}">Correct answer: <strong>${renderInlineCode(q.options[q.correctIndex])}</strong></p>`;
 
   const links = q.refs.map(docLink).join("");
 
@@ -32,7 +32,7 @@ export function feedback(q: Question, chosenIndex: number, currentStreak: number
     streakChip +
     `</div>` +
     correctAnswer +
-    `<p class="${styles.explanation}">${escapeHtml(q.explanation)}</p>` +
+    `<p class="${styles.explanation}">${renderInlineCode(q.explanation)}</p>` +
     `<h2 class="${styles.docsLabel}">Read the docs</h2>` +
     `<ul class="${styles.docLinks}" role="list">${links}</ul>` +
     `</div>`

@@ -1,5 +1,5 @@
 import type { Question } from "../../data/questions";
-import { escapeHtml } from "../../lib/escape";
+import { escapeHtml, renderInlineCode } from "../../lib/escape";
 import { questionMeta } from "../QuestionMeta/QuestionMeta";
 import { optionCard, type OptionState } from "../OptionCard/OptionCard";
 import { feedback } from "../Feedback/Feedback";
@@ -42,7 +42,7 @@ export function questionCard(q: Question, state: CardState): string {
     `<article class="${styles.card}" data-card data-question-id="${escapeHtml(q.id)}">` +
     questionMeta(q, state.questionNumber) +
     `<fieldset class="${styles.fieldset}">` +
-    `<legend class="${styles.legend}" id="question-text">${escapeHtml(q.question)}</legend>` +
+    `<legend class="${styles.legend}" id="question-text">${renderInlineCode(q.question)}</legend>` +
     `<div class="${styles.options}">` +
     options +
     `</div>` +

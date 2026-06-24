@@ -1,4 +1,4 @@
-import { escapeHtml } from "../../lib/escape";
+import { renderInlineCode } from "../../lib/escape";
 import { icon } from "../../lib/icon";
 import styles from "./OptionCard.module.css";
 
@@ -38,7 +38,7 @@ export function optionCard({ text, index, answered, checked, state }: OptionProp
     `<input ${inputAttrs} />` +
     `<label class="${styles.label}" for="${id}">` +
     `<span class="${styles.radio}" aria-hidden="true"><span class="${styles.dot}"></span></span>` +
-    `<span class="${styles.text}">${escapeHtml(text)}</span>` +
+    `<span class="${styles.text}">${renderInlineCode(text)}</span>` +
     (resultIcon ? `<span class="${styles.stateIcon}">${resultIcon}</span>` : "") +
     `</label>` +
     (showStatus ? `<span class="visually-hidden" id="${statusId}">${statusText}</span>` : "") +
