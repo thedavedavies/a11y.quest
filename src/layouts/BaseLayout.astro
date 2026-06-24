@@ -14,8 +14,8 @@ interface Props {
 }
 
 const {
-  title = "a11y.quest - an endless web accessibility drill",
-  description = "Practice technical web accessibility one question at a time. WCAG, ARIA, semantic HTML, keyboard, and contrast, with plain-English answers.",
+  title = "a11y.quest - 128 questions to level up your accessibility game",
+  description = "128 questions to level up your web accessibility game. Practice WCAG 2.2, ARIA, semantic HTML, keyboard, and contrast, with plain-English answers.",
   image = "/og-image.png",
 } = Astro.props;
 
@@ -137,7 +137,7 @@ const jsonLd = {
     <meta property="og:image:height" content="630" />
     <meta
       property="og:image:alt"
-      content="The a11y.quest social card: the wordmark, the tagline 'an endless web accessibility drill', and the topics it covers (WCAG, ARIA, semantic HTML, keyboard, and contrast)."
+      content="The a11y.quest social card: the wordmark, the tagline '128 questions to level up your accessibility game', and the topics it covers (WCAG, ARIA, semantic HTML, keyboard, and contrast)."
     />
 
     <meta name="twitter:card" content="summary_large_image" />
@@ -146,7 +146,7 @@ const jsonLd = {
     <meta name="twitter:image" content={ogImage} />
     <meta
       name="twitter:image:alt"
-      content="The a11y.quest social card: the wordmark, the tagline 'an endless web accessibility drill', and the topics it covers (WCAG, ARIA, semantic HTML, keyboard, and contrast)."
+      content="The a11y.quest social card: the wordmark, the tagline '128 questions to level up your accessibility game', and the topics it covers (WCAG, ARIA, semantic HTML, keyboard, and contrast)."
     />
 
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />

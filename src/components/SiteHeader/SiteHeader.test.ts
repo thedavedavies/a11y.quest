@@ -5,7 +5,7 @@ describe("siteHeader", () => {
   it("renders the wordmark as the page h1 with the tagline", () => {
     const html = siteHeader();
     expect(html).toMatch(/<h1[^>]*>a11y.*quest<\/h1>/s);
-    expect(html).toContain("An endless web accessibility drill.");
+    expect(html).toContain("128 questions to level up your accessibility game.");
   });
 
   it("does not use the mascot name or personal branding", () => {
