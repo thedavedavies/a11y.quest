@@ -22,14 +22,14 @@ export const questions: Question[] = [
     question:
       "You need a custom control that toggles a panel open and closed. Which is the most robust way to build it?",
     options: [
-      "A native <button> with an aria-expanded attribute",
-      'A <div> with a click handler and role="button"',
-      'An <a href="#"> styled to look like a button',
-      'A <span> with tabindex="0" and a keydown handler',
+      "A native `<button>` with an `aria-expanded` attribute",
+      'A `<div>` with a click handler and `role="button"`',
+      'An `<a href="#">` styled to look like a button',
+      'A `<span>` with `tabindex="0"` and a keydown handler',
     ],
     correctIndex: 0,
     explanation:
-      "A native button is announced as a button, is focusable and keyboard operable for free, and fires on both Enter and Space. The div can be made to work, but you then have to reimplement role, focus, and keyboard handling by hand, which is exactly where bugs creep in.",
+      "A native button is announced as a button, is focusable and keyboard operable for free, and fires on both Enter and Space. The `div` can be made to work, but you then have to reimplement `role`, focus, and keyboard handling by hand, which is exactly where bugs creep in.",
     refs: [
       {
         label: "WCAG 4.1.2 Name, Role, Value",
@@ -48,14 +48,14 @@ export const questions: Question[] = [
     question:
       "An image is purely decorative and adds no information. What is the correct text alternative?",
     options: [
-      'An empty alt attribute (alt="")',
+      'An empty `alt` attribute (`alt=""`)',
       "A short description of what the image shows",
-      "No alt attribute at all",
-      'alt="decorative image"',
+      "No `alt` attribute at all",
+      '`alt="decorative image"`',
     ],
     correctIndex: 0,
     explanation:
-      "An empty alt lets assistive tech skip the image entirely, which is what you want for decoration. Omitting alt altogether can make a screen reader announce the file name, and describing it or labelling it as decorative just adds noise.",
+      "An empty `alt` lets assistive tech skip the image entirely, which is what you want for decoration. Omitting `alt` altogether can make a screen reader announce the file name, and describing it or labelling it as decorative just adds noise.",
     refs: [
       {
         label: "WCAG 1.1.1 Non-text Content",
@@ -85,16 +85,16 @@ export const questions: Question[] = [
     topic: "headings",
     difficulty: "easy",
     question:
-      "A page uses an <h1> for the site title, then an <h3> for the first content section because the design wanted that text smaller. No <h2> appears anywhere. Which statement best describes this markup?",
+      "A page uses an `<h1>` for the site title, then an `<h3>` for the first content section because the design wanted that text smaller. No `<h2>` appears anywhere. Which statement best describes this markup?",
     options: [
-      "It is fine, because WCAG only requires that an <h1> exists somewhere on the page.",
+      "It is fine, because WCAG only requires that an `<h1>` exists somewhere on the page.",
       "It is fine, because heading levels are purely visual and assistive tech ignores them.",
       "It is a problem: the skipped level breaks the programmatically determined heading structure that conveys relationships.",
       "It is a problem only at Level AAA, so it does not affect AA conformance.",
     ],
     correctIndex: 2,
     explanation:
-      "Heading levels express the document's structure and relationships, which must be programmatically determinable under 1.3.1 Info and Relationships, Level A; jumping from h1 to h3 misrepresents that structure. The tempting claim that headings are purely visual is wrong because screen reader users navigate and understand hierarchy through heading levels.",
+      "Heading levels express the document's structure and relationships, which must be programmatically determinable under 1.3.1 Info and Relationships, Level A; jumping from `h1` to `h3` misrepresents that structure. The tempting claim that headings are purely visual is wrong because screen reader users navigate and understand hierarchy through heading levels.",
     refs: [
       {
         label: "WCAG 2.2 Understanding: 1.3.1 Info and Relationships",
@@ -113,14 +113,14 @@ export const questions: Question[] = [
     question:
       "A page has two navigation regions: the primary site menu and a secondary 'In this section' menu. Which markup lets assistive technology tell the two navigation landmarks apart?",
     options: [
-      '<div role="navigation">...</div> twice, because role="navigation" is required and <nav> does not create a landmark.',
-      "<nav>...</nav> and <nav>...</nav> with no other attributes, since each <nav> is automatically numbered for users.",
-      '<nav aria-label="Primary">...</nav> and <nav aria-label="In this section">...</nav>',
-      '<nav title="Primary">...</nav> and <nav title="In this section">...</nav>',
+      '`<div role="navigation">`...`</div>` twice, because `role="navigation"` is required and `<nav>` does not create a landmark.',
+      "`<nav>`...`</nav>` and `<nav>`...`</nav>` with no other attributes, since each `<nav>` is automatically numbered for users.",
+      '`<nav aria-label="Primary">`...`</nav>` and `<nav aria-label="In this section">`...`</nav>`',
+      '`<nav title="Primary">`...`</nav>` and `<nav title="In this section">`...`</nav>`',
     ],
     correctIndex: 2,
     explanation:
-      'When the same landmark role appears more than once, each instance needs a unique accessible name so users can distinguish them; aria-label provides that name and is the accname-supported method here. The title attribute is only an unreliable fallback for the accessible name, and a bare <nav> already exposes the navigation role, so role="navigation" is not required.',
+      'When the same landmark role appears more than once, each instance needs a unique accessible name so users can distinguish them; `aria-label` provides that name and is the accname-supported method here. The `title` attribute is only an unreliable fallback for the accessible name, and a bare `<nav>` already exposes the navigation role, so `role="navigation"` is not required.',
     refs: [
       {
         label: "ARIA APG: Landmark Regions",
@@ -159,16 +159,16 @@ export const questions: Question[] = [
     topic: "semantic-html",
     difficulty: "hard",
     question:
-      "A developer builds a list of related items using a stack of <div> elements styled with bullets, instead of a <ul> with <li> children. Why does this most directly create a WCAG problem?",
+      "A developer builds a list of related items using a stack of `<div>` elements styled with bullets, instead of a `<ul>` with `<li>` children. Why does this most directly create a WCAG problem?",
     options: [
-      "Using <div> instead of <ul> fails 4.1.1 Parsing, Level A, because the markup is no longer valid.",
+      "Using `<div>` instead of `<ul>` fails 4.1.1 Parsing, Level A, because the markup is no longer valid.",
       "It fails 2.4.6 Headings and Labels, Level AA, since list items act as labels that must be descriptive.",
       "The grouping and item count conveyed visually as a list are not programmatically determinable, which fails 1.3.1 Info and Relationships, Level A.",
-      "Generic <div> elements fail 2.4.10 Section Headings, Level AAA, because every group of content must be introduced by a heading.",
+      "Generic `<div>` elements fail 2.4.10 Section Headings, Level AAA, because every group of content must be introduced by a heading.",
     ],
     correctIndex: 2,
     explanation:
-      "A real <ul>/<li> exposes the list role and item count so the relationship perceived visually is programmatically determinable, which is exactly what 1.3.1 Info and Relationships, Level A, requires; styled divs convey it by presentation only. The 4.1.1 Parsing distractor is wrong because that criterion was removed in WCAG 2.2, and 2.4.6 Headings and Labels (Level AA) concerns headings and form labels, not list semantics.",
+      "A real `<ul>`/`<li>` exposes the list role and item count so the relationship perceived visually is programmatically determinable, which is exactly what 1.3.1 Info and Relationships, Level A, requires; styled divs convey it by presentation only. The 4.1.1 Parsing distractor is wrong because that criterion was removed in WCAG 2.2, and 2.4.6 Headings and Labels (Level AA) concerns headings and form labels, not list semantics.",
     refs: [
       {
         label: "WCAG 2.2 Understanding: 1.3.1 Info and Relationships",
@@ -182,10 +182,10 @@ export const questions: Question[] = [
     topic: "forms",
     difficulty: "easy",
     question:
-      'A form field uses only a grey placeholder ("Enter your email") and has no visible <label>. Why is a placeholder not an acceptable substitute for a label?',
+      'A form field uses only a grey placeholder ("Enter your email") and has no visible `<label>`. Why is a placeholder not an acceptable substitute for a label?',
     options: [
       "Placeholder text is exempt from contrast requirements, so it can never be read by anyone.",
-      "Placeholders are only allowed on <textarea> elements, not on <input> elements.",
+      "Placeholders are only allowed on `<textarea>` elements, not on `<input>` elements.",
       "A placeholder satisfies the requirement as long as its contrast ratio is at least 4.5:1.",
       "The placeholder disappears once the user starts typing, leaving no persistent, programmatically associated name for the control, which fails Labels or Instructions.",
     ],
@@ -210,14 +210,14 @@ export const questions: Question[] = [
     question:
       'Which markup correctly creates an explicit, programmatic association between the visible text "Email address" and the input?',
     options: [
-      '<label>Email address</label> <input type="email" id="email">',
-      '<span id="emailLbl">Email address</span> <input type="email" aria-label="emailLbl">',
-      '<label for="email">Email address</label> <input type="email" id="email">',
-      '<input type="email" id="email" title="Email address"> Email address',
+      '`<label>Email address</label>` `<input type="email" id="email">`',
+      '`<span id="emailLbl">Email address</span>` `<input type="email" aria-label="emailLbl">`',
+      '`<label for="email">Email address</label>` `<input type="email" id="email">`',
+      '`<input type="email" id="email" title="Email address">` Email address',
     ],
     correctIndex: 2,
     explanation:
-      "An explicit label associates a <label for> with the input's matching id, exposing the visible text as the accessible name (1.3.1 Info and Relationships, Level A). The <label> without for and without wrapping the input is not associated; aria-label takes a literal string (not an id, that would be aria-labelledby); and title is only a fallback name, not an explicit label association.",
+      "An explicit label associates a `<label for>` with the input's matching `id`, exposing the visible text as the accessible name (1.3.1 Info and Relationships, Level A). The `<label>` without `for` and without wrapping the input is not associated; `aria-label` takes a literal string (not an `id`, that would be `aria-labelledby`); and `title` is only a fallback name, not an explicit label association.",
     refs: [
       {
         label: "WCAG 2.2 Understanding: 1.3.1 Info and Relationships",
@@ -236,14 +236,14 @@ export const questions: Question[] = [
     question:
       'A checkout form has several radio buttons under the heading "Shipping method" and several more under "Billing address same as shipping?". Each group needs an associated group name announced to screen reader users. What is the correct native technique?',
     options: [
-      "Give each radio button an aria-describedby pointing to the group heading.",
-      'Add role="group" with aria-current to the container around each set of radio buttons.',
-      "Place a visually styled <h3> directly before each set; proximity alone conveys the grouping programmatically.",
-      "Wrap each set of related controls in a <fieldset> and give it a <legend> describing the group.",
+      "Give each radio button an `aria-describedby` pointing to the group heading.",
+      'Add `role="group"` with `aria-current` to the container around each set of radio buttons.',
+      "Place a visually styled `<h3>` directly before each set; proximity alone conveys the grouping programmatically.",
+      "Wrap each set of related controls in a `<fieldset>` and give it a `<legend>` describing the group.",
     ],
     correctIndex: 3,
     explanation:
-      "Grouping related form controls with <fieldset> and naming the group with <legend> programmatically conveys the relationship required by 1.3.1 Info and Relationships (Level A). A nearby heading conveys grouping only visually; aria-describedby supplies a description, not a group name; and aria-current is a state for indicating the current item in a set, not a grouping mechanism.",
+      "Grouping related form controls with `<fieldset>` and naming the group with `<legend>` programmatically conveys the relationship required by 1.3.1 Info and Relationships (Level A). A nearby heading conveys grouping only visually; `aria-describedby` supplies a description, not a group name; and `aria-current` is a state for indicating the current item in a set, not a grouping mechanism.",
     refs: [
       {
         label: "WCAG 2.2 Understanding: 1.3.1 Info and Relationships",
@@ -256,16 +256,16 @@ export const questions: Question[] = [
     topic: "forms",
     difficulty: "hard",
     question:
-      'A button shows the visible text "Search" but is coded as <button aria-label="Submit search query">Search</button>. A speech-input user says "Click Search" and nothing happens. Which statement best identifies the conformance problem?',
+      'A button shows the visible text "Search" but is coded as `<button aria-label="Submit query">Search</button>`. A speech-input user says "Click Search" and nothing happens. Which statement best identifies the conformance problem?',
     options: [
-      "This fails Name, Role, Value because a button is not allowed to have both visible text and an aria-label.",
-      'This fails Label in Name because the accessible name ("Submit search query") does not contain the visible label text "Search".',
+      "This fails Name, Role, Value because a button is not allowed to have both visible text and an `aria-label`.",
+      'This fails Label in Name because the accessible name ("Submit query") does not contain the visible label text "Search".',
       "This passes Label in Name because the accessible name is more descriptive than the visible text, which is preferred.",
-      "This fails Identify Input Purpose because the button lacks an autocomplete token matching its function.",
+      "This fails Identify Input Purpose because the button lacks an `autocomplete` token matching its function.",
     ],
     correctIndex: 1,
     explanation:
-      '2.5.3 Label in Name (Level A) requires that the visible label text be contained within the accessible name; here aria-label replaces "Search" entirely, so speech commands matching the visible text fail. It is not a Name, Role, Value problem (a button may have an aria-label), and Identify Input Purpose (1.3.5) concerns autocomplete on user-data inputs, not button names.',
+      '2.5.3 Label in Name (Level A) requires that the visible label text be contained within the accessible name; here `aria-label` replaces "Search" entirely, so speech commands matching the visible text fail. It is not a Name, Role, Value problem (a button may have an `aria-label`), and Identify Input Purpose (1.3.5) concerns `autocomplete` on user-data inputs, not button names.',
     refs: [
       {
         label: "WCAG 2.2 Understanding: 2.5.3 Label in Name",
@@ -306,14 +306,14 @@ export const questions: Question[] = [
     question:
       "A developer wires up an inline validation message so a screen reader announces what is wrong with a text field when it is invalid. Which combination correctly conveys the error programmatically?",
     options: [
-      'Set aria-required="true" on the input and reference the message with aria-labelledby',
-      'Set aria-invalid="true" on the input and reference the error message text with aria-describedby',
-      'Set role="alert" on the input itself and add aria-checked="false"',
-      "Set aria-errormessage as the only attribute and omit aria-invalid entirely",
+      'Set `aria-required="true"` on the input and reference the message with `aria-labelledby`',
+      'Set `aria-invalid="true"` on the input and reference the error message text with `aria-describedby`',
+      'Set `role="alert"` on the input itself and add `aria-checked="false"`',
+      "Set `aria-errormessage` as the only attribute and omit `aria-invalid` entirely",
     ],
     correctIndex: 1,
     explanation:
-      "aria-invalid is a state (set to true when the field is in error) and aria-describedby is a property that points to the element holding the error message, so assistive technology announces the description with the field. Using aria-labelledby for the error would replace the field's accessible name instead of supplementing it, and aria-required only marks the field as mandatory, not as currently in error.",
+      "`aria-invalid` is a state (set to true when the field is in error) and `aria-describedby` is a property that points to the element holding the error message, so assistive technology announces the description with the field. Using `aria-labelledby` for the error would replace the field's accessible name instead of supplementing it, and `aria-required` only marks the field as mandatory, not as currently in error.",
     refs: [
       {
         label: "WAI-ARIA 1.2: aria-invalid and aria-describedby",
@@ -396,16 +396,16 @@ export const questions: Question[] = [
     topic: "images",
     difficulty: "easy",
     question:
-      "A page has a magnifying-glass icon that is the only content of a button that submits a search form. The icon is an <img> with no visible text label. What is the correct alternative text for this functional image?",
+      "A page has a magnifying-glass icon that is the only content of a button that submits a search form. The icon is an `<img>` with no visible text label. What is the correct alternative text for this functional image?",
     options: [
-      'alt="" because the icon is decorative and the button conveys the meaning',
-      'alt="magnifying glass icon" describing the visual appearance of the graphic',
-      'alt="Search" describing the action the button performs',
-      "No alt attribute, relying on the button's title attribute to supply the name",
+      '`alt=""` because the icon is decorative and the button conveys the meaning',
+      '`alt="magnifying glass icon"` describing the visual appearance of the graphic',
+      '`alt="Search"` describing the action the button performs',
+      "No `alt` attribute, relying on the button's `title` attribute to supply the name",
     ],
     correctIndex: 2,
     explanation:
-      'Under 1.1.1 Non-text Content (Level A), a functional image\'s text alternative must convey the function it performs, not its visual appearance, so alt="Search" is correct. Describing the picture ("magnifying glass icon") fails because it tells the user nothing about what activating the control does, and an empty alt would leave the only control in the form with no accessible name.',
+      'Under 1.1.1 Non-text Content (Level A), a functional image\'s text alternative must convey the function it performs, not its visual appearance, so `alt="Search"` is correct. Describing the picture ("magnifying glass icon") fails because it tells the user nothing about what activating the control does, and an empty `alt` would leave the only control in the form with no accessible name.',
     refs: [
       {
         label: "WCAG 2.2 Understanding: 1.1.1 Non-text Content",
@@ -420,14 +420,14 @@ export const questions: Question[] = [
     question:
       "An inline SVG conveys meaningful information (a warning triangle next to an error message). Which markup gives it an accessible name and the correct role so assistive technology announces it as an image?",
     options: [
-      '<svg aria-hidden="true"><title>Warning</title> ... </svg>',
-      '<svg role="img" aria-label="Warning"> ... </svg>',
-      '<svg role="presentation" aria-label="Warning"> ... </svg>',
-      '<svg alt="Warning"> ... </svg>',
+      '`<svg aria-hidden="true"><title>Warning</title> ... </svg>`',
+      '`<svg role="img" aria-label="Warning"> ... </svg>`',
+      '`<svg role="presentation" aria-label="Warning"> ... </svg>`',
+      '`<svg alt="Warning"> ... </svg>`',
     ],
     correctIndex: 1,
     explanation:
-      'An informative inline SVG needs role="img" so it is exposed as a single graphic, plus an accessible name via aria-label (or aria-labelledby pointing at a <title>), satisfying 1.1.1 Non-text Content (Level A) and 4.1.2 Name, Role, Value (Level A). aria-hidden="true" would remove the meaningful graphic from the accessibility tree, role="presentation" strips its semantics (and is contradicted by the name), and SVG does not support the HTML alt attribute.',
+      'An informative inline SVG needs `role="img"` so it is exposed as a single graphic, plus an accessible name via `aria-label` (or `aria-labelledby` pointing at a `<title>`), satisfying 1.1.1 Non-text Content (Level A) and 4.1.2 Name, Role, Value (Level A). `aria-hidden="true"` would remove the meaningful graphic from the accessibility tree, `role="presentation"` strips its semantics (and is contradicted by the name), and SVG does not support the HTML `alt` attribute.',
     refs: [
       {
         label: "WCAG 2.2 Understanding: 1.1.1 Non-text Content",
@@ -647,16 +647,16 @@ export const questions: Question[] = [
     topic: "keyboard",
     difficulty: "medium",
     question:
-      "A developer is building a custom tabs widget. The active tab needs to be reachable with the Tab key, the inactive tabs should be removed from the Tab sequence but still focusable programmatically with JavaScript (roving tabindex), and the developer wants to avoid disrupting the document's natural focus order. Which use of the tabindex attribute meets these needs?",
+      "A developer is building a custom tabs widget. The active tab needs to be reachable with the Tab key, the inactive tabs should be removed from the Tab sequence but still focusable programmatically with JavaScript (roving `tabindex`), and the developer wants to avoid disrupting the document's natural focus order. Which use of the `tabindex` attribute meets these needs?",
     options: [
-      'Give the active tab tabindex="-1" and the inactive tabs tabindex="0", since -1 marks the currently selected item.',
-      'Give the active tab tabindex="1" and the inactive tabs tabindex="2", numbering them in the order they should receive focus.',
-      'Give the active tab tabindex="0" and the inactive tabs tabindex="-1", then move focus to a tab with JavaScript when the user presses an arrow key.',
-      'Give every tab tabindex="0" so they are all in the Tab sequence, and rely on arrow keys for the rest.',
+      'Give the active tab `tabindex="-1"` and the inactive tabs `tabindex="0"`, since -1 marks the currently selected item.',
+      'Give the active tab `tabindex="1"` and the inactive tabs `tabindex="2"`, numbering them in the order they should receive focus.',
+      'Give the active tab `tabindex="0"` and the inactive tabs `tabindex="-1"`, then move focus to a tab with JavaScript when the user presses an arrow key.',
+      'Give every tab `tabindex="0"` so they are all in the Tab sequence, and rely on arrow keys for the rest.',
     ],
     correctIndex: 2,
     explanation:
-      'tabindex="0" puts an element in the natural Tab order at its DOM position, while tabindex="-1" removes it from the Tab sequence but keeps it focusable via element.focus(), which is exactly the roving tabindex pattern the APG specifies for tabs. Positive tabindex values (such as 1 or 2) are discouraged because they override the natural focus order and create maintenance and 2.4.3 Focus Order (Level A) problems, and the option using -1 on the active tab inverts the roles, leaving no tab reachable by Tab.',
+      '`tabindex="0"` puts an element in the natural Tab order at its DOM position, while `tabindex="-1"` removes it from the Tab sequence but keeps it focusable via `element.focus()`, which is exactly the roving `tabindex` pattern the APG specifies for tabs. Positive `tabindex` values (such as 1 or 2) are discouraged because they override the natural focus order and create maintenance and 2.4.3 Focus Order (Level A) problems, and the option using -1 on the active tab inverts the roles, leaving no tab reachable by Tab.',
     refs: [
       { label: "ARIA APG: Tabs Pattern", url: "https://www.w3.org/WAI/ARIA/apg/patterns/tabs/" },
       {
@@ -673,7 +673,7 @@ export const questions: Question[] = [
       "A modal dialog is opened by a 'Filter results' button. The developer correctly moves focus into the dialog on open. When the user closes the dialog with the Escape key, where should keyboard focus be sent to give a predictable, accessible experience?",
     options: [
       "To the document body, so the next Tab starts from the top of the page",
-      'To the page\'s <h1>, after adding tabindex="-1" to it',
+      'To the page\'s `<h1>`, after adding `tabindex="-1"` to it',
       "To the 'Filter results' button that opened the dialog",
       "To the first focusable element in the page's main landmark",
     ],
@@ -698,14 +698,14 @@ export const questions: Question[] = [
     question:
       "In a single-page application, activating a navigation link swaps the main content via client-side routing without a full page load. Screen reader users report they are not told the view changed and remain at the old scroll/focus position. Which approach best addresses this on route change?",
     options: [
-      'Set aria-current="page" on the activated link, which causes assistive tech to read out the new content',
-      'Add aria-live="assertive" to every link so each click is announced before navigation',
-      'Move focus to a logical target in the new view, such as the new view\'s heading made focusable with tabindex="-1"',
+      'Set `aria-current="page"` on the activated link, which causes assistive tech to read out the new content',
+      'Add `aria-live="assertive"` to every link so each click is announced before navigation',
+      'Move focus to a logical target in the new view, such as the new view\'s heading made focusable with `tabindex="-1"`',
       "Rely on the browser's built-in behaviour, since changing the URL with the History API announces the new page automatically",
     ],
     correctIndex: 2,
     explanation:
-      'Because no full page load occurs, the developer must programmatically move focus to a sensible target in the inserted content (commonly the new view\'s heading with tabindex="-1"), which both announces the change and keeps focus order logical per 2.4.3 Focus Order (Level A). Setting aria-current="page" only marks the active link as the current item; it does not move focus or announce the new view, and History API URL changes alone do not notify assistive technology.',
+      'Because no full page load occurs, the developer must programmatically move focus to a sensible target in the inserted content (commonly the new view\'s heading with `tabindex="-1"`), which both announces the change and keeps focus order logical per 2.4.3 Focus Order (Level A). Setting `aria-current="page"` only marks the active link as the current item; it does not move focus or announce the new view, and History API URL changes alone do not notify assistive technology.',
     refs: [
       {
         label: "WCAG 2.2 Understanding: 2.4.3 Focus Order",
@@ -722,16 +722,16 @@ export const questions: Question[] = [
     topic: "focus",
     difficulty: "hard",
     question:
-      "A developer is implementing keyboard navigation inside a custom listbox where arrow keys move between options. They are deciding between the roving tabindex technique and aria-activedescendant. Which statement accurately describes how these two techniques differ?",
+      "A developer is implementing keyboard navigation inside a custom listbox where arrow keys move between options. They are deciding between the roving `tabindex` technique and `aria-activedescendant`. Which statement accurately describes how these two techniques differ?",
     options: [
-      "With aria-activedescendant, real DOM focus moves to each option in turn, while roving tabindex only updates an ARIA reference and never changes the tabindex values",
-      'Both techniques require every option to have tabindex="0" simultaneously so they all remain in the tab sequence',
-      'With roving tabindex, only the active option has tabindex="0" (others get tabindex="-1") and real DOM focus moves to it, whereas aria-activedescendant keeps DOM focus on the container and points to the active option',
-      "aria-activedescendant is a state that toggles true or false as each option becomes active, so it must be removed from inactive options",
+      "With `aria-activedescendant`, real DOM focus moves to each option in turn, while roving `tabindex` only updates an ARIA reference and never changes the `tabindex` values",
+      'Both techniques require every option to have `tabindex="0"` simultaneously so they all remain in the tab sequence',
+      'With roving `tabindex`, only the active option has `tabindex="0"` (others get `tabindex="-1"`) and real DOM focus moves to it, whereas `aria-activedescendant` keeps DOM focus on the container and points to the active option',
+      "`aria-activedescendant` is a state that toggles true or false as each option becomes active, so it must be removed from inactive options",
     ],
     correctIndex: 2,
     explanation:
-      'Per the ARIA APG guidance on managing focus, roving tabindex gives the single active child tabindex="0" (the rest tabindex="-1") and moves real DOM focus to it, while aria-activedescendant keeps DOM focus on the container and uses the property to reference the active option. aria-activedescendant is an ARIA property that holds an element ID reference, not a true/false state, so describing it as a toggled state is incorrect.',
+      'Per the ARIA APG guidance on managing focus, roving `tabindex` gives the single active child `tabindex="0"` (the rest `tabindex="-1"`) and moves real DOM focus to it, while `aria-activedescendant` keeps DOM focus on the container and uses the property to reference the active option. `aria-activedescendant` is an ARIA property that holds an element ID reference, not a true/false state, so describing it as a toggled state is incorrect.',
     refs: [
       {
         label: "ARIA APG: Developing a Keyboard Interface",
@@ -745,7 +745,7 @@ export const questions: Question[] = [
     topic: "focus",
     difficulty: "medium",
     question:
-      "On a checkout form, tabbing into the country <select> immediately submits the form and loads a new page as soon as the control receives focus. Which success criterion does this behaviour most directly violate, and at what level?",
+      "On a checkout form, tabbing into the country `<select>` immediately submits the form and loads a new page as soon as the control receives focus. Which success criterion does this behaviour most directly violate, and at what level?",
     options: [
       "3.2.2 On Input, Level A",
       "2.4.3 Focus Order, Level A",
@@ -771,16 +771,16 @@ export const questions: Question[] = [
     topic: "aria",
     difficulty: "medium",
     question:
-      'A team builds a tab interface following the ARIA Authoring Practices Tabs pattern. The container has role="tablist", and each tab has role="tab". Which attribute is used to mark which tab is currently active in the tablist?',
+      'A team builds a tab interface following the ARIA Authoring Practices Tabs pattern. The container has `role="tablist"`, and each tab has `role="tab"`. Which attribute is used to mark which tab is currently active in the tablist?',
     options: [
-      'aria-pressed="true" on the active tab',
-      'aria-expanded="true" on the active tab',
-      'aria-selected="true" on the active tab',
-      'aria-current="true" on the active tab',
+      '`aria-pressed="true"` on the active tab',
+      '`aria-expanded="true"` on the active tab',
+      '`aria-selected="true"` on the active tab',
+      '`aria-current="true"` on the active tab',
     ],
     correctIndex: 2,
     explanation:
-      'In the APG Tabs pattern, the active tab carries aria-selected="true" (and inactive tabs aria-selected="false"), exposing the selected state required by 4.1.2 Name, Role, Value (Level A). aria-current marks the current item among a set of links/steps (for example the current page in navigation), not the selected tab in a tablist, so it is the tempting wrong answer here.',
+      'In the APG Tabs pattern, the active tab carries `aria-selected="true"` (and inactive tabs `aria-selected="false"`), exposing the selected state required by 4.1.2 Name, Role, Value (Level A). `aria-current` marks the current item among a set of links/steps (for example the current page in navigation), not the selected tab in a tablist, so it is the tempting wrong answer here.',
     refs: [
       { label: "ARIA APG: Tabs Pattern", url: "https://www.w3.org/WAI/ARIA/apg/patterns/tabs/" },
       {
@@ -794,16 +794,16 @@ export const questions: Question[] = [
     topic: "aria",
     difficulty: "medium",
     question:
-      "A developer implements a Disclosure (show/hide) widget using a native <button> that toggles a region of content. A screen reader announces the button but never indicates whether the content is currently shown or hidden. Which fix correctly conveys the state?",
+      "A developer implements a Disclosure (show/hide) widget using a native `<button>` that toggles a region of content. A screen reader announces the button but never indicates whether the content is currently shown or hidden. Which fix correctly conveys the state?",
     options: [
-      'Add role="button" to the button so its state is exposed',
-      'Add aria-haspopup="true" to the button to indicate it controls content',
-      'Toggle aria-expanded between "true" and "false" on the button as the region opens and closes',
-      'Add aria-selected="true" to the button when the region is open',
+      'Add `role="button"` to the button so its state is exposed',
+      'Add `aria-haspopup="true"` to the button to indicate it controls content',
+      'Toggle `aria-expanded` between `"true"` and `"false"` on the button as the region opens and closes',
+      'Add `aria-selected="true"` to the button when the region is open',
     ],
     correctIndex: 2,
     explanation:
-      "The APG Disclosure pattern requires the trigger button to carry aria-expanded, toggled between true and false, so the show/hide state is programmatically determinable per 4.1.2 Name, Role, Value (Level A). aria-haspopup is a property indicating a popup type (menu, dialog, listbox, etc.), not the expanded/collapsed state of a disclosure, so it is the most tempting but incorrect choice.",
+      "The APG Disclosure pattern requires the trigger button to carry `aria-expanded`, toggled between true and false, so the show/hide state is programmatically determinable per 4.1.2 Name, Role, Value (Level A). `aria-haspopup` is a property indicating a popup type (menu, dialog, listbox, etc.), not the expanded/collapsed state of a disclosure, so it is the most tempting but incorrect choice.",
     refs: [
       {
         label: "ARIA APG: Disclosure Pattern",
@@ -822,14 +822,14 @@ export const questions: Question[] = [
     question:
       "A custom Tabs widget is keyboard-tested. Pressing Tab moves focus into the tablist and lands on the first tab, but pressing Tab again moves focus straight to the active tabpanel rather than to the next tab; the developer instead expected Tab to cycle through every tab. According to the APG Tabs pattern, what is the correct keyboard model for moving between tabs, and how is it implemented?",
     options: [
-      "aria-activedescendant on the tablist should point at every tab in turn as the user presses Tab",
-      'The Tab key should move between tabs, and the tabpanel should be removed from the tab order with aria-hidden="true"',
-      'Each tab should have tabindex="0" so the Tab key visits every tab in sequence before reaching the panel',
-      'Arrow keys move focus between tabs using a roving tabindex (only the active tab has tabindex="0", the rest have tabindex="-1")',
+      "`aria-activedescendant` on the tablist should point at every tab in turn as the user presses Tab",
+      'The Tab key should move between tabs, and the tabpanel should be removed from the tab order with `aria-hidden="true"`',
+      'Each tab should have `tabindex="0"` so the Tab key visits every tab in sequence before reaching the panel',
+      'Arrow keys move focus between tabs using a roving `tabindex` (only the active tab has `tabindex="0"`, the rest have `tabindex="-1"`)',
     ],
     correctIndex: 3,
     explanation:
-      'The APG Tabs pattern uses a single tab stop for the tablist: arrow keys move focus among tabs via a roving tabindex (the active tab has tabindex="0", the others tabindex="-1"), and Tab then moves to the tabpanel, supporting 2.1.1 Keyboard (Level A) with an efficient model. Giving every tab tabindex="0" would force users to Tab through all tabs, which the pattern deliberately avoids; aria-activedescendant is the alternative focus model for composites like comboboxes, not the roving-tabindex tabs example.',
+      'The APG Tabs pattern uses a single tab stop for the tablist: arrow keys move focus among tabs via a roving `tabindex` (the active tab has `tabindex="0"`, the others `tabindex="-1"`), and Tab then moves to the tabpanel, supporting 2.1.1 Keyboard (Level A) with an efficient model. Giving every tab `tabindex="0"` would force users to Tab through all tabs, which the pattern deliberately avoids; `aria-activedescendant` is the alternative focus model for composites like comboboxes, not the roving-tabindex tabs example.',
     refs: [
       {
         label: "ARIA APG: Tabs Pattern (keyboard interaction)",
@@ -848,14 +848,14 @@ export const questions: Question[] = [
     question:
       "An engineer is building a modal dialog following the APG Dialog (Modal) pattern. Which set of behaviors and attributes is required for the modal to be correct and accessible?",
     options: [
-      'role="dialog" with aria-hidden="true" on the dialog itself so background content is ignored, and rely on the browser to manage focus automatically',
-      'role="alertdialog" with aria-expanded="true", leave focus on the page so users can still reach background controls, and close only via the visible Close button',
-      'role="dialog" with aria-haspopup="dialog" on the dialog element, no focus management needed because aria-modal handles keyboard isolation by itself',
-      'role="dialog" with aria-modal="true", move focus into the dialog on open, trap focus while open, close on Escape, and return focus to the triggering element on close',
+      '`role="dialog"` with `aria-hidden="true"` on the dialog itself so background content is ignored, and rely on the browser to manage focus automatically',
+      '`role="alertdialog"` with `aria-expanded="true"`, leave focus on the page so users can still reach background controls, and close only via the visible Close button',
+      '`role="dialog"` with `aria-haspopup="dialog"` on the dialog element, no focus management needed because `aria-modal` handles keyboard isolation by itself',
+      '`role="dialog"` with `aria-modal="true"`, move focus into the dialog on open, trap focus while open, close on Escape, and return focus to the triggering element on close',
     ],
     correctIndex: 3,
     explanation:
-      'The APG Modal Dialog pattern requires role="dialog" plus aria-modal="true", moving focus into the dialog on open, trapping focus within it, closing on Escape, and returning focus to the trigger on close; this combination supports 2.1.2 No Keyboard Trap (Level A) and 2.4.3 Focus Order (Level A). Putting aria-hidden="true" on the dialog itself would remove the dialog from the accessibility tree (it belongs on background content, if anything), and aria-modal alone does not move or trap focus, so that distractor is wrong.',
+      'The APG Modal Dialog pattern requires `role="dialog"` plus `aria-modal="true"`, moving focus into the dialog on open, trapping focus within it, closing on Escape, and returning focus to the trigger on close; this combination supports 2.1.2 No Keyboard Trap (Level A) and 2.4.3 Focus Order (Level A). Putting `aria-hidden="true"` on the dialog itself would remove the dialog from the accessibility tree (it belongs on background content, if anything), and `aria-modal` alone does not move or trap focus, so that distractor is wrong.',
     refs: [
       {
         label: "ARIA APG: Dialog (Modal) Pattern",
@@ -874,14 +874,14 @@ export const questions: Question[] = [
     question:
       "You are building a single-select autocomplete combobox following the ARIA APG Combobox pattern (version 1.2). The text input has the combobox role and controls a popup listbox. Which set of ARIA attributes on the input correctly reflects the open/closed state, links the input to its popup, and tracks which option is virtually focused?",
     options: [
-      "aria-haspopup set to true, aria-describedby referencing the listbox, and aria-current naming the focused option",
-      "aria-pressed toggled true/false, aria-labelledby referencing the listbox, and aria-posinset naming the focused option",
-      "aria-checked on the input, aria-owns pointing to the listbox, and aria-selected naming the focused option",
-      "aria-expanded toggled true/false, aria-controls referencing the listbox id, and aria-activedescendant referencing the active option id",
+      "`aria-haspopup` set to true, `aria-describedby` referencing the listbox, and `aria-current` naming the focused option",
+      "`aria-pressed` toggled true/false, `aria-labelledby` referencing the listbox, and `aria-posinset` naming the focused option",
+      "`aria-checked` on the input, `aria-owns` pointing to the listbox, and `aria-selected` naming the focused option",
+      "`aria-expanded` toggled true/false, `aria-controls` referencing the listbox id, and `aria-activedescendant` referencing the active option id",
     ],
     correctIndex: 3,
     explanation:
-      "The ARIA 1.2 Combobox pattern uses aria-expanded (a state) to report whether the popup is shown, aria-controls (a property) to associate the combobox with its popup, and aria-activedescendant (a property) to point at the visually-focused option while DOM focus stays on the input. aria-checked/aria-pressed are unrelated states (checkbox/toggle), and aria-selected belongs on the listbox options, not on the combobox input.",
+      "The ARIA 1.2 Combobox pattern uses `aria-expanded` (a state) to report whether the popup is shown, `aria-controls` (a property) to associate the combobox with its popup, and `aria-activedescendant` (a property) to point at the visually-focused option while DOM focus stays on the input. `aria-checked`/`aria-pressed` are unrelated states (checkbox/toggle), and `aria-selected` belongs on the listbox options, not on the combobox input.",
     refs: [
       {
         label: "ARIA APG: Combobox Pattern",
@@ -897,14 +897,14 @@ export const questions: Question[] = [
     question:
       "A settings page has a control that turns Wi-Fi on or off. It has two states only (on or off), takes effect immediately, and is not part of a form that the user submits. A developer is deciding between a switch and a checkbox for the accessible semantics. Which statement best guides the choice and the attribute used to expose the state?",
     options: [
-      'Either role="switch" or role="checkbox" fits a two-state control, and both expose their state with aria-checked',
-      "A checkbox should be used and its state exposed with aria-selected, because switches are not supported by screen readers",
-      "A switch should be used and its state exposed with aria-pressed, since aria-checked applies only to checkboxes",
-      "A switch should be used and its state exposed with aria-expanded, because the control reveals the Wi-Fi panel",
+      'Either `role="switch"` or `role="checkbox"` fits a two-state control, and both expose their state with `aria-checked`',
+      "A checkbox should be used and its state exposed with `aria-selected`, because switches are not supported by screen readers",
+      "A switch should be used and its state exposed with `aria-pressed`, since `aria-checked` applies only to checkboxes",
+      "A switch should be used and its state exposed with `aria-expanded`, because the control reveals the Wi-Fi panel",
     ],
     correctIndex: 0,
     explanation:
-      "Both the switch and checkbox roles represent a binary control and both use the aria-checked state, so either is technically valid (a switch reads as on/off, a checkbox as checked/unchecked). aria-selected applies to selectable options like listbox items, aria-pressed applies to toggle buttons, and aria-expanded reports disclosure state, so none of those is the correct state for this control.",
+      "Both the switch and checkbox roles represent a binary control and both use the `aria-checked` state, so either is technically valid (a switch reads as on/off, a checkbox as checked/unchecked). `aria-selected` applies to selectable options like listbox items, `aria-pressed` applies to toggle buttons, and `aria-expanded` reports disclosure state, so none of those is the correct state for this control.",
     refs: [
       {
         label: "ARIA APG: Switch Pattern",
@@ -918,16 +918,16 @@ export const questions: Question[] = [
     topic: "aria",
     difficulty: "hard",
     question:
-      'A volume control is built as a custom slider with role="slider". The thumb is positioned at the 25 percent mark of a range from 0 to 100. The team wants screen readers to announce a human-friendly value such as "Quiet" instead of the raw number. Which markup is correct for the ARIA Slider pattern?',
+      'A volume control is built as a custom slider with `role="slider"`. The thumb is positioned at the 25 percent mark of a range from 0 to 100. The team wants screen readers to announce a human-friendly value such as "Quiet" instead of the raw number. Which markup is correct for the ARIA Slider pattern?',
     options: [
-      '<div role="slider" aria-valuenow="Quiet" aria-valuemin="0" aria-valuemax="100"></div>',
-      '<div role="slider" aria-valuemin="0" aria-valuemax="100" aria-label="25, Quiet"></div>',
-      '<div role="slider" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" aria-valuetext="Quiet"></div>',
-      '<div role="slider" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" aria-roledescription="Quiet"></div>',
+      '`<div role="slider" aria-valuenow="Quiet" aria-valuemin="0" aria-valuemax="100"></div>`',
+      '`<div role="slider" aria-valuemin="0" aria-valuemax="100" aria-label="25, Quiet"></div>`',
+      '`<div role="slider" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" aria-valuetext="Quiet"></div>`',
+      '`<div role="slider" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" aria-roledescription="Quiet"></div>`',
     ],
     correctIndex: 2,
     explanation:
-      'aria-valuenow must hold the numeric value (25), while aria-valuetext supplies the human-readable equivalent ("Quiet") that assistive technology announces in place of the number, per the ARIA 1.2 slider requirements. Putting text in aria-valuenow is invalid (it requires a number), and aria-roledescription only relabels the role (for example "volume slider"), not the current value.',
+      '`aria-valuenow` must hold the numeric value (25), while `aria-valuetext` supplies the human-readable equivalent ("Quiet") that assistive technology announces in place of the number, per the ARIA 1.2 slider requirements. Putting text in `aria-valuenow` is invalid (it requires a number), and `aria-roledescription` only relabels the role (for example "volume slider"), not the current value.',
     refs: [
       {
         label: "ARIA APG: Slider Pattern",
@@ -941,16 +941,16 @@ export const questions: Question[] = [
     topic: "aria",
     difficulty: "hard",
     question:
-      'A developer hides an icon-only "Close" button visually offscreen but wants it removed for everyone, so they write <button aria-hidden="true" onclick="closeDialog()"><svg>...</svg></button>. The button is still in the tab order. What is the core accessibility defect, and what is the relevant rule?',
+      'A developer hides an icon-only "Close" button visually offscreen but wants it removed for everyone, so they write `<button aria-hidden="true" onclick="closeDialog()"><svg>...</svg></button>`. The button is still in the tab order. What is the core accessibility defect, and what is the relevant rule?',
     options: [
-      'It is correct: aria-hidden="true" is the standard way to hide a decorative control from assistive technology while keeping it usable',
-      'It should use role="presentation" instead of aria-hidden, because role="presentation" both removes the element from the tree and from the tab order',
-      'aria-hidden="true" removes the button from the accessibility tree but not from the tab order, so a keyboard user can focus a control that has no name or role exposed; aria-hidden must not be placed on focusable elements',
-      "The button needs aria-label as well as aria-hidden so the close action still has an accessible name while hidden",
+      'It is correct: `aria-hidden="true"` is the standard way to hide a decorative control from assistive technology while keeping it usable',
+      'It should use `role="presentation"` instead of `aria-hidden`, because `role="presentation"` both removes the element from the tree and from the tab order',
+      '`aria-hidden="true"` removes the button from the accessibility tree but not from the tab order, so a keyboard user can focus a control that has no name or role exposed; `aria-hidden` must not be placed on focusable elements',
+      "The button needs `aria-label` as well as `aria-hidden` so the close action still has an accessible name while hidden",
     ],
     correctIndex: 2,
     explanation:
-      'aria-hidden="true" is a state that removes an element and its descendants from the accessibility tree, but it does not remove the element from the focus order, so a keyboard user can tab to a control that exposes no name, role, or value (a 4.1.2 Name, Role, Value, Level A, failure); the ARIA spec explicitly forbids aria-hidden on focusable elements. role="presentation" only strips semantics and likewise does not remove focusability, and adding aria-label cannot help because aria-hidden suppresses any name on that subtree.',
+      '`aria-hidden="true"` is a state that removes an element and its descendants from the accessibility tree, but it does not remove the element from the focus order, so a keyboard user can tab to a control that exposes no name, role, or value (a 4.1.2 Name, Role, Value, Level A, failure); the ARIA spec explicitly forbids `aria-hidden` on focusable elements. `role="presentation"` only strips semantics and likewise does not remove focusability, and adding `aria-label` cannot help because `aria-hidden` suppresses any name on that subtree.',
     refs: [
       {
         label: "WAI-ARIA 1.2: aria-hidden state",
@@ -969,14 +969,14 @@ export const questions: Question[] = [
     question:
       'A non-critical status message ("Draft saved") should be announced by a screen reader after the user finishes their current activity, not interrupt them mid-action. Which container role conveys this politeness, and which role would instead interrupt immediately?',
     options: [
-      'role="log" announces immediately; role="status" waits for a pause.',
-      'role="timer" announces politely; role="marquee" interrupts.',
-      'role="status" announces politely (implicit aria-live="polite"); role="alert" interrupts (implicit aria-live="assertive").',
-      'role="status" and role="alert" both interrupt; only an explicit aria-live="polite" can wait for a pause.',
+      '`role="log"` announces immediately; `role="status"` waits for a pause.',
+      '`role="timer"` announces politely; `role="marquee"` interrupts.',
+      '`role="status"` announces politely (implicit `aria-live="polite"`); `role="alert"` interrupts (implicit `aria-live="assertive"`).',
+      '`role="status"` and `role="alert"` both interrupt; only an explicit `aria-live="polite"` can wait for a pause.',
     ],
     correctIndex: 2,
     explanation:
-      'Under ARIA 1.2, role="status" carries an implicit aria-live="polite" (announced at the next pause) and role="alert" carries an implicit aria-live="assertive" (interrupts immediately), which is the distinction 4.1.3 Status Messages, Level AA relies on. The claim that role="status" requires an explicit aria-live="polite" to be polite is wrong because the polite behaviour is built into the role.',
+      'Under ARIA 1.2, `role="status"` carries an implicit `aria-live="polite"` (announced at the next pause) and `role="alert"` carries an implicit `aria-live="assertive"` (interrupts immediately), which is the distinction 4.1.3 Status Messages, Level AA relies on. The claim that `role="status"` requires an explicit `aria-live="polite"` to be polite is wrong because the polite behaviour is built into the role.',
     refs: [
       {
         label: "WCAG 2.2 Understanding: 4.1.3 Status Messages",
@@ -992,14 +992,14 @@ export const questions: Question[] = [
     question:
       'On a product page, clicking "Add to cart" updates the cart count and shows "Item added, 3 in cart" without navigating or opening a dialog. A screen reader user hears nothing about the change. Which fix best satisfies 4.1.3 Status Messages?',
     options: [
-      'Place the confirmation text inside a container with role="status" (or aria-live="polite") so it is announced without moving focus.',
-      "Call element.focus() on the confirmation text so the screen reader reads it when focus lands there.",
-      'Add aria-label="Item added" to the "Add to cart" button so the new state is exposed on the control.',
-      'Wrap the confirmation in role="alert" and also move focus to it to guarantee it is heard.',
+      'Place the confirmation text inside a container with `role="status"` (or `aria-live="polite"`) so it is announced without moving focus.',
+      "Call `element.focus()` on the confirmation text so the screen reader reads it when focus lands there.",
+      'Add `aria-label="Item added"` to the "Add to cart" button so the new state is exposed on the control.',
+      'Wrap the confirmation in `role="alert"` and also move focus to it to guarantee it is heard.',
     ],
     correctIndex: 0,
     explanation:
-      '4.1.3 Status Messages, Level AA requires that a status change be programmatically determinable through role or properties so assistive technology can announce it without the message receiving focus; a polite live region (role="status" or aria-live="polite") does exactly that. Moving focus to the confirmation is the very thing the criterion is meant to avoid, and aria-label on the button does not announce the change at the moment it happens.',
+      '4.1.3 Status Messages, Level AA requires that a status change be programmatically determinable through role or properties so assistive technology can announce it without the message receiving focus; a polite live region (`role="status"` or `aria-live="polite"`) does exactly that. Moving focus to the confirmation is the very thing the criterion is meant to avoid, and `aria-label` on the button does not announce the change at the moment it happens.',
     refs: [
       {
         label: "WCAG 2.2 Understanding: 4.1.3 Status Messages",
@@ -1012,16 +1012,16 @@ export const questions: Question[] = [
     topic: "aria",
     difficulty: "medium",
     question:
-      'A live region shows a results count: <div role="status">12 results</div>. When it changes to "8 results", you want the screen reader to announce the entire phrase "8 results" rather than only the changed word. Which attribute, set on the live region, produces this behaviour?',
+      'A live region shows a results count: `<div role="status">12 results</div>`. When it changes to "8 results", you want the screen reader to announce the entire phrase "8 results" rather than only the changed word. Which attribute, set on the live region, produces this behaviour?',
     options: [
-      'aria-relevant="text", because it limits announcements to text-node changes only.',
-      'aria-busy="true", because it forces the region to be re-read in full after updates.',
-      'aria-live="assertive", because assertive regions always read their entire contents.',
-      'aria-atomic="true", because it tells assistive technology to present the whole region as a single unit when any part changes.',
+      '`aria-relevant="text"`, because it limits announcements to text-node changes only.',
+      '`aria-busy="true"`, because it forces the region to be re-read in full after updates.',
+      '`aria-live="assertive"`, because assertive regions always read their entire contents.',
+      '`aria-atomic="true"`, because it tells assistive technology to present the whole region as a single unit when any part changes.',
     ],
     correctIndex: 3,
     explanation:
-      'Setting aria-atomic="true" (it defaults to false) tells assistive technology to present the entire live region as one unit on any change, so the full "8 results" is announced; this property supports clear status messaging under 4.1.3 Status Messages, Level AA. aria-relevant filters which mutation types trigger announcements (it does not force whole-region re-reading), and aria-busy="true" suppresses announcements until updates are complete rather than re-reading the region.',
+      'Setting `aria-atomic="true"` (it defaults to false) tells assistive technology to present the entire live region as one unit on any change, so the full "8 results" is announced; this property supports clear status messaging under 4.1.3 Status Messages, Level AA. `aria-relevant` filters which mutation types trigger announcements (it does not force whole-region re-reading), and `aria-busy="true"` suppresses announcements until updates are complete rather than re-reading the region.',
     refs: [
       { label: "WAI-ARIA 1.2 specification", url: "https://www.w3.org/TR/wai-aria-1.2/" },
       {
@@ -1035,16 +1035,16 @@ export const questions: Question[] = [
     topic: "aria",
     difficulty: "hard",
     question:
-      'A developer expects that removing an item from an aria-live="polite" log will be announced, but assistive technology stays silent on removals while announcing additions. Which statement correctly explains the default behaviour under ARIA 1.2?',
+      'A developer expects that removing an item from an `aria-live="polite"` log will be announced, but assistive technology stays silent on removals while announcing additions. Which statement correctly explains the default behaviour under ARIA 1.2?',
     options: [
-      'aria-live="polite" only ever announces text content and ignores node additions and removals entirely, regardless of aria-relevant.',
-      'Removals are announced only if aria-atomic="true"; aria-relevant has no effect on whether removals are spoken.',
-      'aria-relevant defaults to "all", so every addition, removal, and text change is announced; the silence indicates a screen reader bug rather than a default.',
-      'aria-relevant defaults to "additions text", so node removals are not announced by default; to announce removals you must set aria-relevant to include "removals" (for example "all").',
+      '`aria-live="polite"` only ever announces text content and ignores node additions and removals entirely, regardless of `aria-relevant`.',
+      'Removals are announced only if `aria-atomic="true"`; `aria-relevant` has no effect on whether removals are spoken.',
+      '`aria-relevant` defaults to `"all"`, so every addition, removal, and text change is announced; the silence indicates a screen reader bug rather than a default.',
+      '`aria-relevant` defaults to `"additions text"`, so node removals are not announced by default; to announce removals you must set `aria-relevant` to include `"removals"` (for example `"all"`).',
     ],
     correctIndex: 3,
     explanation:
-      'Per ARIA 1.2, aria-relevant defaults to "additions text", meaning element additions and text changes are announced but node removals are not unless "removals" (or "all") is included; this is the property layer that 4.1.3 Status Messages, Level AA relies on for programmatic determinability. The claim that the default is "all" is the common misconception that this question targets, and aria-atomic controls whether the whole region is re-read, not whether removals are relevant.',
+      'Per ARIA 1.2, `aria-relevant` defaults to `"additions text"`, meaning element additions and text changes are announced but node removals are not unless `"removals"` (or `"all"`) is included; this is the property layer that 4.1.3 Status Messages, Level AA relies on for programmatic determinability. The claim that the default is `"all"` is the common misconception that this question targets, and `aria-atomic` controls whether the whole region is re-read, not whether removals are relevant.',
     refs: [
       { label: "WAI-ARIA 1.2 specification", url: "https://www.w3.org/TR/wai-aria-1.2/" },
       {
@@ -1217,7 +1217,7 @@ export const questions: Question[] = [
       "The additional content must meet a contrast ratio of at least 3:1 against its background",
       "The additional content must remain visible until the user moves the pointer away, even if it would obscure other content",
       "The pointer must be able to move over the additional content without it disappearing (the content is hoverable), unless it is removed for a valid reason",
-      "The additional content must be announced by a live region with aria-live set to assertive",
+      "The additional content must be announced by a live region with `aria-live` set to assertive",
     ],
     correctIndex: 2,
     explanation:
@@ -1237,7 +1237,7 @@ export const questions: Question[] = [
       "An image carousel advances only when the user swipes left or right across it with one finger. There is no other way to move between slides. Which success criterion does this most directly fail, and what is the fix?",
     options: [
       "2.5.1 Pointer Gestures (Level A): a path-based gesture must have a single-pointer alternative, so add visible Previous and Next buttons that work with a simple tap or click.",
-      "2.5.2 Pointer Cancellation (Level A): swipe activation fires on touchstart, so move activation to the up event.",
+      "2.5.2 Pointer Cancellation (Level A): swipe activation fires on `touchstart`, so move activation to the up event.",
       "2.5.7 Dragging Movements (Level AA): a swipe is a dragging movement, so the only requirement is a single-pointer alternative that does not depend on dragging.",
       "2.5.4 Motion Actuation (Level A): the swipe is operated through device motion, so provide a settings toggle to disable it.",
     ],
@@ -1280,14 +1280,14 @@ export const questions: Question[] = [
     question:
       "A homepage shows an auto-scrolling promotional banner that cycles through three slides every four seconds and runs continuously for the life of the page. Which statement correctly applies WCAG to this content?",
     options: [
-      "prefers-reduced-motion is sufficient on its own to meet 2.2.2 as long as the banner stops for users who set that preference.",
+      "`prefers-reduced-motion` is sufficient on its own to meet 2.2.2 as long as the banner stops for users who set that preference.",
       "Only 2.3.1 Three Flashes or Below Threshold (Level A) applies, since auto-advancing slides are a flashing concern.",
       "It is exempt from 2.2.2 because moving content that loops is treated the same as a real-time event such as a video stream.",
       "Because the motion starts automatically, lasts more than five seconds, and is presented in parallel with other content, 2.2.2 Pause, Stop, Hide (Level A) requires a mechanism to pause, stop, or hide it.",
     ],
     correctIndex: 3,
     explanation:
-      "2.2.2 Pause, Stop, Hide (Level A) applies to moving, blinking, or scrolling content that starts automatically, lasts more than five seconds, and is shown alongside other content; it requires a pause, stop, or hide mechanism. Relying on prefers-reduced-motion alone is wrong because 2.2.2 demands an in-content control available to all users, not just those who set an OS preference, and 2.3.1 concerns flashing (a seizure risk), not gentle slide transitions.",
+      "2.2.2 Pause, Stop, Hide (Level A) applies to moving, blinking, or scrolling content that starts automatically, lasts more than five seconds, and is shown alongside other content; it requires a pause, stop, or hide mechanism. Relying on `prefers-reduced-motion` alone is wrong because 2.2.2 demands an in-content control available to all users, not just those who set an OS preference, and 2.3.1 concerns flashing (a seizure risk), not gentle slide transitions.",
     refs: [
       {
         label: "WCAG 2.2 Understanding: 2.2.2 Pause, Stop, Hide",
@@ -1300,16 +1300,16 @@ export const questions: Question[] = [
     topic: "pointer-cancellation",
     difficulty: "hard",
     question:
-      'Consider a custom button that runs a destructive delete as soon as the pointer touches it:\n\n<div role="button" tabindex="0" onpointerdown="deleteItem()">Delete</div>\n\nWhich change makes it conform to 2.5.2 Pointer Cancellation (Level A)?',
+      'Consider a custom button that runs a destructive delete as soon as the pointer touches it:\n\n`<div role="button" tabindex="0" onpointerdown="deleteItem()">Delete</div>`.\n\nWhich change makes it conform to 2.5.2 Pointer Cancellation (Level A)?',
     options: [
-      'Add aria-pressed="false" so assistive technology can announce the button state before activation.',
+      'Add `aria-pressed="false"` so assistive technology can announce the button state before activation.',
       "Increase the target to at least 44 by 44 CSS pixels so the touch is less likely to be accidental.",
-      "Move activation to the up event (for example pointerup or click) so the user can move the pointer away before releasing to abort the action.",
-      "Add a 300 millisecond delay before deleteItem() runs so the user has time to lift their finger.",
+      "Move activation to the up event (for example `pointerup` or `click`) so the user can move the pointer away before releasing to abort the action.",
+      "Add a 300 millisecond delay before `deleteItem()` runs so the user has time to lift their finger.",
     ],
     correctIndex: 2,
     explanation:
-      "2.5.2 Pointer Cancellation (Level A) requires that for single-pointer activation the down-event must not complete the function: activating on the up event lets a user abort by dragging off the control before release. The target-size and delay answers do not satisfy 2.5.2, which is about which event triggers completion, not size or timing; aria-pressed addresses name/role/value, not cancellation.",
+      "2.5.2 Pointer Cancellation (Level A) requires that for single-pointer activation the down-event must not complete the function: activating on the up event lets a user abort by dragging off the control before release. The target-size and delay answers do not satisfy 2.5.2, which is about which event triggers completion, not size or timing; `aria-pressed` addresses name/role/value, not cancellation.",
     refs: [
       {
         label: "WCAG 2.2 Understanding: 2.5.2 Pointer Cancellation",
@@ -1322,11 +1322,11 @@ export const questions: Question[] = [
     topic: "aria",
     difficulty: "medium",
     question:
-      'A search input is coded as follows:\n\n<label for="q">Site search</label>\n<input id="q" aria-label="Search the docs" placeholder="Type a keyword">\n\nWhat accessible name will assistive technology compute for this input?',
+      'A search input is coded as follows:\n\n`<label for="q">Site search</label>`\n`<input id="q" aria-label="Search the docs" placeholder="Type a keyword">`.\n\nWhat accessible name will assistive technology compute for this input?',
     options: ["Search the docs", "Site search", "Type a keyword", "Site search Search the docs"],
     correctIndex: 0,
     explanation:
-      "Under accname 1.2 precedence, aria-label is consulted before the native label (the for/id association) and before the placeholder, so it wins: the accessible name is the aria-label value. The visible label loses here, which is exactly why aria-label can silently override a visible label, a common pitfall the 'Site search' answer reflects.",
+      "Under accname 1.2 precedence, `aria-label` is consulted before the native label (the `for`/`id` association) and before the placeholder, so it wins: the accessible name is the aria-label value. The visible label loses here, which is exactly why `aria-label` can silently override a visible label, a common pitfall the 'Site search' answer reflects.",
     refs: [
       {
         label: "Accessible Name and Description Computation 1.2",
@@ -1343,7 +1343,7 @@ export const questions: Question[] = [
     topic: "forms",
     difficulty: "medium",
     question:
-      'A developer ships a text field that has no <label>, no aria-label, and no aria-labelledby, but does have placeholder="Email address". Which statement is correct?',
+      'A developer ships a text field that has no `<label>`, no `aria-label`, and no `aria-labelledby`, but does have `placeholder="Email address"`. Which statement is correct?',
     options: [
       "The field has no reliable accessible name, because a placeholder is not a dependable name and disappears once the user types",
       "The placeholder satisfies the accessible name requirement, so no further label is needed",
@@ -1371,14 +1371,14 @@ export const questions: Question[] = [
     question:
       "What is the correct way to associate supplementary help text (for example, a password format hint) with an input so that screen readers announce it as a description rather than as the field's name?",
     options: [
-      "Reference the help text from the input with aria-describedby",
-      "Reference the help text from the input with aria-labelledby",
-      "Place the help text in the input's placeholder attribute",
-      "Put the help text in a title attribute, since title is the standard mechanism for descriptions",
+      "Reference the help text from the input with `aria-describedby`",
+      "Reference the help text from the input with `aria-labelledby`",
+      "Place the help text in the input's `placeholder` attribute",
+      "Put the help text in a `title` attribute, since `title` is the standard mechanism for descriptions",
     ],
     correctIndex: 0,
     explanation:
-      "aria-describedby points to element IDs whose text becomes the accessible description, which assistive tech announces in addition to (not instead of) the name. Using aria-labelledby instead would fold the hint into the accessible name, and a placeholder is not a dependable mechanism for either name or description.",
+      "`aria-describedby` points to element IDs whose text becomes the accessible description, which assistive tech announces in addition to (not instead of) the name. Using `aria-labelledby` instead would fold the hint into the accessible name, and a placeholder is not a dependable mechanism for either name or description.",
     refs: [
       {
         label: "Accessible Name and Description Computation 1.2",
@@ -1392,16 +1392,16 @@ export const questions: Question[] = [
     topic: "aria",
     difficulty: "hard",
     question:
-      'A button shows the visible text "Play" but is coded as <button aria-label="Start playback now">Play</button>. A user who relies on speech input says "Play" to activate it, but nothing happens. Which evaluation conclusion is correct?',
+      'A button shows the visible text "Play" but is coded as `<button aria-label="Start playback now">Play</button>`. Which evaluation conclusion is correct?',
     options: [
-      'It fails 2.5.3 Label in Name (Level A) because the visible label text "Play" is not contained within the accessible name "Start playback now"',
-      "It passes 2.5.3 Label in Name because the accessible name is more descriptive than the visible label",
-      "It fails 4.1.2 Name, Role, Value (Level A) because a button must not have both visible content and an aria-label",
-      "It passes all relevant criteria because aria-label always takes precedence over the visible text",
+      'It fails 2.5.3 Label in Name (Level A) because the accessible name "Start playback now" is not identical to the visible label "Play"',
+      'It passes 2.5.3 Label in Name because the visible label "Play" is contained within the accessible name (it appears inside "playback")',
+      "It fails 4.1.2 Name, Role, Value (Level A) because a button must not have both visible content and an `aria-label`",
+      "It passes because `aria-label` always overrides the visible text, so Label in Name does not apply to this button",
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     explanation:
-      '2.5.3 Label in Name (Level A) requires that the visible label text be contained within the accessible name, so speech users can activate the control by speaking what they see; here aria-label replaces "Play" with "Start playback now", which does not contain "Play", so it fails. The element is technically named and has a role, so the 4.1.2 framing about forbidding both content and aria-label is incorrect.',
+      '2.5.3 Label in Name (Level A) is met when the visible label text is contained within the accessible name, matched case-insensitively as a character substring (there is no word-boundary requirement). The accessible name "Start playback now" contains "Play" (inside "playback"), so it conforms: a longer, more descriptive `aria-label` is fine as long as it still includes the visible text. It is not a 4.1.2 Name, Role, Value issue (a button may carry an `aria-label`), and `aria-label` does not exempt a control from Label in Name. Best practice is still to put the visible word at the start of the name so speech control stays reliable.',
     refs: [
       {
         label: "WCAG 2.2 Understanding: 2.5.3 Label in Name",
@@ -1670,11 +1670,11 @@ export const questions: Question[] = [
       "Because conformance and conformance claims are made for full web pages only; you cannot conform a part of a page while excluding other content that is part of it.",
       "Because third-party content is automatically exempt, so the whole page already conforms without a special claim.",
       "Because partial-page claims are allowed only at Level AAA, not at A or AA.",
-      'Because a partial-page claim is permitted as long as the excluded region is hidden with aria-hidden="true".',
+      'Because a partial-page claim is permitted as long as the excluded region is hidden with `aria-hidden="true"`.',
     ],
     correctIndex: 0,
     explanation:
-      "WCAG 2.2 states that conformance (and any conformance claim) is for full web pages only and cannot be achieved if part of a page is excluded. The aria-hidden distractor is wrong because hiding a region from the accessibility tree does not remove it from the page for conformance purposes, and partial-page claims are not a function of conformance level. WCAG's optional 'statement of partial conformance' addresses third-party content that the author cannot control and that is not part of the delivered page, which is different from carving out a region of one's own page.",
+      "WCAG 2.2 states that conformance (and any conformance claim) is for full web pages only and cannot be achieved if part of a page is excluded. The `aria-hidden` distractor is wrong because hiding a region from the accessibility tree does not remove it from the page for conformance purposes, and partial-page claims are not a function of conformance level. WCAG's optional 'statement of partial conformance' addresses third-party content that the author cannot control and that is not part of the delivered page, which is different from carving out a region of one's own page.",
     refs: [
       {
         label: "WCAG 2.2: Conformance (full pages) and Statement of Partial Conformance",
@@ -1731,16 +1731,16 @@ export const questions: Question[] = [
     topic: "evaluation",
     difficulty: "medium",
     question:
-      "An evaluator runs an ACT atomic rule for image accessible names against a page. The page contains no img elements and nothing else that matches the rule's applicability. According to the ACT Rules Format, which outcome should the rule report for this page?",
+      "An evaluator runs an ACT atomic rule for image accessible names against a page. The page contains no `img` elements and nothing else that matches the rule's applicability. According to the ACT Rules Format, which outcome should the rule report for this page?",
     options: [
-      "inapplicable, because no part of the test subject matches the rule's applicability",
-      "passed, because there are no failures to report",
-      "cantTell, because the evaluator could not locate any test targets",
-      "untested, because a rule with zero matches has not actually been run",
+      "`inapplicable`, because no part of the test subject matches the rule's applicability",
+      "`passed`, because there are no failures to report",
+      "`cantTell`, because the evaluator could not locate any test targets",
+      "`untested`, because a rule with zero matches has not actually been run",
     ],
     correctIndex: 0,
     explanation:
-      "In the ACT Rules Format 1.1, when no part of the test subject matches a rule's applicability the outcome is inapplicable, which is distinct from passed (a matched target that met all expectations). Reporting passed is the tempting mistake: passed requires at least one applicable test target that satisfied the expectations, whereas zero matches yields inapplicable.",
+      "In the ACT Rules Format 1.1, when no part of the test subject matches a rule's applicability the outcome is `inapplicable`, which is distinct from `passed` (a matched target that met all expectations). Reporting `passed` is the tempting mistake: `passed` requires at least one applicable test target that satisfied the expectations, whereas zero matches yields `inapplicable`.",
     refs: [
       {
         label: "ACT Rules Format 1.1: Outcome (inapplicable vs passed)",
@@ -1755,14 +1755,14 @@ export const questions: Question[] = [
     question:
       "An automated checker reaches a custom widget whose accessible name might be supplied by content injected at runtime, and the tool cannot reliably determine whether the relevant ACT rule's expectation is met. The component clearly does match the rule's applicability. Which outcome best fits this situation, and what does it signal?",
     options: [
-      "inapplicable, signalling that the component is outside the rule's scope",
-      "failed, signalling that any element a tool cannot fully evaluate must be treated as a violation",
-      "cantTell, signalling that a target was applicable but the rule could not be fully resolved, so human review is needed",
-      "untested, signalling that the rule was deliberately skipped for this page",
+      "`inapplicable`, signalling that the component is outside the rule's scope",
+      "`failed`, signalling that any element a tool cannot fully evaluate must be treated as a violation",
+      "`cantTell`, signalling that a target was applicable but the rule could not be fully resolved, so human review is needed",
+      "`untested`, signalling that the rule was deliberately skipped for this page",
     ],
     correctIndex: 2,
     explanation:
-      "The ACT Rules Format 1.1 defines cantTell for an applicable target where the rule's outcome could not be fully determined, which flags the item for human follow-up rather than asserting a pass or fail. Choosing failed is the seductive error: an undetermined result is not the same as a confirmed violation, and untested means the subject was never evaluated at all, which is not the case here.",
+      "The ACT Rules Format 1.1 defines `cantTell` for an applicable target where the rule's outcome could not be fully determined, which flags the item for human follow-up rather than asserting a pass or fail. Choosing `failed` is the seductive error: an undetermined result is not the same as a confirmed violation, and `untested` means the subject was never evaluated at all, which is not the case here.",
     refs: [
       {
         label: "ACT Rules Format 1.1: Outcome (cantTell and untested)",
@@ -1810,7 +1810,7 @@ export const questions: Question[] = [
     ],
     correctIndex: 1,
     explanation:
-      "Automated tools reliably detect only a minority of WCAG problems (for example missing alt, missing lang, some contrast), so a clean scan only means no machine-detectable issues were found, not WCAG conformance, which is defined by the normative conformance requirements in WCAG 2.2 and depends on human evaluation of things like alt-text quality and logical focus order. Equating a clean scan with conformance is the core misconception this tests.",
+      "Automated tools reliably detect only a minority of WCAG problems (for example missing `alt`, missing `lang`, some contrast), so a clean scan only means no machine-detectable issues were found, not WCAG conformance, which is defined by the normative conformance requirements in WCAG 2.2 and depends on human evaluation of things like alt-text quality and logical focus order. Equating a clean scan with conformance is the core misconception this tests.",
     refs: [
       {
         label: "WCAG 2.2 Conformance Requirements",
@@ -1825,14 +1825,14 @@ export const questions: Question[] = [
     question:
       "Which of these accessibility checks is genuinely well-suited to fully automated detection, rather than requiring human judgement?",
     options: [
-      "Whether the alt text on an informative image accurately describes its meaning.",
+      "Whether the `alt` text on an informative image accurately describes its meaning.",
       "Whether the visual focus order of interactive elements is logical and meaningful.",
-      "Whether an <img> element is missing an alt attribute entirely.",
+      "Whether an `<img>` element is missing an `alt` attribute entirely.",
       "Whether a link's text makes its purpose clear in context.",
     ],
     correctIndex: 2,
     explanation:
-      "Detecting that a programmatic feature is absent (an <img> with no alt attribute) is a deterministic machine check tied to 1.1.1 Non-text Content, Level A, which is why scanners handle it well. Judging whether alt text is accurate, whether focus order is logical (2.4.3), or whether link text is clear (2.4.4) all require human interpretation of meaning, so they cannot be fully automated.",
+      "Detecting that a programmatic feature is absent (an `<img>` with no `alt` attribute) is a deterministic machine check tied to 1.1.1 Non-text Content, Level A, which is why scanners handle it well. Judging whether alt text is accurate, whether focus order is logical (2.4.3), or whether link text is clear (2.4.4) all require human interpretation of meaning, so they cannot be fully automated.",
     refs: [
       {
         label: "WCAG 2.2 Understanding: 1.1.1 Non-text Content",
@@ -1845,16 +1845,16 @@ export const questions: Question[] = [
     topic: "evaluation",
     difficulty: "medium",
     question:
-      'An automated tool flags a decorative icon with alt="" as an error reading "image missing alternative text," even though an empty alt is the correct treatment for a decorative image. What kind of result is this, and what is the right response?',
+      'An automated tool flags a decorative icon with `alt=""` as an error reading "image missing alternative text," even though an empty `alt` is the correct treatment for a decorative image. What kind of result is this, and what is the right response?',
     options: [
       "A false negative; the tester should add descriptive alt text to clear the flag.",
-      'A false positive; the tester should verify manually and dismiss the flag, since alt="" is correct for a decorative image.',
-      "A true positive; the markup must be changed because every <img> requires non-empty alt text.",
+      'A false positive; the tester should verify manually and dismiss the flag, since `alt=""` is correct for a decorative image.',
+      "A true positive; the markup must be changed because every `<img>` requires non-empty `alt` text.",
       "A false positive that proves the image actually fails 1.1.1, so it should be reported as a defect.",
     ],
     correctIndex: 1,
     explanation:
-      'A false positive is when a tool reports a problem that is not actually a failure; alt="" is the correct way to mark a decorative image under 1.1.1 Non-text Content, Level A, so the flag should be verified and dismissed, not acted on. A false negative would be the opposite case (a real problem the tool misses), and the claim that every image needs non-empty alt is the misconception driving this kind of false positive.',
+      'A false positive is when a tool reports a problem that is not actually a failure; `alt=""` is the correct way to mark a decorative image under 1.1.1 Non-text Content, Level A, so the flag should be verified and dismissed, not acted on. A false negative would be the opposite case (a real problem the tool misses), and the claim that every image needs non-empty `alt` is the misconception driving this kind of false positive.',
     refs: [
       {
         label: "WCAG 2.2 Understanding: 1.1.1 Non-text Content",
@@ -1947,12 +1947,12 @@ export const questions: Question[] = [
     options: [
       "Single-character quick-navigation keys (such as H for next heading) stop navigating and are instead sent to the field as typed text",
       "The virtual buffer is permanently destroyed for the rest of the page visit",
-      "All ARIA states on the field, such as aria-invalid, are suppressed until browse mode resumes",
+      "All ARIA states on the field, such as `aria-invalid`, are suppressed until browse mode resumes",
       "Tab and Shift+Tab stop working, so the user can no longer leave the field",
     ],
     correctIndex: 0,
     explanation:
-      "In focus mode (forms mode) keystrokes go to the focused control so the user can type, which means browse-mode single-key shortcuts like H no longer navigate and are entered as characters instead. The Tab-key distractor is wrong because Tab still moves focus between controls in focus mode, and ARIA states like aria-invalid (a state per ARIA 1.2) remain exposed via 4.1.2 Name, Role, Value (Level A) regardless of mode.",
+      "In focus mode (forms mode) keystrokes go to the focused control so the user can type, which means browse-mode single-key shortcuts like H no longer navigate and are entered as characters instead. The Tab-key distractor is wrong because Tab still moves focus between controls in focus mode, and ARIA states like `aria-invalid` (a state per ARIA 1.2) remain exposed via 4.1.2 Name, Role, Value (Level A) regardless of mode.",
     refs: [
       { label: "WAI-ARIA 1.2 specification", url: "https://www.w3.org/TR/wai-aria-1.2/" },
       {
@@ -1968,14 +1968,14 @@ export const questions: Question[] = [
     question:
       "A tester needs to confirm that a decorative flourish icon and its container are completely removed from what a screen reader announces, while leaving the element visible on screen. Which markup achieves that?",
     options: [
-      '<span class="flourish" role="presentation">...</span>, which both hides the element visually and removes it from the accessibility tree',
-      '<span class="flourish" aria-label="">...</span>, because an empty aria-label removes the element from the accessibility tree',
-      '<span class="flourish" aria-hidden="true">...</span>, which keeps it visible but removes it and its descendants from the accessibility tree',
-      '<span class="flourish" style="display:none">...</span>, which keeps it visible but removes it from the accessibility tree',
+      '`<span class="flourish" role="presentation">`...`</span>`, which both hides the element visually and removes it from the accessibility tree',
+      '`<span class="flourish" aria-label="">`...`</span>`, because an empty `aria-label` removes the element from the accessibility tree',
+      '`<span class="flourish" aria-hidden="true">`...`</span>`, which keeps it visible but removes it and its descendants from the accessibility tree',
+      '`<span class="flourish" style="display:none">`...`</span>`, which keeps it visible but removes it from the accessibility tree',
     ],
     correctIndex: 2,
     explanation:
-      'aria-hidden="true" (a state in ARIA 1.2) removes the element and all its descendants from the accessibility tree while leaving it visually rendered, so screen readers ignore it. display:none removes the element from both the visual rendering and the accessibility tree (it would also hide it visually, contradicting the requirement), and role="presentation" only strips an element\'s semantic role rather than hiding the whole subtree from AT.',
+      '`aria-hidden="true"` (a state in ARIA 1.2) removes the element and all its descendants from the accessibility tree while leaving it visually rendered, so screen readers ignore it. `display:none` removes the element from both the visual rendering and the accessibility tree (it would also hide it visually, contradicting the requirement), and `role="presentation"` only strips an element\'s semantic role rather than hiding the whole subtree from AT.',
     refs: [{ label: "WAI-ARIA 1.2 specification", url: "https://www.w3.org/TR/wai-aria-1.2/" }],
   },
   {
@@ -2005,16 +2005,16 @@ export const questions: Question[] = [
     topic: "screen-readers",
     difficulty: "hard",
     question:
-      'A button is coded as <button>Delete <span aria-hidden="true">file.pdf</span></button>. A tester reports the screen reader announces only "Delete, button" and asks why aria-hidden behaves the way it does on this nested span. Which explanation is correct?',
+      'A button is coded as `<button>Delete <span aria-hidden="true">file.pdf</span></button>`. A tester reports the screen reader announces only "Delete, button" and asks why `aria-hidden` behaves the way it does on this nested span. Which explanation is correct?',
     options: [
-      "aria-hidden on the span only hides it from sighted users via CSS, so its text should still be in the accessible name",
-      'aria-hidden="true" removes the span\'s text from the accessibility tree, so it is excluded from the button\'s name-from-content computation, leaving only "Delete"',
-      'aria-hidden="true" hides the text visually but the accname algorithm still includes hidden subtrees, so the report indicates a screen-reader bug',
-      "aria-hidden has no effect inside a button because buttons always compute their name from the title attribute",
+      "`aria-hidden` on the span only hides it from sighted users via CSS, so its text should still be in the accessible name",
+      '`aria-hidden="true"` removes the span\'s text from the accessibility tree, so it is excluded from the button\'s name-from-content computation, leaving only "Delete"',
+      '`aria-hidden="true"` hides the text visually but the accname algorithm still includes hidden subtrees, so the report indicates a screen-reader bug',
+      "`aria-hidden` has no effect inside a button because buttons always compute their name from the `title` attribute",
     ],
     correctIndex: 1,
     explanation:
-      'aria-hidden="true" (a state in ARIA 1.2) removes the element and its descendants from the accessibility tree, and the accname 1.2 name-from-content computation skips nodes excluded that way, so only "Delete" contributes to the button\'s accessible name (relevant to 4.1.2 Name, Role, Value, Level A). aria-hidden is not a visual CSS hide (that is display:none or visibility:hidden) and the name computation does not include aria-hidden subtrees, so it is not a screen-reader bug.',
+      '`aria-hidden="true"` (a state in ARIA 1.2) removes the element and its descendants from the accessibility tree, and the accname 1.2 name-from-content computation skips nodes excluded that way, so only "Delete" contributes to the button\'s accessible name (relevant to 4.1.2 Name, Role, Value, Level A). `aria-hidden` is not a visual CSS hide (that is `display:none` or `visibility:hidden`) and the name computation does not include aria-hidden subtrees, so it is not a screen-reader bug.',
     refs: [
       {
         label: "accname 1.2 (Accessible Name Computation)",
@@ -2054,16 +2054,16 @@ export const questions: Question[] = [
     topic: "accessibility-tree",
     difficulty: "medium",
     question:
-      'An auditor is testing three icon buttons and wants to predict which one will NOT appear in the accessibility tree at all. The markup is:\n1) <button style="visibility:hidden">Save</button>\n2) <button aria-hidden="true">Save</button>\n3) <button style="opacity:0">Save</button>\nWhich button(s) are removed from the accessibility tree?',
+      'An auditor is testing three icon buttons and wants to predict which one will NOT appear in the accessibility tree at all. The markup is:\n1) `<button style="visibility:hidden">Save</button>`\n2) `<button aria-hidden="true">Save</button>`\n3) `<button style="opacity:0">Save</button>`\nWhich button(s) are removed from the accessibility tree?',
     options: [
-      "Only the button with opacity:0, because transparent elements are never exposed.",
+      "Only the button with `opacity:0`, because transparent elements are never exposed.",
       "All three, because each technique hides the control visually.",
-      'The button with visibility:hidden and the button with aria-hidden="true"; the opacity:0 button stays in the tree.',
-      'Only the button with aria-hidden="true"; visibility:hidden has no effect on the accessibility tree.',
+      'The button with `visibility:hidden` and the button with `aria-hidden="true"`; the `opacity:0` button stays in the tree.',
+      'Only the button with `aria-hidden="true"`; `visibility:hidden` has no effect on the accessibility tree.',
     ],
     correctIndex: 2,
     explanation:
-      'visibility:hidden (like display:none) prunes the element from the accessibility tree, and aria-hidden="true" explicitly removes the element and its subtree, both relevant to 4.1.2 Name, Role, Value (Level A). opacity:0 only changes paint, so the control remains in the tree and stays focusable, which is the trap in the answer claiming all three are removed.',
+      '`visibility:hidden` (like `display:none`) prunes the element from the accessibility tree, and `aria-hidden="true"` explicitly removes the element and its subtree, both relevant to 4.1.2 Name, Role, Value (Level A). `opacity:0` only changes paint, so the control remains in the tree and stays focusable, which is the trap in the answer claiming all three are removed.',
     refs: [
       {
         label: "ARIA 1.2: aria-hidden state",
@@ -2106,16 +2106,16 @@ export const questions: Question[] = [
     topic: "accessibility-tree",
     difficulty: "hard",
     question:
-      'A developer marks a decorative wrapper with role="presentation" but is confused why a screen reader still announces the text inside it. The markup is: <div role="presentation"><p>Quarterly results are up.</p></div>. What is the correct explanation of how role="presentation"/"none" affects the accessibility tree?',
+      'A developer marks a decorative wrapper with `role="presentation"` but is confused why a screen reader still announces the text inside it. The markup is: `<div role="presentation"><p>Quarterly results are up.</p></div>`. What is the correct explanation of how `role="presentation"`/`"none"` affects the accessibility tree?',
     options: [
-      'role="presentation" removes the element\'s own implicit semantics from the accessibility tree, but its descendant content is still exposed unless separately hidden.',
-      'role="presentation" is equivalent to aria-hidden="true", so the element and all its descendants are removed from the accessibility tree.',
-      'role="presentation" has no effect on the accessibility tree and is ignored by browsers.',
-      'role="presentation" hides the element from sighted users while keeping it fully exposed to assistive technology.',
+      '`role="presentation"` removes the element\'s own implicit semantics from the accessibility tree, but its descendant content is still exposed unless separately hidden.',
+      '`role="presentation"` is equivalent to `aria-hidden="true"`, so the element and all its descendants are removed from the accessibility tree.',
+      '`role="presentation"` has no effect on the accessibility tree and is ignored by browsers.',
+      '`role="presentation"` hides the element from sighted users while keeping it fully exposed to assistive technology.',
     ],
     correctIndex: 0,
     explanation:
-      'Per ARIA 1.2, role="presentation"/"none" strips the element\'s own implicit role/semantics but does NOT remove its descendants, so the paragraph text is still exposed, which is why it differs from aria-hidden="true" (which removes the element and its entire subtree). The distractor equating it with aria-hidden conflates removing semantics with removing the subtree, and presentation does not change visual rendering at all.',
+      'Per ARIA 1.2, `role="presentation"`/`"none"` strips the element\'s own implicit role/semantics but does NOT remove its descendants, so the paragraph text is still exposed, which is why it differs from `aria-hidden="true"` (which removes the element and its entire subtree). The distractor equating it with aria-hidden conflates removing semantics with removing the subtree, and presentation does not change visual rendering at all.',
     refs: [
       {
         label: "MDN: ARIA presentation role",
@@ -2128,16 +2128,16 @@ export const questions: Question[] = [
     topic: "aria",
     difficulty: "medium",
     question:
-      'While auditing a navigation menu you find this markup for the expandable submenu trigger: <li aria-expanded="false"><a href="/products">Products</a><ul>...</ul></li>. Activating the link expands the submenu. What is the primary accessibility problem with this snippet?',
+      'While auditing a navigation menu you find this markup for the expandable submenu trigger: `<li aria-expanded="false"><a href="/products">Products</a><ul>...</ul></li>`. Activating the link expands the submenu. What is the primary accessibility problem with this snippet?',
     options: [
-      "aria-expanded is set on the <li>, which is not the interactive control that toggles the submenu, so assistive tech does not announce the collapsed/expanded state on the operable element",
-      "aria-expanded must always be paired with aria-controls on the same element, and its omission here is the only defect",
-      'aria-expanded is a property and cannot legally take the value "false", so the value should be removed entirely',
-      'The <li> needs role="button" because list items cannot carry any ARIA attributes',
+      "`aria-expanded` is set on the `<li>`, which is not the interactive control that toggles the submenu, so assistive tech does not announce the collapsed/expanded state on the operable element",
+      "`aria-expanded` must always be paired with `aria-controls` on the same element, and its omission here is the only defect",
+      '`aria-expanded` is a property and cannot legally take the value `"false"`, so the value should be removed entirely',
+      'The `<li>` needs `role="button"` because list items cannot carry any ARIA attributes',
     ],
     correctIndex: 0,
     explanation:
-      'aria-expanded must be on the focusable, operable element that performs the toggle (here the <a> or, better, a <button>), not on a non-interactive <li>; on the <li> a screen reader will not associate the state with the control the user activates, defeating Name, Role, Value (4.1.2, Level A). aria-expanded is a state (not a property) and "false" is a valid value, so that distractor misclassifies it.',
+      '`aria-expanded` must be on the focusable, operable element that performs the toggle (here the `<a>` or, better, a `<button>`), not on a non-interactive `<li>`; on the `<li>` a screen reader will not associate the state with the control the user activates, defeating Name, Role, Value (4.1.2, Level A). `aria-expanded` is a state (not a property) and `"false"` is a valid value, so that distractor misclassifies it.',
     refs: [
       {
         label: "ARIA APG: Disclosure (Show/Hide) Pattern",
@@ -2154,16 +2154,16 @@ export const questions: Question[] = [
     topic: "aria",
     difficulty: "medium",
     question:
-      'A reviewer encounters this status indicator on a dashboard: <span aria-label="Server status: online"></span>, styled as a green dot with CSS. The <span> has no role and is not focusable. Why does the aria-label fail to make the status available to most screen reader users?',
+      'A reviewer encounters this status indicator on a dashboard: `<span aria-label="Server status: online"></span>`, styled as a green dot with CSS. The `<span>` has no role and is not focusable. Why does the `aria-label` fail to make the status available to most screen reader users?',
     options: [
-      "aria-label is invalid on a <span> and must be replaced with the title attribute to expose the text",
-      'aria-label only takes effect once the element receives keyboard focus, so adding tabindex="0" would fix it',
-      "aria-label is generally ignored on a generic non-interactive element (a <span> with no semantic role and no name-from-content), so the name is not reliably exposed in the accessibility tree",
-      "aria-label works here, and the real problem is that the colour green also needs a 4.5:1 contrast ratio against the page background",
+      "`aria-label` is invalid on a `<span>` and must be replaced with the `title` attribute to expose the text",
+      '`aria-label` only takes effect once the element receives keyboard focus, so adding `tabindex="0"` would fix it',
+      "`aria-label` is generally ignored on a generic non-interactive element (a `<span>` with no semantic role and no name-from-content), so the name is not reliably exposed in the accessibility tree",
+      "`aria-label` works here, and the real problem is that the colour green also needs a 4.5:1 contrast ratio against the page background",
     ],
     correctIndex: 2,
     explanation:
-      'Per ARIA 1.2 and accname 1.2, aria-label is not reliably honoured on generic elements that neither have a widget/landmark role nor support name-from-content, so a bare <span> status will not be conveyed; use role="img" plus the label, or visually hidden text. This fails 1.1.1 Non-text Content (Level A) for the meaningful indicator. Adding tabindex does not make aria-label apply, and aria-label is not invalid on a <span>, it is simply not exposed there.',
+      'Per ARIA 1.2 and accname 1.2, `aria-label` is not reliably honoured on generic elements that neither have a widget/landmark role nor support name-from-content, so a bare `<span>` status will not be conveyed; use `role="img"` plus the label, or visually hidden text. This fails 1.1.1 Non-text Content (Level A) for the meaningful indicator. Adding `tabindex` does not make `aria-label` apply, and `aria-label` is not invalid on a `<span>`, it is simply not exposed there.',
     refs: [
       {
         label: "ARIA 1.2: aria-label and prohibited roles",
@@ -2180,7 +2180,7 @@ export const questions: Question[] = [
     topic: "aria",
     difficulty: "hard",
     question:
-      'You test a custom "Add to cart" control coded as <div role="button" tabindex="0" onclick="addToCart()">Add to cart</div>. With a keyboard you can Tab to it and it shows focus, but pressing Enter and Space does nothing. Which success criterion is most directly failing here?',
+      'You test a custom "Add to cart" control coded as `<div role="button" tabindex="0" onclick="addToCart()">Add to cart</div>`. With a keyboard you can Tab to it and it shows focus, but pressing Enter and Space does nothing. Which success criterion is most directly failing here?',
     options: [
       "4.1.2 Name, Role, Value, Level A, because the control has no accessible name",
       "2.4.7 Focus Visible, Level AA, because the focus indicator is unreliable on div elements",
@@ -2189,7 +2189,7 @@ export const questions: Question[] = [
     ],
     correctIndex: 3,
     explanation:
-      'The div exposes a button role and a name and is focusable, but a click handler does not fire on Enter/Space for a div, so the action cannot be triggered by keyboard, which is the defining failure of 2.1.1 Keyboard (Level A). Name, Role, Value is satisfied here (role=button, name "Add to cart"), and the visible label equals the accessible name, so Label in Name does not apply.',
+      'The `div` exposes a button role and a name and is focusable, but a click handler does not fire on Enter/Space for a `div`, so the action cannot be triggered by keyboard, which is the defining failure of 2.1.1 Keyboard (Level A). Name, Role, Value is satisfied here (`role=button`, name "Add to cart"), and the visible label equals the accessible name, so Label in Name does not apply.',
     refs: [
       {
         label: "WCAG 2.2 Understanding: 2.1.1 Keyboard",
@@ -2206,16 +2206,16 @@ export const questions: Question[] = [
     topic: "forms",
     difficulty: "medium",
     question:
-      'A search widget is marked up as <label for="q">Search the site</label> <input id="qfield" type="search">. The visible text renders above the field. What is wrong with this snippet?',
+      'A search widget is marked up as `<label for="q">Search the site</label> <input id="qfield" type="search">`. The visible text renders above the field. What is wrong with this snippet?',
     options: [
-      'The for value ("q") does not match the input\'s id ("qfield"), so no programmatic label association is created and the field has no accessible name from the label',
-      "Nothing is wrong; a <label> placed before an <input> is automatically associated by proximity regardless of the for and id values",
-      'type="search" is not a valid input type, so the label cannot attach to it',
-      "The label needs an aria-labelledby attribute pointing to the input before the association takes effect",
+      'The `for` value (`"q"`) does not match the input\'s `id` (`"qfield"`), so no programmatic label association is created and the field has no accessible name from the label',
+      "Nothing is wrong; a `<label>` placed before an `<input>` is automatically associated by proximity regardless of the `for` and `id` values",
+      '`type="search"` is not a valid input type, so the label cannot attach to it',
+      "The label needs an `aria-labelledby` attribute pointing to the input before the association takes effect",
     ],
     correctIndex: 0,
     explanation:
-      'An explicit label associates only when the label\'s for value exactly matches the input\'s id; "q" does not match "qfield", so the input is left without a programmatically associated name, failing 1.3.1 Info and Relationships (Level A) and leaving 4.1.2 Name, Role, Value with no name. Proximity does not create the association, type="search" is valid, and aria-labelledby would point from the input to the label, not the reverse.',
+      'An explicit label associates only when the label\'s `for` value exactly matches the input\'s `id`; `"q"` does not match `"qfield"`, so the input is left without a programmatically associated name, failing 1.3.1 Info and Relationships (Level A) and leaving 4.1.2 Name, Role, Value with no name. Proximity does not create the association, `type="search"` is valid, and `aria-labelledby` would point from the input to the label, not the reverse.',
     refs: [
       {
         label: "WCAG 2.2 Understanding: 1.3.1 Info and Relationships",
@@ -2232,16 +2232,16 @@ export const questions: Question[] = [
     topic: "aria",
     difficulty: "hard",
     question:
-      'An author tries to hide a decorative icon from screen readers inside an icon-only link: <a href="/settings"><svg aria-hidden="true" focusable="false">...</svg></a>. There is no other text in the link. Which problem does this specific snippet introduce?',
+      'An author tries to hide a decorative icon from screen readers inside an icon-only link: `<a href="/settings"><svg aria-hidden="true" focusable="false">...</svg></a>`. There is no other text in the link. Which problem does this specific snippet introduce?',
     options: [
-      'aria-hidden="true" on the <svg> is invalid because aria-hidden may only be used on the <body> element',
+      '`aria-hidden="true"` on the `<svg>` is invalid because `aria-hidden` may only be used on the `<body>` element',
       "Hiding the only content from the accessibility tree leaves the link with no accessible name, so it is announced as an unlabelled link, failing Name, Role, Value",
-      'focusable="false" creates a keyboard trap because it prevents the link itself from receiving focus',
-      'aria-hidden="true" silently moves the link out of the tab order, failing Focus Order',
+      '`focusable="false"` creates a keyboard trap because it prevents the link itself from receiving focus',
+      '`aria-hidden="true"` silently moves the link out of the tab order, failing Focus Order',
     ],
     correctIndex: 1,
     explanation:
-      'aria-hidden="true" correctly removes the decorative SVG from the accessibility tree, but since it is the link\'s only content the <a> is left with no accessible name, failing 4.1.2 Name, Role, Value (Level A); the fix is to add visually hidden text or an aria-label on the link. aria-hidden does not affect tab order or focusability of the link, and focusable="false" only controls the SVG\'s own focusability (an IE/Edge legacy concern), it does not trap focus.',
+      '`aria-hidden="true"` correctly removes the decorative SVG from the accessibility tree, but since it is the link\'s only content the `<a>` is left with no accessible name, failing 4.1.2 Name, Role, Value (Level A); the fix is to add visually hidden text or an `aria-label` on the link. `aria-hidden` does not affect tab order or focusability of the link, and `focusable="false"` only controls the SVG\'s own focusability (an IE/Edge legacy concern), it does not trap focus.',
     refs: [
       {
         label: "WCAG 2.2 Understanding: 4.1.2 Name, Role, Value",
@@ -2258,16 +2258,16 @@ export const questions: Question[] = [
     topic: "aria",
     difficulty: "hard",
     question:
-      'While reviewing a data table you find: <table role="table"><tr role="row"><th role="columnheader">Name</th><th role="columnheader">Email</th></tr>...</table>. The native HTML table elements already carry these semantics. According to ARIA guidance, what is the main issue?',
+      'While reviewing a data table you find: `<table role="table"><tr role="row"><th role="columnheader">Name</th><th role="columnheader">Email</th></tr>...</table>`. The native HTML table elements already carry these semantics. According to ARIA guidance, what is the main issue?',
     options: [
-      "The roles are required: native <table>, <tr>, and <th> do not expose table semantics to assistive technology without explicit ARIA roles",
+      "The roles are required: native `<table>`, `<tr>`, and `<th>` do not expose table semantics to assistive technology without explicit ARIA roles",
       "Applying redundant ARIA roles that duplicate the implicit semantics of native elements is discouraged because it adds risk and maintenance cost without benefit, contrary to the First Rule of ARIA",
-      'The <th> elements must use role="rowheader" instead of role="columnheader" whenever they appear in the first row',
-      "Each role attribute must also be paired with a matching aria-label or the table will have no accessible name",
+      'The `<th>` elements must use `role="rowheader"` instead of `role="columnheader"` whenever they appear in the first row',
+      "Each role attribute must also be paired with a matching `aria-label` or the table will have no accessible name",
     ],
     correctIndex: 1,
     explanation:
-      'Native <table>, <tr>, and <th scope="col"> already expose table, row, and columnheader semantics, so re-declaring them with ARIA is redundant; the First Rule of ARIA says do not use ARIA when native HTML already provides the semantics and behaviour. The roles are not required (native semantics suffice), role="columnheader" is correct for a header that labels a column, and table roles do not each demand an aria-label.',
+      'Native `<table>`, `<tr>`, and `<th scope="col">` already expose table, row, and columnheader semantics, so re-declaring them with ARIA is redundant; the First Rule of ARIA says do not use ARIA when native HTML already provides the semantics and behaviour. The roles are not required (native semantics suffice), `role="columnheader"` is correct for a header that labels a column, and table roles do not each demand an `aria-label`.',
     refs: [
       { label: "Using ARIA: First Rule of ARIA Use", url: "https://www.w3.org/TR/using-aria/" },
       { label: "WAI-ARIA 1.2 specification", url: "https://www.w3.org/TR/wai-aria-1.2/" },
@@ -2278,7 +2278,7 @@ export const questions: Question[] = [
     topic: "evaluation",
     difficulty: "medium",
     question:
-      "A page uses this heading structure in source order: <h1>Quarterly Report</h1>, then <h2>Revenue</h2>, then <h4>Q3 Breakdown</h4>. The h4 follows the h2 with no h3 in between. Which success criterion does this most directly fail?",
+      "A page uses this heading structure in source order: `<h1>Quarterly Report</h1>`, then `<h2>Revenue</h2>`, then `<h4>Q3 Breakdown</h4>`. The `h4` follows the `h2` with no `h3` in between. Which success criterion does this most directly fail?",
     options: [
       "1.3.1 Info and Relationships, Level A, because the skipped level breaks the programmatically determinable heading hierarchy",
       "2.4.6 Headings and Labels, Level AA, because the headings are not descriptive enough",
@@ -2304,7 +2304,7 @@ export const questions: Question[] = [
     topic: "evaluation",
     difficulty: "medium",
     question:
-      'A blog article ends with three links whose markup is <a href="/post/12">Read more</a>, <a href="/post/13">Read more</a>, and <a href="/post/14">Read more</a>. Each points to a different article. There is no aria-label or other accessible name override. Which issue does this represent at Level A?',
+      'A blog article ends with three links whose markup is `<a href="/post/12">Read more</a>`, `<a href="/post/13">Read more</a>`, and `<a href="/post/14">Read more</a>`. Each points to a different article. There is no `aria-label` or other accessible name override. Which issue does this represent at Level A?',
     options: [
       "It fails 4.1.2 Name, Role, Value because the links have no accessible role",
       "It fails 3.2.4 Consistent Identification because identical components must have identical names",
@@ -2330,16 +2330,16 @@ export const questions: Question[] = [
     topic: "evaluation",
     difficulty: "hard",
     question:
-      "A data table has a header row and a header column, marked up as: the first row uses <th> cells for column titles, and the first cell of every body row uses <th> for the row's label. None of the <th> elements carry a scope attribute, and there are no headers/id associations. A screen reader user reports that header context is announced inconsistently across browsers. Which finding is most accurate?",
+      "A data table has a header row and a header column, marked up as: the first row uses `<th>` cells for column titles, and the first cell of every body row uses `<th>` for the row's label. None of the `<th>` elements carry a `scope` attribute, and there are no `headers`/`id` associations. A screen reader user reports that header context is announced inconsistently across browsers. Which finding is most accurate?",
     options: [
-      "The table fully conforms because using <th> elements is sufficient to associate headers in all cases",
-      "The table risks failing 1.3.1 Info and Relationships, Level A, because the row/column header relationships are not reliably programmatically determinable without scope or headers/id",
+      "The table fully conforms because using `<th>` elements is sufficient to associate headers in all cases",
+      "The table risks failing 1.3.1 Info and Relationships, Level A, because the row/column header relationships are not reliably programmatically determinable without `scope` or `headers`/`id`",
       "The table fails 1.3.2 Meaningful Sequence, Level A, because header cells must come before data cells in the DOM",
-      "The table fails 4.1.2 Name, Role, Value, Level A, because <th> elements lack an accessible name",
+      "The table fails 4.1.2 Name, Role, Value, Level A, because `<th>` elements lack an accessible name",
     ],
     correctIndex: 1,
     explanation:
-      "For a table with both row and column headers, the directional association can be ambiguous to assistive technology, so scope (or headers/id) is needed to make the relationships reliably programmatically determinable under 1.3.1 Info and Relationships, Level A. The distractor claiming <th> alone always suffices is the common misconception: it can work for simple single-axis tables but is not robust for tables with both header rows and header columns.",
+      "For a table with both row and column headers, the directional association can be ambiguous to assistive technology, so `scope` (or `headers`/`id`) is needed to make the relationships reliably programmatically determinable under 1.3.1 Info and Relationships, Level A. The distractor claiming `<th>` alone always suffices is the common misconception: it can work for simple single-axis tables but is not robust for tables with both header rows and header columns.",
     refs: [
       {
         label: "WCAG 2.2 Understanding: 1.3.1 Info and Relationships",
@@ -2352,7 +2352,7 @@ export const questions: Question[] = [
     topic: "evaluation",
     difficulty: "medium",
     question:
-      'A marketing page renders its main tagline as a flattened PNG containing styled text: <img src="tagline.png" alt="Accessibility for everyone, everywhere">. The styling (a particular font and colour) is purely presentational and could be achieved with CSS. The alt text is accurate. Which finding best describes the issue?',
+      'A marketing page renders its main tagline as a flattened PNG containing styled text: `<img src="tagline.png" alt="Accessibility for everyone, everywhere">`. The styling (a particular font and colour) is purely presentational and could be achieved with CSS. The alt text is accurate. Which finding best describes the issue?',
     options: [
       "It fails 1.1.1 Non-text Content, Level A, because the alt text duplicates visible text",
       "It passes everything, because correct alt text fully satisfies any image of text",
@@ -2400,16 +2400,16 @@ export const questions: Question[] = [
     topic: "keyboard",
     difficulty: "hard",
     question:
-      'A checkout form is coded so that, to enforce a custom order, several inputs carry positive tabindex values: the email field has tabindex="3", the name field tabindex="1", and the phone field tabindex="2", while surrounding interactive elements use the default tabindex="0" or none. Which finding is most accurate?',
+      'A checkout form is coded so that, to enforce a custom order, several inputs carry positive tabindex values: the email field has `tabindex="3"`, the name field `tabindex="1"`, and the phone field `tabindex="2"`, while surrounding interactive elements use the default `tabindex="0"` or none. Which finding is most accurate?',
     options: [
-      "It fails 2.1.1 Keyboard, Level A, because positive tabindex values remove elements from keyboard operation",
-      "It fails 4.1.2 Name, Role, Value, Level A, because tabindex changes an element's role",
-      "It is acceptable, because positive tabindex is the recommended way to guarantee a predictable tab order",
-      "It risks failing 2.4.3 Focus Order, Level A, because the positive tabindex values create a tab sequence that does not preserve meaning and operability",
+      "It fails 2.1.1 Keyboard, Level A, because positive `tabindex` values remove elements from keyboard operation",
+      "It fails 4.1.2 Name, Role, Value, Level A, because `tabindex` changes an element's role",
+      "It is acceptable, because positive `tabindex` is the recommended way to guarantee a predictable tab order",
+      "It risks failing 2.4.3 Focus Order, Level A, because the positive `tabindex` values create a tab sequence that does not preserve meaning and operability",
     ],
     correctIndex: 3,
     explanation:
-      'Positive tabindex forces the tabindexed elements to the front of the tab order ahead of all tabindex="0" and default elements, producing a focus sequence that can diverge from the visual and logical reading order and thus risks failing 2.4.3 Focus Order, Level A. It is not a 2.1.1 Keyboard failure: the elements remain reachable by keyboard; the problem is the sequence, not operability, and positive tabindex is an anti-pattern rather than a recommended technique.',
+      'Positive `tabindex` forces the tabindexed elements to the front of the tab order ahead of all `tabindex="0"` and default elements, producing a focus sequence that can diverge from the visual and logical reading order and thus risks failing 2.4.3 Focus Order, Level A. It is not a 2.1.1 Keyboard failure: the elements remain reachable by keyboard; the problem is the sequence, not operability, and positive `tabindex` is an anti-pattern rather than a recommended technique.',
     refs: [
       {
         label: "WCAG 2.2 Understanding: 2.4.3 Focus Order",
@@ -2695,7 +2695,7 @@ export const questions: Question[] = [
     topic: "atag",
     difficulty: "medium",
     question:
-      "A CMS generates the HTML skeleton (headings, landmarks, lang attribute, valid structure) for every new page entirely on its own, with no author involvement. Which ATAG 2.0 Part B principle most directly addresses this kind of fully automatic output?",
+      "A CMS generates the HTML skeleton (headings, landmarks, `lang` attribute, valid structure) for every new page entirely on its own, with no author involvement. Which ATAG 2.0 Part B principle most directly addresses this kind of fully automatic output?",
     options: [
       "B.1: ensure that automatically specified content is accessible",
       "B.2: support authors in producing accessible content",
@@ -2964,11 +2964,11 @@ export const questions: Question[] = [
       "Providing a conforming alternate version that offers all the same information and functionality, reachable from the non-conforming page, can satisfy conformance for that content while the grid is being remediated",
       "An equivalent accessible alternative is never permitted; the only acceptable path is to fix the data grid itself, no matter the deadline",
       "Because an accessible alternative exists, the team can leave the broken grid in place permanently and never needs to plan remediation of the original",
-      'The alternative satisfies conformance only if the inaccessible data grid is also hidden with aria-hidden="true" so assistive technology never reaches it',
+      'The alternative satisfies conformance only if the inaccessible data grid is also hidden with `aria-hidden="true"` so assistive technology never reaches it',
     ],
     correctIndex: 0,
     explanation:
-      "WCAG allows a conforming alternate version (a version that provides all the same information and functionality and is reachable from the non-conforming content) as a way to meet the conformance requirements, which is exactly an equivalent accessible alternative; remediating the original is still the goal and should be tracked on the roadmap. Hiding the grid with aria-hidden does not make the page conform and can strip needed semantics, so that is not what the conforming-alternate-version mechanism requires.",
+      "WCAG allows a conforming alternate version (a version that provides all the same information and functionality and is reachable from the non-conforming content) as a way to meet the conformance requirements, which is exactly an equivalent accessible alternative; remediating the original is still the goal and should be tracked on the roadmap. Hiding the grid with `aria-hidden` does not make the page conform and can strip needed semantics, so that is not what the conforming-alternate-version mechanism requires.",
     refs: [
       {
         label: "WCAG 2.2: Conformance Requirements",
