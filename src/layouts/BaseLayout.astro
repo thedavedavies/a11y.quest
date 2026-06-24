@@ -97,16 +97,23 @@ const jsonLd = {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="dns-prefetch" href="https://www.w3.org" />
-    <link rel="dns-prefetch" href="https://developer.mozilla.org" />
+    <title>{title}</title>
+
     <script is:inline>
       try {
         const t = localStorage.getItem("a11yquest:theme:v1");
         if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
       } catch {}
     </script>
+
+    <Font cssVariable="--font-display" preload />
+    <Font cssVariable="--font-body" preload />
+    <Font cssVariable="--font-mono" />
+
+    <link rel="dns-prefetch" href="https://www.w3.org" />
+    <link rel="dns-prefetch" href="https://developer.mozilla.org" />
+
     <meta name="color-scheme" content="light dark" />
-    <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -141,10 +148,6 @@ const jsonLd = {
       name="twitter:image:alt"
       content="The a11y.quest social card: the wordmark, the tagline 'an endless web accessibility drill', and the topics it covers (WCAG, ARIA, semantic HTML, keyboard, and contrast)."
     />
-
-    <Font cssVariable="--font-display" preload />
-    <Font cssVariable="--font-body" preload />
-    <Font cssVariable="--font-mono" />
 
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />
   </head>
