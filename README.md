@@ -1,41 +1,35 @@
+<p align="center">
+  <img src=".github/banner.svg" alt="a11y.quest: 128 questions to level up your accessibility game" width="100%">
+</p>
+
 # a11y.quest
 
 [![CI](https://github.com/thedavedavies/a11y.quest/actions/workflows/ci.yml/badge.svg)](https://github.com/thedavedavies/a11y.quest/actions/workflows/ci.yml)
 
-An endless web-accessibility drill. Answer a question, see whether you were right with a
-plain-English explanation and links to the source docs, then keep going. Your run (answered,
-correct, accuracy, current streak, best streak) is saved locally. No login, no backend.
+A web-accessibility drill of 128 questions to level up your game. Answer a question, see
+whether you were right with a plain-English explanation and links to the source docs, then
+keep going. Your run (answered, correct, accuracy, current streak, best streak) is saved
+locally.
 
 Live at **https://a11y.quest**.
 
 ## What it tests
 
 Technical web accessibility: WCAG 2.2 success criteria, WAI-ARIA, semantic HTML, keyboard
-and focus, screen readers and assistive tech, colour contrast, and name/role/value. It is
-aimed at the technical accessibility crowd, whether you are learning, brushing up, or
-prepping for a certification.
-
-## Accessibility is the point
-
-This is an accessibility tool, so it holds itself to its own subject. Every decision is
-constrained by WCAG 2.2 AA: semantic HTML first, full keyboard operability, a visible focus
-state, a skip link, state never conveyed by colour alone, reduced-motion fallbacks, and answer
-feedback announced through polite live regions. If something cannot meet AA, it does not ship.
+and focus, screen readers and assistive tech, colour contrast, and name/role/value, whether
+you are learning, brushing up, or prepping for a certification.
 
 ## Features
 
-- An endless loop of multiple-choice questions, served in a fresh random order with no
-  repeats until the whole bank has been seen.
+- A bank of 128 multiple-choice questions, served in a fresh random order with no repeats
+  until you have seen them all, then reshuffled so you can keep drilling.
 - Instant feedback with a plain-English explanation and links to the authoritative docs.
 - A persistent run score: answered, correct, accuracy, current streak, and best streak.
-- A warm light theme and a clean dark theme that follow your system preference and remember
-  your choice.
-- A shareable score card (with a server-rendered social image) and a report-a-problem flow
-  that prefills a GitHub issue.
+- A shareable score card with a server-rendered social image
 
 ## Tech stack
 
-- [Astro](https://astro.build) with TypeScript, no UI framework: components render to HTML strings.
+- [Astro](https://astro.build) with TypeScript.
 - Plain CSS with design tokens driven by the CSS `light-dark()` function.
 - [Cloudflare Workers](https://workers.cloudflare.com) for hosting (static assets plus a small
   Worker in `worker/` for the share-card OG image and per-share meta tags).
