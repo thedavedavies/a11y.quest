@@ -1,12 +1,14 @@
 .card {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+  display: flow-root;
   padding: clamp(1.25rem, 1rem + 2vw, 2.1rem);
   background: var(--surface);
   border: 3px solid var(--border);
   border-radius: 22px;
   box-shadow: 8px 8px 0 var(--shadow-color);
+}
+
+.card>*+* {
+  margin-block-start: 1.5rem;
 }
 
 .fieldset {
@@ -46,7 +48,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  margin: 0;
+  margin: 1.5rem 0 0;
   color: var(--incorrect-accent);
   font-weight: 600;
   font-size: 0.92rem;
