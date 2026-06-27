@@ -33,6 +33,7 @@ Thumbs.db
 .idea/
 .vscode/*
 !.vscode/extensions.json
+!.vscode/settings.json
 
 # local agent / tooling config (personal, not for remote)
 .claude/

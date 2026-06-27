@@ -15,7 +15,9 @@
     "test": "vitest run",
     "test:browser": "playwright test",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "prepare": "husky",
+    "verify": "npm run check && npm run lint && npm run format:check && npm run test && npm run build"
   },
   "dependencies": {
     "@fontsource/bricolage-grotesque": "^5.2.10",
@@ -40,7 +42,9 @@
     "eslint-plugin-astro": "^1.7.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "globals": "^16.5.0",
+    "husky": "^9.1.7",
     "jsdom": "^26.1.0",
+    "lint-staged": "^17.0.8",
     "prettier": "^3.8.4",
     "prettier-plugin-astro": "^0.14.1",
     "typescript": "^5.9.3",
