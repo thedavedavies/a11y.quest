@@ -6,7 +6,7 @@ import globals from "globals";
 
 export default tseslint.config(
   {
-    ignores: ["dist/", ".astro/", "node_modules/", "coverage/", "public/"],
+    ignores: ["dist/", ".astro/", "node_modules/", "coverage/", "public/", ".claude/"],
   },
   js.configs.recommended,
   ...tseslint.configs.recommended,
