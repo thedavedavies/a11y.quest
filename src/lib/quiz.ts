@@ -1,17 +1,22 @@
 import { questions } from "../data/questions";
 import { questionCard } from "../components/QuestionCard/QuestionCard";
 import { icon } from "./icon";
-import { pickNextIndex } from "./select";
+import { pickNextIndex, eligibleIds, type Difficulty } from "./select";
 import { initShareModal } from "./shareModal";
 import {
   accuracy,
   clearSeen,
   emptyRun,
+  loadMode,
+  loadQuestComplete,
   loadRun,
   loadSeen,
   recordAnswer,
+  saveMode,
+  saveQuestComplete,
   saveRun,
   saveSeen,
+  type Mode,
   type RunState,
 } from "./store";
 
@@ -26,12 +31,19 @@ export function initQuiz(root: ParentNode = document): void {
   const idList = questions.map((q) => q.id);
   const known = new Set(idList);
 
+  const byDifficulty: Record<Difficulty, string[]> = { easy: [], medium: [], hard: [] };
+  for (const q of questions) byDifficulty[q.difficulty].push(q.id);
+
   let answered = false;
   let chosenIndex: number | null = null;
   let run = loadRun();
+  let mode = loadMode();
+  let questComplete = loadQuestComplete();
   const seen = new Set([...loadSeen()].filter((id) => known.has(id)));
 
-  let currentIndex = pickNextIndex(idList, seen, findCurrentIndex(stage));
+  const eligible = () => eligibleIds(mode, questComplete, byDifficulty, seen);
+
+  let currentIndex = pickNextIndex(idList, seen, findCurrentIndex(stage), Math.random, eligible());
 
   renderScore(root, run);
   renderCard();
@@ -39,6 +51,14 @@ export function initQuiz(root: ParentNode = document): void {
   quiz.removeAttribute("data-score-booting");
 
   initShareModal({ getRun: () => run, root });
+
+  const modeEl = root.querySelector<HTMLSelectElement>("[data-mode]");
+  if (modeEl) {
+    modeEl.value = mode;
+    modeEl.addEventListener("change", () => {
+      handleModeChange(modeEl.value === "random" ? "random" : "progress");
+    });
+  }
 
   function renderCard(): void {
     const q = questions[currentIndex];
@@ -70,7 +90,13 @@ export function initQuiz(root: ParentNode = document): void {
     renderScore(root, run);
 
     seen.add(q.id);
-    if (seen.size >= idList.length) seen.clear();
+    if (seen.size >= idList.length) {
+      // Whole bank cleared: the quest is done, so Level up goes mixed from here.
+      // Wipe seen so the endless drill keeps serving questions.
+      questComplete = true;
+      saveQuestComplete(true);
+      seen.clear();
+    }
     saveSeen(seen);
 
     answered = true;
@@ -81,7 +107,7 @@ export function initQuiz(root: ParentNode = document): void {
   }
 
   function handleNext(): void {
-    currentIndex = pickNextIndex(idList, seen, currentIndex);
+    currentIndex = pickNextIndex(idList, seen, currentIndex, Math.random, eligible());
     answered = false;
     chosenIndex = null;
     renderCard();
@@ -89,15 +115,32 @@ export function initQuiz(root: ParentNode = document): void {
     stage.querySelector<HTMLInputElement>('input[name="answer"]')?.focus();
   }
 
+  function handleModeChange(next: Mode): void {
+    if (next === mode) return;
+    mode = next;
+    saveMode(mode);
+    answered = false;
+    chosenIndex = null;
+    currentIndex = pickNextIndex(idList, seen, currentIndex, Math.random, eligible());
+    renderCard();
+    live.textContent =
+      mode === "progress"
+        ? "Levelling up. Starting with easy questions."
+        : "Shuffle on. Questions now come from every level.";
+    stage.querySelector<HTMLElement>("[data-card] fieldset")?.focus();
+  }
+
   function handleReset(): void {
     run = emptyRun();
     saveRun(run);
     seen.clear();
     clearSeen();
+    questComplete = false;
+    saveQuestComplete(false);
     renderScore(root, run);
     answered = false;
     chosenIndex = null;
-    currentIndex = pickNextIndex(idList, seen, currentIndex);
+    currentIndex = pickNextIndex(idList, seen, currentIndex, Math.random, eligible());
     renderCard();
     live.textContent = "Run reset. Your score is back to zero.";
   }

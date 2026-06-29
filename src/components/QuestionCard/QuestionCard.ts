@@ -41,7 +41,7 @@ export function questionCard(q: Question, state: CardState): string {
   return (
     `<article class="${styles.card}" data-card data-question-id="${escapeHtml(q.id)}">` +
     questionMeta(q, state.questionNumber) +
-    `<fieldset class="${styles.fieldset}">` +
+    `<fieldset class="${styles.fieldset}" tabindex="-1">` +
     `<legend class="${styles.legend}" id="question-text">${renderInlineCode(q.question)}</legend>` +
     `<div class="${styles.options}">` +
     options +

@@ -58,6 +58,41 @@ export function clearSeen(storage: Storage | null = safeStorage()): void {
   } catch {}
 }
 
+export type Mode = "progress" | "random";
+const MODE_KEY = "a11yquest:mode:v1";
+
+export function loadMode(storage: Storage | null = safeStorage()): Mode {
+  try {
+    const value = storage?.getItem(MODE_KEY);
+    return value === "random" ? "random" : "progress";
+  } catch {
+    return "progress";
+  }
+}
+
+export function saveMode(mode: Mode, storage: Storage | null = safeStorage()): void {
+  try {
+    storage?.setItem(MODE_KEY, mode);
+  } catch {}
+}
+
+const QUEST_COMPLETE_KEY = "a11yquest:quest-complete:v1";
+
+export function loadQuestComplete(storage: Storage | null = safeStorage()): boolean {
+  try {
+    return storage?.getItem(QUEST_COMPLETE_KEY) === "1";
+  } catch {
+    return false;
+  }
+}
+
+export function saveQuestComplete(done: boolean, storage: Storage | null = safeStorage()): void {
+  try {
+    if (done) storage?.setItem(QUEST_COMPLETE_KEY, "1");
+    else storage?.removeItem(QUEST_COMPLETE_KEY);
+  } catch {}
+}
+
 export type Theme = "light" | "dark";
 const THEME_KEY = "a11yquest:theme:v1";
 
