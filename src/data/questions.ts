@@ -1155,16 +1155,16 @@ export const questions: Question[] = [
     topic: "reflow",
     difficulty: "medium",
     question:
-      "A data dashboard is being tested for WCAG 2.2 Level AA. At a 1280 CSS pixel viewport width, the page is set to 400% zoom (which presents content at an effective width of 320 CSS pixels). The main report region now forces the user to scroll both horizontally and vertically to read each row of content. Which success criterion does this most directly fail?",
+      "A web page is tested for WCAG 2.2 Level AA. When its content is presented at a width equivalent to 320 CSS pixels, the main block of body text forces the user to scroll both horizontally and vertically to read each line, even though that text does not require a two-dimensional layout. Which success criterion does this most directly fail?",
     options: [
-      "1.3.4 Orientation, because the layout must work in both portrait and landscape",
-      "1.4.12 Text Spacing, because zooming changes the spacing between characters",
-      "1.4.4 Resize Text, because text must remain readable when zoomed to 400%",
-      "1.4.10 Reflow, because content must reflow to 320 CSS pixels wide without requiring scrolling in two dimensions",
+      "1.3.4 Orientation, because scrolling in two directions breaks the required portrait and landscape support",
+      "1.4.12 Text Spacing, because squeezing the text into a narrow column changes its letter and word spacing",
+      "1.4.4 Resize Text, because text must stay readable when scaled, which a 320 pixel width prevents",
+      "1.4.10 Reflow, because content must reflow to a 320 CSS pixel width without two-dimensional scrolling",
     ],
     correctIndex: 3,
     explanation:
-      "1.4.10 Reflow, Level AA, requires content to be presented without loss of information or functionality, and without two-dimensional scrolling, at a width equivalent to 320 CSS pixels (which corresponds to 400% zoom of a 1280px-wide viewport). Resize Text (1.4.4) is about scaling text up to 200% specifically, not about the 320px reflow target or the two-dimensional scrolling rule, so it is the tempting but wrong choice.",
+      "1.4.10 Reflow (Level AA) requires content to be presented without loss of information or functionality, and without scrolling in two dimensions, at a width equivalent to 320 CSS pixels. Ordinary text must reflow to fit, so being forced to scroll both ways to read it fails; the one carve-out is content that genuinely needs a two-dimensional layout, such as data tables, maps, or complex diagrams. The 320 CSS pixel width is the normative figure, while the familiar 1280px viewport at 400% zoom comes from a non-normative note and will not always reproduce the same layout. Resize Text (1.4.4) is the tempting wrong answer, but it is about scaling text up to 200%, not reflow.",
     refs: [
       {
         label: "WCAG 2.2 Understanding: 1.4.10 Reflow",
