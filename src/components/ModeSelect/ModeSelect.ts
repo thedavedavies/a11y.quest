@@ -14,7 +14,7 @@ export function modeSelect(): string {
   const options = OPTIONS.map((o) => `<option value="${o.value}">${o.label}</option>`).join("");
   return (
     `<div class="${styles.field}">` +
-    `<label class="${styles.label}" for="mode-select">Choose your difficulty setting</label>` +
+    `<label class="${styles.label}" for="mode-select">Choose your difficulty setting:</label>` +
     `<div class="${styles.control}">` +
     `<select class="${styles.select}" id="mode-select" data-mode>${options}</select>` +
     `<span class="${styles.chevron}">${chevron}</span>` +
