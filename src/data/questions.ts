@@ -188,22 +188,27 @@ export const questions: Question[] = [
     question:
       'A form field uses only a grey placeholder ("Enter your email") and has no visible `<label>`. Why is a placeholder not an acceptable substitute for a label?',
     options: [
-      "Placeholder text is exempt from contrast requirements, so it can never be read by anyone.",
-      "Placeholders are only allowed on `<textarea>` elements, not on `<input>` elements.",
-      "A placeholder satisfies the requirement as long as its contrast ratio is at least 4.5:1.",
-      "The placeholder disappears once the user starts typing, leaving no persistent, programmatically associated name for the control, which fails Labels or Instructions.",
+      "Screen readers cannot expose placeholder text, so the field has no accessible name and is announced to AT as blank.",
+      "The only real problem is the low-contrast grey, which users with colour blindness cannot perceive.",
+      "It disappears as soon as the user types, leaving no persistent visible label, which fails 3.3.2 Labels or Instructions.",
+      "It works as a label as long as its contrast ratio is at least 4.5:1 and the text describes the field.",
     ],
-    correctIndex: 3,
+    correctIndex: 2,
     explanation:
-      "3.3.2 Labels or Instructions (Level A) requires a persistent label or instruction; a placeholder vanishes on input and is not a reliable accessible name (accname 1.2 does not treat placeholder as a dependable name source). The contrast-only option is wrong because meeting 1.4.3 contrast does not make placeholder text a label, and it still disappears on input.",
+      "A placeholder is a hint, not a label: it is low-contrast and disappears the moment the user types, so no label stays visible. That is why a placeholder-only field fails 3.3.2 Labels or Instructions (Level A). The field is not strictly nameless (HTML-AAM uses the placeholder as a last-resort accessible name), but a name that vanishes on input is no substitute for a persistent, visible label, and meeting 1.4.3 contrast does not turn a placeholder into a label.",
     refs: [
       {
         label: "WCAG 2.2 Understanding: 3.3.2 Labels or Instructions",
         url: "https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions.html",
       },
       {
-        label: "accname 1.2 (Accessible Name Computation)",
-        url: "https://www.w3.org/TR/accname-1.2/",
+        label:
+          "HTML-AAM: accessible name computation for text inputs (placeholder is a last-resort source)",
+        url: "https://www.w3.org/TR/html-aam-1.0/#input-type-text-input-type-password-input-type-number-input-type-search-input-type-tel-input-type-email-input-type-url-and-textarea-elements-accessible-name-computation",
+      },
+      {
+        label: "MDN: placeholder attribute (Accessibility concerns)",
+        url: "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/placeholder",
       },
     ],
   },
