@@ -83,26 +83,30 @@ export const questions: Question[] = [
   {
     id: "struct-001",
     topic: "headings",
-    difficulty: "easy",
+    difficulty: "medium",
     question:
-      "A page uses an `<h1>` for the site title, then an `<h3>` for the first content section because the design wanted that text smaller. No `<h2>` appears anywhere. Which statement best describes this markup?",
+      "A page uses an `<h1>` for the site title, then an `<h3>` for the first content section because the design wanted that text smaller. No `<h2>` appears, and every heading is correctly marked up as a heading element. Which statement best describes this markup?",
     options: [
-      "It is fine, because WCAG only requires that an `<h1>` exists somewhere on the page.",
-      "It is fine, because heading levels are purely visual and assistive tech ignores them.",
-      "It is a problem: the skipped level breaks the programmatically determined heading structure that conveys relationships.",
-      "It is a problem only at Level AAA, so it does not affect AA conformance.",
+      "It fails 1.3.1 Info and Relationships (Level A), because skipping a level removes structure that assistive tech needs to convey relationships.",
+      "Skipping the level is discouraged but not in itself a WCAG failure, because the heading structure is still programmatically determinable.",
+      "It fails only at Level AAA, because 2.4.10 Section Headings requires every heading level to appear in order with no gaps.",
+      "It is fully fine and even recommended, because assistive technology ignores heading levels and reads out only the visible text.",
     ],
-    correctIndex: 2,
+    correctIndex: 1,
     explanation:
-      "Heading levels express the document's structure and relationships, which must be programmatically determinable under 1.3.1 Info and Relationships, Level A; jumping from `h1` to `h3` misrepresents that structure. The tempting claim that headings are purely visual is wrong because screen reader users navigate and understand hierarchy through heading levels.",
+      'Skipping a heading level is not a WCAG failure: no success criterion requires heading levels to be consecutive. Because each heading is marked up as a real heading element, the structure is exposed to assistive technology and is programmatically determinable, so 1.3.1 Info and Relationships (Level A) is satisfied. Going from `<h1>` straight to `<h3>` is widely discouraged as a usability and best-practice issue, but discouraged is not the same as non-conforming. When the Working Group discussed exactly this case (WCAG issue 655), members treated skipping levels as a best-practice concern, not a WCAG failure, and resolved it only by adding the word "appropriate" to the non-normative technique H42 (its test now asks whether the markup "indicates the appropriate heading level for the content"), without ever declaring skipped levels a violation. This markup would only fail 1.3.1 if the chosen levels actively misrepresented the real relationships between sections, for example marking a genuine top-level section as a deep sub-heading so its true place in the hierarchy is hidden.',
     refs: [
+      {
+        label: "WCAG 2.2 Technique H42: Using h1-h6 to identify headings",
+        url: "https://www.w3.org/WAI/WCAG22/Techniques/html/H42",
+      },
       {
         label: "WCAG 2.2 Understanding: 1.3.1 Info and Relationships",
         url: "https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships.html",
       },
       {
-        label: "WCAG 2.2 Understanding: 2.4.6 Headings and Labels",
-        url: "https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels.html",
+        label: "W3C WCAG issue 655: H42 missing hierarchical level condition",
+        url: "https://github.com/w3c/wcag/issues/655",
       },
     ],
   },
