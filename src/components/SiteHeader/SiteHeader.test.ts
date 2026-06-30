@@ -25,6 +25,13 @@ describe("siteHeader", () => {
     expect(siteHeader()).toContain('role="switch"');
   });
 
+  it("offers an About this quiz trigger without leaking personal branding", () => {
+    const html = siteHeader();
+    expect(html).toMatch(/<button[^>]*data-about-open[^>]*>/);
+    expect(html).toContain("About this quiz");
+    expect(html.toLowerCase()).not.toContain("dave");
+  });
+
   it("contains the skip link so it is inside the banner landmark", () => {
     const html = siteHeader();
     expect(html).toContain('href="#main"');

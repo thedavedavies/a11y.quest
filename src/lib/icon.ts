@@ -13,7 +13,8 @@ export type IconName =
   | "clipboard"
   | "share"
   | "download"
-  | "link";
+  | "link"
+  | "info";
 
 const PATHS: Record<IconName, string> = {
   check: `<path d="M20 6 9 17l-5-5"/>`,
@@ -31,6 +32,7 @@ const PATHS: Record<IconName, string> = {
   share: `<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.59 13.51 6.83 3.98"/><path d="m15.41 6.51-6.82 3.98"/>`,
   download: `<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/>`,
   link: `<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>`,
+  info: `<circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/>`,
 };
 
 export function icon(name: IconName, size = 24): string {
