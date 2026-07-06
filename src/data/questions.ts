@@ -195,7 +195,7 @@ export const questions: Question[] = [
     ],
     correctIndex: 2,
     explanation:
-      "A placeholder is a hint, not a label: it is low-contrast and disappears the moment the user types, so no label stays visible. That is why a placeholder-only field fails 3.3.2 Labels or Instructions (Level A). The field is not strictly nameless (HTML-AAM uses the placeholder as a last-resort accessible name), but a name that vanishes on input is no substitute for a persistent, visible label, and meeting 1.4.3 contrast does not turn a placeholder into a label.",
+      "A placeholder is a hint, not a label: it is typically rendered low-contrast and disappears the moment the user types, so no label stays visible. That is why a placeholder-only field fails 3.3.2 Labels or Instructions (Level A). The field is not strictly nameless (HTML-AAM uses the placeholder as a low-priority fallback for the accessible name), but a name that vanishes on input is no substitute for a persistent, visible label, and meeting 1.4.3 contrast does not turn a placeholder into a label.",
     refs: [
       {
         label: "WCAG 2.2 Understanding: 3.3.2 Labels or Instructions",
@@ -203,7 +203,7 @@ export const questions: Question[] = [
       },
       {
         label:
-          "HTML-AAM: accessible name computation for text inputs (placeholder is a last-resort source)",
+          "HTML-AAM: accessible name computation for text inputs (placeholder is a low-priority fallback)",
         url: "https://www.w3.org/TR/html-aam-1.0/#input-type-text-input-type-password-input-type-number-input-type-search-input-type-tel-input-type-email-input-type-url-and-textarea-elements-accessible-name-computation",
       },
       {
@@ -1352,24 +1352,28 @@ export const questions: Question[] = [
     topic: "forms",
     difficulty: "medium",
     question:
-      'A developer ships a text field that has no `<label>`, no `aria-label`, and no `aria-labelledby`, but does have `placeholder="Email address"`. Which statement is correct?',
+      'A developer ships a text field that has no `<label>`, no `aria-label`, no `aria-labelledby`, and no `title`, but does have `placeholder="Email address"`. Which statement is correct?',
     options: [
-      "The field has no reliable accessible name, because a placeholder is not a dependable name and disappears once the user types",
-      "The placeholder satisfies the accessible name requirement, so no further label is needed",
-      "The placeholder counts as the accessible name only at Level AAA, not at Level AA",
-      "A placeholder always overrides any label that is added later, so adding a label would have no effect",
+      "The placeholder is visible while the field is empty, but the name computation ignores it, so the field has no accessible name",
+      "The field gets an accessible name from the placeholder fallback, but it still fails 3.3.2 Labels or Instructions",
+      "The placeholder gives the field a valid accessible name, so it passes both 4.1.2 Name, Role, Value and 3.3.2 Labels or Instructions",
+      "Adding a `<label>` later would not change the name, because a `placeholder` outranks a `<label>` in the name computation",
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     explanation:
-      "Placeholder text is not a reliable accessible name: it is low contrast by default, vanishes on input, and is not exposed consistently as a name, so this field fails 4.1.2 Name, Role, Value (Level A) and 3.3.2 Labels or Instructions (Level A). The claim that a placeholder satisfies the name requirement is the misconception this item targets.",
+      'HTML-AAM does give this field an accessible name: with no `aria-label`, `aria-labelledby`, `<label>`, or `title`, the computation falls back to the placeholder, so assistive tech announces "Email address" and 4.1.2 Name, Role, Value (Level A) is met. What fails is 3.3.2 Labels or Instructions (Level A): the placeholder vanishes from view as soon as the user types, so no visible label persists. The precedence claim is backwards too: a real `<label>` outranks the placeholder in the computation, so adding one takes over the name and, staying visible, fixes the 3.3.2 problem.',
     refs: [
       {
-        label: "WCAG 2.2 Understanding: 4.1.2 Name, Role, Value",
-        url: "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html",
+        label: "HTML-AAM: accessible name computation for text inputs",
+        url: "https://www.w3.org/TR/html-aam-1.0/#input-type-text-input-type-password-input-type-number-input-type-search-input-type-tel-input-type-email-input-type-url-and-textarea-elements-accessible-name-computation",
       },
       {
         label: "WCAG 2.2 Understanding: 3.3.2 Labels or Instructions",
         url: "https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions.html",
+      },
+      {
+        label: "WCAG 2.2 Understanding: 4.1.2 Name, Role, Value",
+        url: "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html",
       },
     ],
   },
