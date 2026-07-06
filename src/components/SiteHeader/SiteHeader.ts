@@ -11,7 +11,8 @@ export function siteHeader(): string {
     `<img class="${styles.logo}" src="/favicon.svg" alt="" width="48" height="48" />` +
     `<div class="${styles.identityText}">` +
     `<h1 class="${styles.wordmark}">a11y<span class="${styles.dot}">.</span>quest</h1>` +
-    `<p class="${styles.tagline}">128 questions to level up your accessibility game.` +
+    `<p class="${styles.tagline}">` +
+    `<span class="${styles.taglineText}">128 questions to level up your accessibility game.</span>` +
     `<button type="button" class="${styles.about}" data-about-open>` +
     `<span class="${styles.aboutIcon}">${icon("info", 16)}</span>` +
     `<span class="${styles.aboutLabel}">About this quiz</span>` +

@@ -41,8 +41,12 @@
   font-size: 1.05rem;
 }
 
+.taglineText {
+  margin-inline-end: 0.75rem;
+}
+
 .about {
-  margin-inline-start: 0.4rem;
+  margin-inline-start: -0.35rem;
   padding: 0.15rem 0.35rem;
   border: 0;
   border-radius: 8px;
