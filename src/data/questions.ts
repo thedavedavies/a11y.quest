@@ -2303,17 +2303,21 @@ export const questions: Question[] = [
     topic: "evaluation",
     difficulty: "medium",
     question:
-      "A page uses this heading structure in source order: `<h1>Quarterly Report</h1>`, then `<h2>Revenue</h2>`, then `<h4>Q3 Breakdown</h4>`. The `h4` follows the `h2` with no `h3` in between. Which success criterion does this most directly fail?",
+      'An audit of a documentation page finds that every section is introduced by a `<p class="section-title">` styled with CSS to be larger and bold, so each one looks exactly like a heading. There are no `<h1>` to `<h6>` elements and no `role="heading"` anywhere on the page. Which success criterion does this most directly fail?',
     options: [
-      "1.3.1 Info and Relationships, Level A, because the skipped level breaks the programmatically determinable heading hierarchy",
-      "2.4.6 Headings and Labels, Level AA, because the headings are not descriptive enough",
-      "2.4.10 Section Headings, Level AAA, because every section must begin with a heading",
-      "2.4.1 Bypass Blocks, Level A, because skipped levels prevent users from bypassing content",
+      "1.3.1 Info and Relationships, Level A, because structure conveyed through the visual presentation is not programmatically determinable",
+      "2.4.6 Headings and Labels, Level AA, because anything that visually acts as a heading must be descriptive and marked up as one",
+      "2.4.10 Section Headings, Level AAA, because every section must begin with a real heading element",
+      "2.4.1 Bypass Blocks, Level A, because screen reader users rely on heading navigation to bypass content",
     ],
     correctIndex: 0,
     explanation:
-      "Jumping from h2 to h4 breaks the structure that conveys document relationships, which must be programmatically determinable under 1.3.1 Info and Relationships, Level A. The tempting choice, 2.4.6 Headings and Labels (AA), is about whether headings are descriptive of the content they introduce, not about the numeric level sequence.",
+      "Text that only looks like a heading conveys its role by presentation alone, so sighted users perceive a structure that assistive technology is never told about. That is precisely what 1.3.1 Info and Relationships (Level A) prohibits, and WCAG documents this exact pattern as failure F2. Note the contrast with skipped heading levels: real heading markup with a gap in the numbering (say `h2` straight to `h4`) still exposes the structure programmatically and is a best-practice concern, not a failure, whereas styled-only headings expose no structure at all. 2.4.6 Headings and Labels (AA) judges whether headings that exist are descriptive; it does not require text to be marked up as a heading. 2.4.10 Section Headings is Level AAA, and 2.4.1 Bypass Blocks can be satisfied by a mechanism such as a skip link, so neither is the most direct failure here.",
     refs: [
+      {
+        label: "WCAG 2.2 Failure F2: using text presentation to convey structure without markup",
+        url: "https://www.w3.org/WAI/WCAG22/Techniques/failures/F2",
+      },
       {
         label: "WCAG 2.2 Understanding: 1.3.1 Info and Relationships",
         url: "https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships.html",
