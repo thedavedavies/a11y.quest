@@ -2245,20 +2245,32 @@ export const questions: Question[] = [
     topic: "aria",
     difficulty: "hard",
     question:
-      'An author tries to hide a decorative icon from screen readers inside an icon-only link: `<a href="/settings"><svg aria-hidden="true" focusable="false">...</svg></a>`. There is no other text in the link. Which problem does this specific snippet introduce?',
+      'An author treats the icon in an icon-only link as decorative and hides it from screen readers: `<a href="/settings"><svg aria-hidden="true" focusable="false">...</svg></a>`. There is no other text in the link. Which problem does this snippet have?',
     options: [
       '`aria-hidden="true"` on the `<svg>` is invalid because `aria-hidden` may only be used on the `<body>` element',
-      "Hiding the only content from the accessibility tree leaves the link with no accessible name, so it is announced as an unlabelled link, failing Name, Role, Value",
+      "Hiding the only content from the accessibility tree leaves the link with no accessible name, so it is announced as an unlabelled link, failing 4.1.2 Name, Role, Value and 2.4.4 Link Purpose (In Context)",
       '`focusable="false"` creates a keyboard trap because it prevents the link itself from receiving focus',
       '`aria-hidden="true"` silently moves the link out of the tab order, failing Focus Order',
     ],
     correctIndex: 1,
     explanation:
-      '`aria-hidden="true"` correctly removes the decorative SVG from the accessibility tree, but since it is the link\'s only content the `<a>` is left with no accessible name, failing 4.1.2 Name, Role, Value (Level A); the fix is to add visually hidden text or an `aria-label` on the link. `aria-hidden` does not affect tab order or focusability of the link, and `focusable="false"` only controls the SVG\'s own focusability (an IE/Edge legacy concern), it does not trap focus.',
+      '`aria-hidden="true"` removes the SVG from the accessibility tree, which would be fine for a genuinely decorative icon sitting next to visible link text. Here the icon is the link\'s only content, so it is functional rather than decorative: hiding it leaves the `<a>` with no accessible name, and screen readers fall back to whatever they can find, often reading out the raw URL or just saying "link". WCAG documents this pattern as failure F89, a failure of 2.4.4 Link Purpose (In Context) and 4.1.2 Name, Role, Value, both Level A, and of 2.4.9 Link Purpose (Link Only) at AAA. Auditors often cite 1.1.1 Non-text Content as well, since it requires non-text content that acts as a control to have a name describing its purpose; that reading is defensible, but F89 itself does not map to 1.1.1. The fix is to add visually hidden text or an `aria-label` on the link. `aria-hidden` does not affect the link\'s tab order or focusability, and `focusable="false"` only controls the SVG\'s own focusability (an IE/Edge legacy concern); it does not trap focus.',
     refs: [
+      {
+        label: "WCAG 2.2 Failure F89: no accessible name for an image-only link",
+        url: "https://www.w3.org/WAI/WCAG22/Techniques/failures/F89",
+      },
       {
         label: "WCAG 2.2 Understanding: 4.1.2 Name, Role, Value",
         url: "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html",
+      },
+      {
+        label: "WCAG 2.2 Understanding: 2.4.4 Link Purpose (In Context)",
+        url: "https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context.html",
+      },
+      {
+        label: "WCAG 2.2 Understanding: 1.1.1 Non-text Content",
+        url: "https://www.w3.org/WAI/WCAG22/Understanding/non-text-content.html",
       },
       {
         label: "MDN: aria-hidden attribute",
