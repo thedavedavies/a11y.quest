@@ -1407,14 +1407,14 @@ export const questions: Question[] = [
     question:
       'A button shows the visible text "Play" but is coded as `<button aria-label="Start playback now">Play</button>`. Which evaluation conclusion is correct?',
     options: [
-      'It fails 2.5.3 Label in Name (Level A) because the accessible name "Start playback now" is not identical to the visible label "Play"',
+      'It fails 2.5.3 Label in Name because the accessible name "Start playback now" does not include the visible label "Play"',
       'It passes 2.5.3 Label in Name because the visible label "Play" is contained within the accessible name (it appears inside "playback")',
       "It fails 4.1.2 Name, Role, Value (Level A) because a button must not have both visible content and an `aria-label`",
       "It passes because `aria-label` always overrides the visible text, so Label in Name does not apply to this button",
     ],
-    correctIndex: 1,
+    correctIndex: 0,
     explanation:
-      '2.5.3 Label in Name (Level A) is met when the visible label text is contained within the accessible name, matched case-insensitively as a character substring (there is no word-boundary requirement). The accessible name "Start playback now" contains "Play" (inside "playback"), so it conforms: a longer, more descriptive `aria-label` is fine as long as it still includes the visible text. It is not a 4.1.2 Name, Role, Value issue (a button may carry an `aria-label`), and `aria-label` does not exempt a control from Label in Name. Best practice is still to put the visible word at the start of the name so speech control stays reliable.',
+      'This fails 2.5.3 Label in Name (Level A). The criterion is about words: the text a person sees as the label has to appear in the accessible name as that word. The visible label here is "Play", but "Start playback now" only holds those letters buried inside "playback", never as the word "Play". So a speech-input user who says "click Play" gets nothing, because Voice Control listens for the accessible name and no "Play" word is in it. Beware the substring trap in the other answer: a plain character match (and some automated tools) will report a pass, but that is a false positive, because passing an automated rule never proves conformance, only a clear failure is decisive. It is not a 4.1.2 Name, Role, Value issue (a button may carry an `aria-label`), and `aria-label` does not exempt a control from Label in Name. The fix is to include the visible word as a real word in the name, ideally at the start, for example `aria-label="Play, start playback now"`.',
     refs: [
       {
         label: "WCAG 2.2 Understanding: 2.5.3 Label in Name",
