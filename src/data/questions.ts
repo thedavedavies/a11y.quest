@@ -427,22 +427,25 @@ export const questions: Question[] = [
     topic: "images",
     difficulty: "medium",
     question:
-      "An inline SVG conveys meaningful information (a warning triangle next to an error message). Which markup gives it an accessible name and the correct role so assistive technology announces it as an image?",
+      'A form field shows visible error text and has `aria-invalid="true"`. Beside the text is an inline SVG warning triangle that repeats what the error text already says. Which markup for the icon is correct?',
     options: [
-      '`<svg aria-hidden="true"><title>Warning</title> ... </svg>`',
+      '`<svg aria-hidden="true"> ... </svg>`',
       '`<svg role="img" aria-label="Warning"> ... </svg>`',
       '`<svg role="presentation" aria-label="Warning"> ... </svg>`',
       '`<svg alt="Warning"> ... </svg>`',
     ],
-    correctIndex: 1,
+    correctIndex: 0,
     explanation:
-      'An informative inline SVG needs `role="img"` so it is exposed as a single graphic, plus an accessible name via `aria-label` (or `aria-labelledby` pointing at a `<title>`), satisfying 1.1.1 Non-text Content (Level A) and 4.1.2 Name, Role, Value (Level A). `aria-hidden="true"` would remove the meaningful graphic from the accessibility tree, `role="presentation"` strips its semantics (and is contradicted by the name), and SVG does not support the HTML `alt` attribute.',
+      'The triangle is decorative here: it repeats meaning the user already gets from the visible error text and the `aria-invalid="true"` state on the field, with the error text tied to the field by `aria-describedby`. WCAG 1.1.1 Non-text Content, Level A, only asks for a text alternative when an image adds information, so the right move is to hide the icon with `aria-hidden="true"`. That keeps it on screen while removing it from the accessibility tree, so a screen reader is not told "Warning" on top of the error it already announced. The three other options all expose a redundant or broken name: `role="img"` with `aria-label` announces the duplicate "Warning", `role="presentation"` with an `aria-label` contradicts itself because the role strips the very semantics the name needs, and `alt` is not a valid SVG attribute, so it does nothing at all.',
     refs: [
       {
         label: "WCAG 2.2 Understanding: 1.1.1 Non-text Content",
         url: "https://www.w3.org/WAI/WCAG22/Understanding/non-text-content.html",
       },
-      { label: "ARIA 1.2: img role", url: "https://www.w3.org/TR/wai-aria-1.2/#img" },
+      {
+        label: "WAI Tutorial: Decorative Images",
+        url: "https://www.w3.org/WAI/tutorials/images/decorative/",
+      },
     ],
   },
   {
