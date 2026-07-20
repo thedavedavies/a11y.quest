@@ -29,7 +29,7 @@ export const questions: Question[] = [
     ],
     correctIndex: 0,
     explanation:
-      "A native button is announced as a button, is focusable and keyboard operable for free, and fires on both Enter and Space. The `div` can be made to work, but you then have to reimplement `role`, focus, and keyboard handling by hand, which is exactly where bugs creep in.",
+      "A native `<button>` is announced as a button, is focusable and keyboard operable for free, fires on both Enter and Space, and pairing it with `aria-expanded` gives a state every screen reader reports consistently. The other three can be forced to work, but each makes you reimplement role, focus, and keyboard handling by hand, which is exactly where bugs creep in. Worth knowing: `<details>`/`<summary>` is a real native disclosure and is well supported in browsers and modern screen readers now, so it is a good choice when the panel can live inside it. You just need to bear in mind that its announced role varies by screen reader and the expand or collapse change is announced unevenly, while a button with `aria-expanded` is uniform everywhere.",
     refs: [
       {
         label: "WCAG 4.1.2 Name, Role, Value",
