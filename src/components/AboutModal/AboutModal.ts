@@ -9,8 +9,7 @@ export function aboutModal(): string {
     `<h2 class="${styles.title}" tabindex="-1" autofocus>Why this quiz exists</h2>` +
     `<div class="${styles.body}">` +
     `<p>Hi, I'm Dave \u{1F44B} I built a11y.quest as a drill to help me study for the Web ` +
-    `Accessibility Specialist (WAS) exam. It isn't an official resource from the IAAP ` +
-    `(the folks who run the exam), just my own study tool. ` +
+    `Accessibility Specialist (WAS) exam. It isn't an official resource from the IAAP, just my own study tool.` +
     `The questions test what the spec says, so the ` +
     `"right" answer is the one that ticks the technical boxes. Possibly, it's not always the one that serves ` +
     `real people best.</p>` +
