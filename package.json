@@ -5,6 +5,9 @@
   "type": "module",
   "description": "An endless web-accessibility drill. Answer, learn, keep your streak.",
   "license": "MIT",
+  "engines": {
+    "node": ">=22.12.0"
+  },
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
