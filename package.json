@@ -23,7 +23,7 @@
     "verify": "npm run check && npm run lint && npm run format:check && npm run test && npm run build"
   },
   "dependencies": {
-    "@fontsource/bricolage-grotesque": "^5.2.10",
+    "@fontsource/bricolage-grotesque": "^5.3.0",
     "@fontsource/geist-mono": "^5.2.8",
     "@fontsource/inter": "^5.2.8",
     "astro": "^6.4.8",
