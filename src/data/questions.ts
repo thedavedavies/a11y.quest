@@ -453,7 +453,7 @@ export const questions: Question[] = [
     topic: "contrast",
     difficulty: "medium",
     question:
-      "A line chart distinguishes three data series only by line colour, and the lines sit on a white plot area. Which success criterion governs the contrast of those lines against the background, and what minimum ratio applies?",
+      "A line chart draws its data lines in a single colour on a white plot area. Which success criterion governs the contrast of those lines against the background, and what minimum ratio applies?",
     options: [
       "1.4.3 Contrast (Minimum), Level AA, requiring 4.5:1 because the lines carry information",
       "1.4.1 Use of Color, Level A, which sets a 3:1 minimum contrast for graphical objects",
