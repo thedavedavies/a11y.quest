@@ -2336,7 +2336,7 @@ export const questions: Question[] = [
     topic: "evaluation",
     difficulty: "medium",
     question:
-      'A blog article ends with three links whose markup is `<a href="/post/12">Read more</a>`, `<a href="/post/13">Read more</a>`, and `<a href="/post/14">Read more</a>`. Each points to a different article. There is no `aria-label` or other accessible name override. Which issue does this represent at Level A?',
+      'A blog article ends with three links whose markup is `<a href="/post/12">Read more</a>`, `<a href="/post/13">Read more</a>`, and `<a href="/post/14">Read more</a>`. Each points to a different article. Which issue does this represent at Level A?',
     options: [
       "It fails 4.1.2 Name, Role, Value because the links have no accessible role",
       "It fails 3.2.4 Consistent Identification because identical components must have identical names",
