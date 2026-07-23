@@ -1364,7 +1364,7 @@ export const questions: Question[] = [
     ],
     correctIndex: 1,
     explanation:
-      'HTML-AAM does give this field an accessible name: with no `aria-label`, `aria-labelledby`, `<label>`, or `title`, the computation falls back to the placeholder, so assistive tech announces "Email address" and 4.1.2 Name, Role, Value (Level A) is met. What fails is 3.3.2 Labels or Instructions (Level A): the placeholder vanishes from view as soon as the user types, so no visible label persists. The precedence claim is backwards too: a real `<label>` outranks the placeholder in the computation, so adding one takes over the name and, staying visible, fixes the 3.3.2 problem.',
+      'A text field\'s accessible name comes from an ordered fallback: `aria-labelledby`, then `aria-label`, then `<label>`, then `title`, then the `placeholder`. With none of the higher options present, the accessible name falls to the placeholder, so the field is named "Email address" and 4.1.2 Name, Role, Value (Level A) is met. Because the placeholder supplies a valid name, automated tools like Lighthouse and axe pass the field. What they miss is 3.3.2 Labels or Instructions (Level A): the placeholder disappears as soon as the user types, so no visible label persists. It also makes a weak label in practice, since screen readers do not all announce placeholder text the same way. The fix is a real `<label>`, which outranks the placeholder in the computation, takes over the name, and stays visible, so it satisfies 3.3.2 as well.',
     refs: [
       {
         label: "HTML-AAM: accessible name computation for text inputs",
