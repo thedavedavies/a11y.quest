@@ -8,14 +8,14 @@ updates:
     # TODO: remove these ignores when upstream unblocks:
     # @astrojs/check needs a release accepting typescript 7, and
     # eslint-plugin-jsx-a11y needs a release accepting eslint 10
-    # (eslint-plugin-astro 3 requires eslint 10, so it waits on the same).
+    # (eslint-plugin-astro 2+ requires eslint 10, so it waits on the same).
     ignore:
       - dependency-name: typescript
         versions: [">=7"]
       - dependency-name: eslint
         versions: [">=10"]
       - dependency-name: eslint-plugin-astro
-        versions: [">=3"]
+        versions: [">=2"]
     groups:
       dev-dependencies:
         dependency-type: development
