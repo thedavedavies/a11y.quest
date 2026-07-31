@@ -79,37 +79,7 @@ better against their background in both states. Reduced-motion gets an instant s
 ## Question data shape
 
 Questions live in `src/data/questions.ts` (typed) and are authored separately.
-
-```ts
-export interface DocRef {
-  label: string;
-  url: string;
-}
-export interface Question {
-  id: string; // stable unique id, e.g. "name-role-value-001"
-  topic: string; // e.g. "semantic-html", "aria", "contrast"
-  difficulty: "easy" | "medium" | "hard";
-  question: string; // may be long
-  options: [string, string, string, string]; // exactly 4
-  correctIndex: 0 | 1 | 2 | 3;
-  explanation: string; // plain-English why
-  refs: DocRef[]; // one or more source links
-}
-```
-
 Components must flex to long or short question and option text.
-
-## Structure (suggested)
-
-- `src/pages/index.astro` - the quiz page and entry point.
-- `src/components/Quiz.*` - the client island: renders a question, handles select and check,
-  shows feedback, advances. Owns the run state.
-- `src/components/` - `ScorePanel`, `OptionCard`, `DifficultyTag`, `ThemeToggle`,
-  `ReportModal`, `HowItWorksModal`, `SkipLink`.
-- `src/lib/store.ts` - localStorage read/write for the run (answered, correct, streak, best)
-  and the theme choice.
-- `src/data/questions.ts` - the question bank.
-- `src/styles/tokens.css` - design tokens (provided).
 
 ## Code style
 
@@ -124,14 +94,6 @@ Components must flex to long or short question and option text.
 - Do not use any browser storage beyond localStorage (score and theme only).
 - Do not hardcode colours; use semantic tokens.
 
-## Commands
-
-- `npm run dev` - local dev server
-- `npm run build` - production build
-- `npm run preview` - preview the build
-- `npm run lint` - eslint with accessibility rules
-- `npm run test` - tests, including axe-core checks on rendered output
-
 ## Commits
 
 Follow Conventional Commits: `type(scope): summary`.
@@ -142,9 +104,6 @@ Follow Conventional Commits: `type(scope): summary`.
 - Summary is imperative and lowercase, no trailing period (e.g. `feat(share): add edge OG image`).
 - Keep each commit to one logical concern (a feature or a component group), not one per file.
 
-## Accessibility guardrails (set up early)
+## Accessibility guardrails
 
-- ESLint with accessibility rules: `eslint-plugin-astro` (a11y rules for .astro) plus
-  `eslint-plugin-jsx-a11y` if any JSX islands are used.
-- axe-core assertions in component or integration tests; fail CI on violations.
 - A manual keyboard pass and a screen-reader smoke test before merging any UI change.
