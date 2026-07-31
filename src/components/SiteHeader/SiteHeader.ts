@@ -1,6 +1,7 @@
 import { skipLink } from "../SkipLink/SkipLink";
 import { themeToggle } from "../ThemeToggle/ThemeToggle";
 import { icon } from "../../lib/icon";
+import { questions } from "../../data/questions";
 import styles from "./SiteHeader.module.css";
 
 export function siteHeader(): string {
@@ -12,7 +13,7 @@ export function siteHeader(): string {
     `<div class="${styles.identityText}">` +
     `<h1 class="${styles.wordmark}">a11y<span class="${styles.dot}">.</span>quest</h1>` +
     `<p class="${styles.tagline}">` +
-    `<span class="${styles.taglineText}">128 questions to level up your accessibility game.</span>` +
+    `<span class="${styles.taglineText}">${questions.length} questions to level up your accessibility game.</span>` +
     `<button type="button" class="${styles.about}" data-about-open>` +
     `<span class="${styles.aboutIcon}">${icon("info", 16)}</span>` +
     `<span class="${styles.aboutLabel}">About this quiz</span>` +

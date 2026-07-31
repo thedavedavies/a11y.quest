@@ -6,6 +6,7 @@ import { siteHeader } from "../components/SiteHeader/SiteHeader";
 import { siteFooter } from "../components/SiteFooter/SiteFooter";
 import { aboutModal } from "../components/AboutModal/AboutModal";
 import { AUTHOR_NAME, AUTHOR_URL } from "../lib/config";
+import { questions } from "../data/questions";
 import styles from "./BaseLayout.module.css";
 
 interface Props {
@@ -15,10 +16,12 @@ interface Props {
 }
 
 const {
-  title = "a11y.quest - 128 questions to level up your accessibility game",
-  description = "128 questions to level up your web accessibility game. Practice WCAG 2.2, ARIA, semantic HTML, keyboard, and contrast, with plain-English answers.",
+  title = `a11y.quest - ${questions.length} questions to level up your accessibility game`,
+  description = `${questions.length} questions to level up your web accessibility game. Practice WCAG 2.2, ARIA, semantic HTML, keyboard, and contrast, with plain-English answers.`,
   image = "/og-image.png",
 } = Astro.props;
+
+const ogImageAlt = `The a11y.quest social card: the wordmark, the tagline '${questions.length} questions to level up your accessibility game', and the topics it covers (WCAG, ARIA, semantic HTML, keyboard, and contrast).`;
 
 const site = Astro.site ?? new URL("https://a11y.quest");
 const canonical = new URL(Astro.url.pathname, site).href;
@@ -136,19 +139,13 @@ const jsonLd = {
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta
-      property="og:image:alt"
-      content="The a11y.quest social card: the wordmark, the tagline '128 questions to level up your accessibility game', and the topics it covers (WCAG, ARIA, semantic HTML, keyboard, and contrast)."
-    />
+    <meta property="og:image:alt" content={ogImageAlt} />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
-    <meta
-      name="twitter:image:alt"
-      content="The a11y.quest social card: the wordmark, the tagline '128 questions to level up your accessibility game', and the topics it covers (WCAG, ARIA, semantic HTML, keyboard, and contrast)."
-    />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
 
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />
   </head>
