@@ -82,6 +82,11 @@
   outline: none;
 }
 
+.intro {
+  margin: -0.5rem 0 0;
+  color: var(--text-muted);
+}
+
 .close {
   position: absolute;
   top: 0;

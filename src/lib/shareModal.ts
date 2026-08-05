@@ -10,10 +10,24 @@ interface ShareModalOptions {
 
 const FILE_NAME = "a11y-quest-run.png";
 
-export function initShareModal({ getRun, root = document }: ShareModalOptions): void {
+const SHARE_TITLE = "Share your run";
+const COMPLETE_TITLE = `Quest complete! <span aria-hidden="true">\u{1F389}</span>`;
+
+export interface ShareModalController {
+  // Opens the same dialog in celebration mode. Returns focus to returnFocusTo
+  // on close, since the run of questions has no share button to go back to.
+  celebrate: (total: number, returnFocusTo: HTMLElement | null) => void;
+}
+
+const NOOP_CONTROLLER: ShareModalController = { celebrate: () => {} };
+
+export function initShareModal({
+  getRun,
+  root = document,
+}: ShareModalOptions): ShareModalController {
   const quiz = root.querySelector<HTMLElement>("[data-quiz]");
   const dialog = root.querySelector<HTMLDialogElement>("[data-share-modal]");
-  if (!quiz || !dialog || typeof dialog.showModal !== "function") return;
+  if (!quiz || !dialog || typeof dialog.showModal !== "function") return NOOP_CONTROLLER;
 
   const canvas = dialog.querySelector<HTMLCanvasElement>("[data-share-canvas]");
   const status = dialog.querySelector<HTMLElement>("[data-share-status]");
@@ -103,13 +117,27 @@ export function initShareModal({ getRun, root = document }: ShareModalOptions): 
     }
   }
 
-  function open(triggerEl: HTMLElement): void {
+  function applyVariant(total: number | null): void {
+    const titleEl = dialog!.querySelector<HTMLElement>("[data-share-title]");
+    const introEl = dialog!.querySelector<HTMLElement>("[data-share-intro]");
+    if (titleEl) titleEl.innerHTML = total === null ? SHARE_TITLE : COMPLETE_TITLE;
+    if (introEl) {
+      introEl.hidden = total === null;
+      introEl.textContent =
+        total === null
+          ? ""
+          : `Congratulations - you have answered all ${total} questions, at every level. Here is how your quest went.`;
+    }
+  }
+
+  function open(triggerEl: HTMLElement | null, total: number | null = null): void {
     if (dialog!.open) return;
     run = getRun();
     shareUrl = buildShareUrl(window.location.origin, run);
     active = true;
     trigger = triggerEl;
 
+    applyVariant(total);
     resetLabels();
     hideFallback();
     if (status) status.textContent = "";
@@ -153,4 +181,8 @@ export function initShareModal({ getRun, root = document }: ShareModalOptions): 
     if (event.key === "Escape") requestClose();
   });
   dialog.addEventListener("close", cleanup);
+
+  return {
+    celebrate: (total, returnFocusTo) => open(returnFocusTo, total),
+  };
 }

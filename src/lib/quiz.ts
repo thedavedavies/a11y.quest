@@ -50,7 +50,7 @@ export function initQuiz(root: ParentNode = document): void {
   stage.removeAttribute("data-booting");
   quiz.removeAttribute("data-score-booting");
 
-  initShareModal({ getRun: () => run, root });
+  const share = initShareModal({ getRun: () => run, root });
 
   const modeEl = root.querySelector<HTMLSelectElement>("[data-mode]");
   if (modeEl) {
@@ -90,7 +90,11 @@ export function initQuiz(root: ParentNode = document): void {
     renderScore(root, run);
 
     seen.add(q.id);
-    if (seen.size >= idList.length) {
+    // Celebrate every clean sweep, not just the first: questComplete is persisted
+    // from before this existed, so gating on it would hide the moment from exactly
+    // the people who already earned it.
+    const clearedBank = seen.size >= idList.length;
+    if (clearedBank) {
       // Whole bank cleared: the quest is done, so Level up goes mixed from here.
       // Wipe seen so the endless drill keeps serving questions.
       questComplete = true;
@@ -103,7 +107,9 @@ export function initQuiz(root: ParentNode = document): void {
     renderCard();
     announceResult(live, isCorrect);
 
-    stage.querySelector<HTMLElement>("[data-feedback]")?.focus();
+    const feedbackEl = stage.querySelector<HTMLElement>("[data-feedback]");
+    feedbackEl?.focus();
+    if (clearedBank) share.celebrate(idList.length, feedbackEl);
   }
 
   function handleNext(): void {

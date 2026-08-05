@@ -5,7 +5,8 @@ export function shareModal(): string {
   return (
     `<dialog class="${styles.modal}" data-share-modal>` +
     `<div class="${styles.inner}">` +
-    `<h2 class="${styles.title}" tabindex="-1" autofocus>Share your run</h2>` +
+    `<h2 class="${styles.title}" tabindex="-1" autofocus data-share-title>Share your run</h2>` +
+    `<p class="${styles.intro}" data-share-intro hidden></p>` +
     `<div class="${styles.preview}">` +
     `<canvas class="${styles.canvas}" data-share-canvas role="img" aria-label="Your a11y.quest score card"></canvas>` +
     `</div>` +
