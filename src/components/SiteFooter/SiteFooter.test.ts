@@ -17,6 +17,13 @@ describe("siteFooter", () => {
     expect(html).toContain("(opens in a new tab)");
   });
 
+  it("links to the privacy page in the same tab", () => {
+    const html = siteFooter();
+    const anchor = html.match(/<a[^>]*href="\/privacy"[^>]*>/)?.[0];
+    expect(anchor).toBeDefined();
+    expect(anchor).not.toContain("target=");
+  });
+
   it("keeps the link editorial and followed for SEO (no nofollow)", () => {
     const html = siteFooter();
     expect(html).not.toContain("nofollow");

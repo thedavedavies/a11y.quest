@@ -1,0 +1,115 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { AUTHOR_URL, GITHUB_REPO } from "../lib/config";
+import { icon } from "../lib/icon";
+
+const repoUrl = `https://github.com/${GITHUB_REPO}`;
+---
+
+<BaseLayout title="Privacy - a11y.quest" description="What a11y.quest does and does not collect.">
+  <article class="prose">
+    <h2>Privacy</h2>
+
+    <p class="lede">
+      Short version: there is very little going on here. No accounts, no cookies, no ads, and
+      nothing personal about you.
+    </p>
+
+    <h3>What stays on your device</h3>
+    <p>
+      Your score (answered, correct, accuracy, streaks) and your light or dark preference are all
+      saved in your browser's localStorage. They never leave your device and they never reach us. If
+      you clear your browser storage, they are gone for good.
+    </p>
+
+    <h3>What analytics are being used?</h3>
+    <p>
+      We use Ahrefs Web Analytics, which is cookieless. For each page view it records the page
+      address and title, the site you arrived from, your browser language, your screen size and
+      pixel density, and which links get clicked. That is the whole list.
+    </p>
+    <p>
+      The quiz all happens on one page, so none of it is visible to analytics. Your answers, your
+      score, and how far you get are never sent anywhere.
+    </p>
+    <p>
+      No cookies are set, no profile is built, and you are not followed around other sites. Nothing
+      collected is used to identify you. Ahrefs states that it does not store IP addresses.
+    </p>
+
+    <h3>Server logs</h3>
+    <p>
+      The site is served by Cloudflare, which handles incoming requests the way any web host does.
+      We do not run a backend, a database, or a mailing list, so there is nowhere for your data to
+      pile up even if we wanted it. Which we don't.
+    </p>
+
+    <h3>Questions?</h3>
+    <p>
+      This whole quiz is open source, so you can check any of this yourself. Have a poke around {
+        " "
+      }
+      <a class="link" href={repoUrl} target="_blank" rel="noopener"
+        >the quiz code on GitHub<span class="linkIcon" set:html={icon("external-link", 15)} /><span
+          class="visually-hidden">{" (opens in a new tab)"}</span
+        ></a
+      >, or come and say hello at{" "}
+      <a class="link" href={AUTHOR_URL} target="_blank" rel="author noopener"
+        >davedavies.dev<span class="linkIcon" set:html={icon("external-link", 15)} /><span
+          class="visually-hidden">{" (opens in a new tab)"}</span
+        ></a
+      >.
+    </p>
+  </article>
+</BaseLayout>
+
+<style>
+  .prose {
+    max-width: 68ch;
+    margin: 0 auto;
+    padding: clamp(1.25rem, 0.9rem + 2.2vw, 2.25rem);
+    background: var(--surface);
+    border: 4px solid var(--border);
+    border-radius: 24px;
+    box-shadow: 10px 10px 0 var(--shadow-color);
+  }
+
+  .prose h2 {
+    margin: 0 0 0.75rem;
+    font-size: clamp(1.75rem, 1.4rem + 1.6vw, 2.25rem);
+  }
+
+  .prose h3 {
+    margin: 2rem 0 0.5rem;
+    font-size: 1.2rem;
+  }
+
+  .prose p {
+    margin: 0 0 1rem;
+  }
+
+  .lede {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+  }
+
+  .link {
+    color: var(--link);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .linkIcon {
+    display: inline-flex;
+    flex: none;
+    vertical-align: -0.16em;
+    margin-inline-start: 0.25rem;
+  }
+
+  @media (hover: hover) {
+    .link:hover {
+      text-decoration-thickness: 2px;
+    }
+  }
+</style>

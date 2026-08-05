@@ -11,6 +11,7 @@ export function siteFooter(): string {
     `<span class="${styles.icon}">${icon("external-link", 15)}</span>` +
     `<span class="visually-hidden"> (opens in a new tab)</span>` +
     `</a>` +
+    `<a class="${styles.link}" href="/privacy">What we don't collect</a>` +
     `</p>` +
     `</footer>`
   );
