@@ -1246,20 +1246,25 @@ export const questions: Question[] = [
     topic: "pointer-gestures",
     difficulty: "medium",
     question:
-      "An image carousel advances only when the user swipes left or right across it with one finger. There is no other way to move between slides. Which success criterion does this most directly fail, and what is the fix?",
+      "An image carousel advances only when the user swipes left or right across it with one finger: the site's own script recognises the gesture, and there is no other way to move between slides. Which success criterion does this most directly fail, and what is the fix?",
     options: [
-      "2.5.1 Pointer Gestures (Level A): a path-based gesture must have a single-pointer alternative, so add visible Previous and Next buttons that work with a simple tap or click.",
+      "2.5.1 Pointer Gestures (Level A): the same functionality must be operable with a single pointer without a path-based gesture, so add visible Previous and Next buttons that work with a simple tap or click.",
       "2.5.2 Pointer Cancellation (Level A): swipe activation fires on `touchstart`, so move activation to the up event.",
       "2.5.7 Dragging Movements (Level AA): a swipe is a dragging movement, so the only requirement is a single-pointer alternative that does not depend on dragging.",
       "2.5.4 Motion Actuation (Level A): the swipe is operated through device motion, so provide a settings toggle to disable it.",
     ],
     correctIndex: 0,
     explanation:
-      "2.5.1 Pointer Gestures (Level A) requires that any path-based gesture (like a directional swipe) have a single-pointer alternative such as tappable Previous/Next buttons. The dragging-movements answer is wrong because a swipe is path-based rather than a dragging movement (which involves picking something up and releasing it on a target), and 2.5.7 is Level AA, not the most direct failure here.",
+      "2.5.1 Pointer Gestures (Level A) covers path-based gestures, and the Understanding document names swiping or flicking as its first example. The requirement is specific: the functionality has to work with a single pointer without a path-based gesture. A one-finger swipe is already a single pointer, so it does not satisfy that on its own, but Previous and Next buttons do (technique G215). The dragging-movements answer is wrong because a dragging movement means the element follows the pointer until the up event; a flick-style swipe does not do that (a carousel whose slides track the finger is a dragging movement instead, which is 2.5.7 territory). Worth knowing where the line sits: 2.5.1 covers author-implemented gestures only. If the carousel were a native scroll container (CSS overflow), swiping it would be user agent scrolling, out of scope for both criteria, and it could also be moved by scrollbar, wheel, or keyboard.",
     refs: [
       {
         label: "WCAG 2.2 Understanding: 2.5.1 Pointer Gestures",
         url: "https://www.w3.org/WAI/WCAG22/Understanding/pointer-gestures.html",
+      },
+      {
+        label:
+          "G215: Providing controls to achieve the same result as path based or multipoint gestures",
+        url: "https://www.w3.org/WAI/WCAG22/Techniques/general/G215",
       },
     ],
   },
