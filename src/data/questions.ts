@@ -567,16 +567,16 @@ export const questions: Question[] = [
     topic: "captions",
     difficulty: "hard",
     question:
-      "A university streams a live keynote with a human stenographer producing real-time captions, and afterwards publishes a plain text transcript of everything that was said. A reviewer claims this satisfies WCAG 2.2 AA for live captioning because the transcript was provided. Which statement is correct?",
+      "A university streams a live keynote, video with sound, on its website. No captions are provided during the broadcast. Afterwards the organisers publish a plain text transcript of everything that was said, but not the recording itself. A reviewer claims the live broadcast met WCAG 2.2 AA because the transcript covers all the spoken content. Which statement is correct?",
     options: [
-      "The transcript does not satisfy live captioning; 1.2.4 Captions (Live), Level AA, requires synchronized captions during the live broadcast, and a separate after-the-fact transcript is not a substitute",
-      "The transcript satisfies 1.2.4 Captions (Live) because a complete transcript is always an acceptable alternative to live captions",
-      "Live captions are not required at all, because 1.2.4 Captions (Live) is a Level AAA criterion outside AA scope",
-      "Providing the real-time captions alone fails AA, because 1.2.4 also mandates a sign language interpreter for live media",
+      "The broadcast failed 1.2.4 Captions (Live), Level AA: captions were required while the keynote was live, and the later transcript gave no real-time access",
+      "The broadcast met 1.2.4: a complete transcript is an acceptable alternative for time-based media, just as it is for prerecorded audio-only content under 1.2.1",
+      "The broadcast met AA by default: 1.2.4 Captions (Live) is a Level AAA criterion, so live captioning sat outside the scope of the conformance claim",
+      "Even live captions would not have been enough: 1.2.4 also requires sign language interpretation for live media at Level AA",
     ],
     correctIndex: 0,
     explanation:
-      "1.2.4 Captions (Live), Level AA, requires synchronized captions for live synchronized media; a transcript published afterward is not a substitute because it does not give real-time access during the broadcast. The sign language claim is wrong: sign language interpretation is 1.2.6, a separate Level AAA criterion, not part of 1.2.4.",
+      "1.2.4 Captions (Live), Level AA, requires captions for all live audio content in synchronized media, and captions are by definition synchronized with that media. A transcript published after the event gives no real-time access during the broadcast, so the broadcast failed 1.2.4. Transcripts genuinely satisfy WCAG elsewhere: 1.2.1 accepts a text alternative for prerecorded audio-only content, but that never carries over to live synchronized media. The level claim is wrong too: 1.2.4 is Level AA, squarely inside AA scope. And sign language interpretation is 1.2.6, a separate Level AAA criterion covering prerecorded media only; no WCAG criterion requires it for live content. (Because the recording is never published, no prerecorded-caption duty under 1.2.2 arises either.)",
     refs: [
       {
         label: "WCAG 2.2 Understanding: 1.2.4 Captions (Live)",
@@ -1246,16 +1246,16 @@ export const questions: Question[] = [
     topic: "pointer-gestures",
     difficulty: "medium",
     question:
-      "An image carousel advances only when the user swipes left or right across it with one finger: the site's own script recognises the gesture, and there is no other way to move between slides. Which success criterion does this most directly fail, and what is the fix?",
+      "An image carousel moves to the next or previous slide only when the user flicks quickly left or right across it with one finger. The slides do not follow the finger during the gesture: the site's own script recognises the mostly straight-line swipe once it completes. The carousel is not a scrollable region, and there is no other way to move between slides. Which of the following success criteria does this most directly fail, and what is the fix?",
     options: [
-      "2.5.1 Pointer Gestures (Level A): the same functionality must be operable with a single pointer without a path-based gesture, so add visible Previous and Next buttons that work with a simple tap or click.",
-      "2.5.2 Pointer Cancellation (Level A): swipe activation fires on `touchstart`, so move activation to the up event.",
-      "2.5.7 Dragging Movements (Level AA): a swipe is a dragging movement, so the only requirement is a single-pointer alternative that does not depend on dragging.",
-      "2.5.4 Motion Actuation (Level A): the swipe is operated through device motion, so provide a settings toggle to disable it.",
+      "2.5.1 Pointer Gestures (Level A): the flick is a path-based gesture, so add visible Previous and Next buttons that work with a simple tap or click.",
+      "2.5.2 Pointer Cancellation (Level A): the swipe executes the function on the down event, so move slide activation to the up event.",
+      "2.5.7 Dragging Movements (Level AA): the swipe is a dragging movement, so provide a single-pointer alternative that does not depend on any dragging.",
+      "2.5.4 Motion Actuation (Level A): the swipe is user motion that operates the carousel, so add a setting that disables motion operation.",
     ],
     correctIndex: 0,
     explanation:
-      "2.5.1 Pointer Gestures (Level A) covers path-based gestures, and the Understanding document names swiping or flicking as its first example. The requirement is specific: the functionality has to work with a single pointer without a path-based gesture. A one-finger swipe is already a single pointer, so it does not satisfy that on its own, but Previous and Next buttons do (technique G215). The dragging-movements answer is wrong because a dragging movement means the element follows the pointer until the up event; a flick-style swipe does not do that (a carousel whose slides track the finger is a dragging movement instead, which is 2.5.7 territory). Worth knowing where the line sits: 2.5.1 covers author-implemented gestures only. If the carousel were a native scroll container (CSS overflow), swiping it would be user agent scrolling, out of scope for both criteria, and it could also be moved by scrollbar, wheel, or keyboard.",
+      "2.5.1 Pointer Gestures (Level A) covers path-based gestures, and the Understanding document names swiping or flicking as its first example. The requirement is specific: the functionality has to work with a single pointer without a path-based gesture. A one-finger swipe is already a single pointer, so it does not satisfy that on its own, but Previous and Next buttons do (technique G215). The dragging-movements answer is wrong because a dragging movement means the element follows the pointer until the up event, and these slides do not track the finger (a carousel whose slides do track it is 2.5.7 territory instead). Pointer cancellation (2.5.2) is about the down event executing the function; this script acts only once the completed swipe is recognised, so nothing fires on the down event. Motion actuation (2.5.4) covers moving the device or gesturing at its sensors, and its Understanding document explicitly exempts the finger movements used to operate a touchscreen. Worth knowing where the line sits: 2.5.1 covers author-implemented gestures only. If the carousel were a native scroll container (CSS overflow), swiping it would be user agent scrolling, out of scope for both criteria, and it could also be moved by scrollbar, by wheel, and by keyboard when the container is focusable. Bonus: with no other way to move between slides, this also fails 2.1.1 Keyboard, and the same Previous and Next buttons fix that too.",
     refs: [
       {
         label: "WCAG 2.2 Understanding: 2.5.1 Pointer Gestures",
@@ -2258,7 +2258,7 @@ export const questions: Question[] = [
       '`aria-hidden="true"` on the `<svg>` is invalid because `aria-hidden` may only be used on the `<body>` element',
       "Hiding the only content from the accessibility tree leaves the link with no accessible name, so it is announced as an unlabelled link, failing 4.1.2 Name, Role, Value and 2.4.4 Link Purpose (In Context)",
       '`focusable="false"` creates a keyboard trap because it prevents the link itself from receiving focus',
-      '`aria-hidden="true"` silently moves the link out of the tab order, failing Focus Order',
+      '`aria-hidden="true"` moves the link out of the tab order, failing Focus Order',
     ],
     correctIndex: 1,
     explanation:
