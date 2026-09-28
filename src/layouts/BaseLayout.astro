@@ -109,7 +109,6 @@ const jsonLd = {
         if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
       } catch {}
     </script>
-
     <Font cssVariable="--font-display" preload />
     <Font cssVariable="--font-body" preload />
     <Font cssVariable="--font-mono" />
@@ -147,7 +146,7 @@ const jsonLd = {
     <meta name="twitter:image" content={ogImage} />
     <meta name="twitter:image:alt" content={ogImageAlt} />
 
-    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline></script>
   </head>
   <body>
     <div class={styles.page}>
@@ -164,12 +163,12 @@ const jsonLd = {
       initThemeToggle();
       initAboutModal();
     </script>
-
     <script
       is:inline
       src="https://analytics.ahrefs.com/analytics.js"
       data-key="1fXlECOOYi7k3dKadh1WOw"
       async
-      fetchpriority="low"></script>
+      fetchpriority="low"
+    ></script>
   </body>
 </html>
