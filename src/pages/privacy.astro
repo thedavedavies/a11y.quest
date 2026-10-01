@@ -46,19 +46,19 @@ const repoUrl = `https://github.com/${GITHUB_REPO}`;
 
     <h3>Questions?</h3>
     <p>
-      This whole quiz is open source, so you can check any of this yourself. Have a poke around {
-        " "
-      }
-      <a class="link" href={repoUrl} target="_blank" rel="noopener"
-        >the quiz code on GitHub<span class="linkIcon" set:html={icon("external-link", 15)} /><span
-          class="visually-hidden">{" (opens in a new tab)"}</span
-        ></a
-      >, or come and say hello at{" "}
-      <a class="link" href={AUTHOR_URL} target="_blank" rel="author noopener"
-        >davedavies.dev<span class="linkIcon" set:html={icon("external-link", 15)} /><span
-          class="visually-hidden">{" (opens in a new tab)"}</span
-        ></a
-      >.
+      This whole quiz is open source, so you can check any of this yourself. Have a poke around{" "}
+      <a class="link" href={repoUrl} target="_blank" rel="noopener">
+        the quiz code on GitHub
+        <span class="linkIcon" set:html={icon("external-link", 15)} />
+        <span class="visually-hidden">{" (opens in a new tab)"}</span>
+      </a>
+      , or come and say hello at{" "}
+      <a class="link" href={AUTHOR_URL} target="_blank" rel="author noopener">
+        davedavies.dev
+        <span class="linkIcon" set:html={icon("external-link", 15)} />
+        <span class="visually-hidden">{" (opens in a new tab)"}</span>
+      </a>
+      .
     </p>
   </article>
 </BaseLayout>
