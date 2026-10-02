@@ -6,7 +6,8 @@ updates:
       interval: weekly
     open-pull-requests-limit: 10
     # TODO: remove these ignores when upstream unblocks:
-    # @astrojs/check needs a release accepting typescript 7, and
+    # @astrojs/check and typescript-eslint both need releases that run on
+    # typescript 7 (they wait on the typescript 7.1 API), and
     # eslint-plugin-jsx-a11y needs a release accepting eslint 10
     # (eslint-plugin-astro 2+ requires eslint 10, so it waits on the same).
     ignore:
