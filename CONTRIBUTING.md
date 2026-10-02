@@ -56,7 +56,7 @@ Guidelines:
 
 ## Dev workflow
 
-You need Node 20 or newer.
+You need Node 24.16 or newer (`.nvmrc` pins Node 24). Node 22.22.3 or newer on the 22 line also works.
 
 ```bash
 npm install
