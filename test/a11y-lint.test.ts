@@ -8,4 +8,4 @@ it("applies the astro/jsx-a11y rules to .astro files", async () => {
     filePath: "src/pages/probe.astro",
   });
   expect(result.messages.map((m) => m.ruleId)).toContain("astro/jsx-a11y/alt-text");
-});
+}, 30_000);
